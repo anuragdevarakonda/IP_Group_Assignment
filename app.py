@@ -13,6 +13,7 @@
 from __future__ import annotations
 
 import io
+import hashlib
 import json
 import zipfile
 from pathlib import Path
@@ -536,11 +537,24 @@ def clean_pipeline(raw: Dict[str, pd.DataFrame]) -> Dict[str, pd.DataFrame]:
 # -------------------------
 # Upload parsing: CSV / XLSX / ZIP(CSVs)
 # -------------------------
-def parse_uploads(files) -> List[Tuple[str, pd.DataFrame]]:
+def parse_uploads(files) -> Tuple[List[Tuple[str, pd.DataFrame]], str]:
+    """Parse uploads into (name, dataframe) assets and return a stable content signature.
+
+    The signature lets us persist canonical/cleaned tables across Streamlit reruns (view/filter changes)
+    without forcing users to rebuild the ingestion pipeline each time.
+    """
     assets: List[Tuple[str, pd.DataFrame]] = []
+    h = hashlib.sha1()
+
     for f in files:
         name = f.name
-        b = f.read()
+        # Use getvalue() (non-destructive) rather than read() to avoid empty reads on reruns.
+        b = f.getvalue()
+
+        # Include both metadata and contents in the signature
+        h.update(name.encode("utf-8", errors="ignore"))
+        h.update(len(b).to_bytes(8, "little", signed=False))
+        h.update(b)
 
         if name.lower().endswith(".zip"):
             with zipfile.ZipFile(io.BytesIO(b)) as z:
@@ -557,7 +571,8 @@ def parse_uploads(files) -> List[Tuple[str, pd.DataFrame]]:
         else:
             df = pd.read_csv(io.BytesIO(b))
             assets.append((name, df))
-    return assets
+
+    return assets, h.hexdigest()
 
 
 def mapping_wizard(assets: List[Tuple[str, pd.DataFrame]]) -> Optional[Dict[str, pd.DataFrame]]:
@@ -842,21 +857,63 @@ elif data_mode == "Repo sample (clean from dirty_data now)":
 
 else:
     st.markdown("<div class='section-title'>External Dataset Intake</div>", unsafe_allow_html=True)
-    st.markdown("<div class='subtle'>Upload 5 tables as CSVs, a single XLSX workbook (5 sheets), or a ZIP of CSVs.</div>", unsafe_allow_html=True)
+    st.markdown(
+        "<div class='subtle'>Upload 5 tables as CSVs, an Excel workbook (5 sheets), or a ZIP of CSVs. "
+        "Once canonical tables are built, you can freely switch views and adjust filters without rebuilding.</div>",
+        unsafe_allow_html=True,
+    )
 
-    files = st.file_uploader("Upload files", type=["csv", "xlsx", "xls", "zip"], accept_multiple_files=True)
-    if files:
-        assets = parse_uploads(files)
-        can_raw = mapping_wizard(assets)
-        if can_raw is not None:
-            with st.spinner("Running cleaning + validation on uploaded dataset..."):
-                data_clean = clean_pipeline({
-                    "products": can_raw["products"],
-                    "stores": can_raw["stores"],
-                    "sales_raw": can_raw["sales_raw"],
-                    "inventory_snapshot": can_raw["inventory_snapshot"],
-                    "campaign_plan": can_raw["campaign_plan"],
-                })
+    # Persist external ingestion results across Streamlit reruns (view/filter changes).
+    if "external_ready" not in st.session_state:
+        st.session_state.external_ready = False
+        st.session_state.external_sig = None
+        st.session_state.external_data_clean = None
+
+    if st.session_state.external_ready and st.session_state.external_data_clean is not None:
+        st.success("Canonical tables are ready. The dashboard will refresh with your selections without re-running ingestion.")
+        if st.button("Rebuild canonical tables / Upload new dataset", type="secondary"):
+            st.session_state.external_ready = False
+            st.session_state.external_sig = None
+            st.session_state.external_data_clean = None
+            st.rerun()
+
+        data_clean = st.session_state.external_data_clean
+
+    else:
+        files = st.file_uploader(
+            "Upload files",
+            type=["csv", "xlsx", "xls", "zip"],
+            accept_multiple_files=True,
+            key="external_upload_files",
+        )
+
+        # Allow reuse even if the uploader is cleared by a rerun
+        if files:
+            assets, sig = parse_uploads(files)
+
+            # If a different dataset is uploaded, reset cached results.
+            if st.session_state.external_sig is not None and st.session_state.external_sig != sig:
+                st.session_state.external_ready = False
+                st.session_state.external_data_clean = None
+
+            # If we already built for this signature earlier, reuse it.
+            if st.session_state.external_sig == sig and st.session_state.external_data_clean is not None:
+                st.session_state.external_ready = True
+                data_clean = st.session_state.external_data_clean
+            else:
+                can_raw = mapping_wizard(assets)
+                if can_raw is not None:
+                    with st.spinner("Running cleaning + validation on uploaded dataset..."):
+                        data_clean = clean_pipeline({
+                            "products": can_raw["products"],
+                            "stores": can_raw["stores"],
+                            "sales_raw": can_raw["sales_raw"],
+                            "inventory_snapshot": can_raw["inventory_snapshot"],
+                            "campaign_plan": can_raw["campaign_plan"],
+                        })
+                    st.session_state.external_ready = True
+                    st.session_state.external_sig = sig
+                    st.session_state.external_data_clean = data_clean
 
 if data_clean is None:
     st.info("Select a data source (and complete mapping if uploading) to load the dashboard.")
