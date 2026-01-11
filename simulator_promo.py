@@ -1,13 +1,13 @@
 import pandas as pd
+import os
 import numpy as np
+import re
 from datetime import datetime, timedelta
 
 # ---------------------------------------------------------
 # CONFIG
 # ---------------------------------------------------------
-INPUT_DIR = "/Users/anish/Desktop/IP Final/clean_data/"
-
-# ---------------------------------------------------------
+INPUT_DIR = os.getenv("INPUT_DIR", "clean_data/")# ---------------------------------------------------------
 # UPLIFT LOGIC CONSTANTS
 # ---------------------------------------------------------
 # Base uplift multipliers by discount tier
@@ -34,6 +34,48 @@ CATEGORY_SENSITIVITY = {
     "Home": 1.0,          # Baseline
     "Beauty": 1.05,       # Slightly above baseline
 }
+
+
+DEFAULT_CATEGORY_SENSITIVITY = 1.0  # Used for any new/unseen category
+
+# ---------------------------------------------------------
+# HELPERS (ROBUST TO OPEN-VOCAB CATEGORIES / EXTERNAL ENCODINGS)
+# ---------------------------------------------------------
+def normalize_free_text_category(x):
+    """Open-vocabulary category normalization for consistent grouping/filters."""
+    if pd.isna(x):
+        return "Other"
+    s = str(x).strip()
+    # Handle artifacts like "sports/SPORTS/Sports"
+    if "/" in s:
+        s = s.split("/")[0].strip()
+    s = re.sub(r"\s+", " ", s)
+    return s.title()
+
+def _boolish_to_int(series: pd.Series) -> pd.Series:
+    """Convert boolean-like encodings to 0/1 numeric for safe KPI arithmetic."""
+    if series is None:
+        return series
+    num = pd.to_numeric(series, errors="coerce")
+    if len(series) and float(num.notna().mean()) >= 0.85:
+        return num.fillna(0).clip(0, 1)
+
+    s = series.astype(str).str.strip().str.lower()
+    true_set = {"1","true","t","yes","y","returned","return","r"}
+    false_set = {"0","false","f","no","n","not returned","not_returned","nr","nan","","none"}
+    out = s.map(lambda v: 1 if v in true_set else (0 if v in false_set else np.nan))
+    return pd.to_numeric(out, errors="coerce").fillna(0).clip(0, 1)
+
+def _coalesce_column(df: pd.DataFrame, base: str, candidates: tuple) -> pd.DataFrame:
+    """Ensure df[base] exists by taking the first available candidate column."""
+    if base in df.columns:
+        return df
+    for c in candidates:
+        if c in df.columns:
+            df[base] = df[c]
+            return df
+    df[base] = np.nan
+    return df
 
 # ---------------------------------------------------------
 # LOAD CLEAN DATA
@@ -69,6 +111,13 @@ def calculate_historical_kpis(sales_df, products_df):
         on='product_id', 
         how='left'
     )
+
+    # Normalize return_flag to numeric (robust to external encodings)
+    if 'return_flag' in sales_enriched.columns:
+        sales_enriched['return_flag'] = _boolish_to_int(sales_enriched['return_flag'])
+    else:
+        sales_enriched['return_flag'] = 0
+
     
     # Filter for paid transactions only (for revenue calculations)
     paid_sales = sales_enriched[sales_enriched['payment_status'] == 'Paid'].copy()
@@ -149,18 +198,36 @@ def calculate_baseline_demand(sales_df, products_df, stores_df, lookback_days=30
     ].copy()
     
     # Merge with products and stores to get category and channel
+    # Note: external sales extracts may already contain 'category'/'city'/'channel'; merges can create *_x/*_y.
+    # Use suffixes + coalescing to guarantee canonical columns exist.
+
     recent_sales = recent_sales.merge(
-        products_df[['product_id', 'category']], 
-        on='product_id', 
-        how='left'
+        products_df[['product_id', 'category']],
+        on='product_id',
+        how='left',
+        suffixes=('', '_prod')
     )
+    recent_sales = _coalesce_column(recent_sales, 'category', ('category', 'category_prod', 'category_x', 'category_y'))
+    recent_sales['category'] = recent_sales['category'].apply(normalize_free_text_category)
+
     recent_sales = recent_sales.merge(
-        stores_df[['store_id', 'channel', 'city']], 
-        on='store_id', 
-        how='left'
+        stores_df[['store_id', 'channel', 'city']],
+        on='store_id',
+        how='left',
+        suffixes=('', '_store')
     )
-    
-    # Calculate total qty per product-store over the period
+    recent_sales = _coalesce_column(recent_sales, 'city', ('city', 'city_store', 'city_x', 'city_y'))
+    recent_sales = _coalesce_column(recent_sales, 'channel', ('channel', 'channel_store', 'channel_x', 'channel_y'))
+
+    # Light-touch standardization for display/grouping
+    recent_sales['city'] = recent_sales['city'].astype(str).str.strip().str.title()
+    recent_sales['channel'] = recent_sales['channel'].astype(str).str.strip().str.title()
+# Calculate total qty per product-store over the period
+    # Ensure required dims exist (defensive)
+    for _c in ['category','channel','city']:
+        if _c not in recent_sales.columns:
+            recent_sales[_c] = np.nan
+
     baseline = recent_sales.groupby(
         ['product_id', 'store_id', 'category', 'channel', 'city'], 
         as_index=False
@@ -198,10 +265,12 @@ def calculate_demand_uplift(discount_pct, channel, category):
             break
     
     # Apply channel sensitivity
-    channel_factor = CHANNEL_SENSITIVITY.get(channel, 1.0)
+    channel_norm = str(channel).strip().title() if not pd.isna(channel) else channel
+    channel_factor = CHANNEL_SENSITIVITY.get(channel_norm, 1.0)
     
-    # Apply category sensitivity
-    category_factor = CATEGORY_SENSITIVITY.get(category, 1.0)
+    # Apply category sensitivity (open vocabulary)
+    category_norm = normalize_free_text_category(category)
+    category_factor = CATEGORY_SENSITIVITY.get(category_norm, DEFAULT_CATEGORY_SENSITIVITY)
     
     # Combined uplift
     total_uplift = base_uplift * channel_factor * category_factor
