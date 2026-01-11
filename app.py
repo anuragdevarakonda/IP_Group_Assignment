@@ -11,11 +11,12 @@
 # - KPIs are reported pre-tax; tax_rate is shown for informational context.
 
 from __future__ import annotations
-from datetime import datetime, date, timedelta
+
 import io
 import json
 import zipfile
 from pathlib import Path
+from datetime import date, timedelta
 from typing import Dict, List, Optional, Tuple
 
 import numpy as np
@@ -282,30 +283,69 @@ def _normalize_id_series(s: pd.Series) -> pd.Series:
     return pd.to_numeric(mapped, errors="coerce")
 
 
+def _build_id_mapping(ref: pd.Series) -> Dict[str, int]:
+    """Build a stable mapping from external IDs (often alphanumeric) to integer IDs."""
+    if ref is None:
+        return {}
+
+    s = ref.astype(str).str.strip()
+    s = s.replace({"nan": np.nan, "None": np.nan, "": np.nan})
+
+    nonnull = s.dropna()
+    if len(nonnull) == 0:
+        return {}
+
+    digits = nonnull.str.extract(r"(\d+)")[0]
+    num = pd.to_numeric(digits, errors="coerce")
+    coverage = float(num.notna().mean()) if len(num) else 0.0
+
+    if coverage >= 0.95:
+        try:
+            uniq_ok = int(num.dropna().astype(int).nunique()) == int(nonnull.nunique())
+        except Exception:
+            uniq_ok = False
+        if uniq_ok:
+            mapping = {}
+            for orig, val in zip(nonnull.tolist(), num.astype(int).tolist()):
+                mapping.setdefault(str(orig), int(val))
+            return mapping
+
+    uniq = sorted(pd.Series(nonnull.unique()).astype(str).tolist())
+    return {u: i + 1 for i, u in enumerate(uniq)}
+
+
+def _apply_id_mapping(series: pd.Series, mapping: Dict[str, int]) -> pd.Series:
+    if series is None:
+        return series
+    s = series.astype(str).str.strip()
+    s = s.replace({"nan": np.nan, "None": np.nan, "": np.nan})
+    out = s.map(mapping)
+    return pd.to_numeric(out, errors="coerce")
+
+
 def normalize_ids_for_cleaner(raw: Dict[str, pd.DataFrame]) -> Dict[str, pd.DataFrame]:
-    """Normalize store_id and product_id across tables to avoid cleaner failures on external datasets."""
+    """Normalize store_id and product_id across tables consistently for external datasets."""
     out = {k: (v.copy() if isinstance(v, pd.DataFrame) else v) for k, v in raw.items()}
 
-    # Store IDs must be consistent across stores, sales_raw, inventory_snapshot
+    store_map: Dict[str, int] = {}
     if "stores" in out and isinstance(out["stores"], pd.DataFrame) and "store_id" in out["stores"].columns:
-        store_norm = _normalize_id_series(out["stores"]["store_id"])
-        out["stores"]["store_id"] = store_norm
+        store_map = _build_id_mapping(out["stores"]["store_id"])
+        out["stores"]["store_id"] = _apply_id_mapping(out["stores"]["store_id"], store_map)
 
-        for tbl in ["sales_raw", "inventory_snapshot"]:
-            if tbl in out and isinstance(out[tbl], pd.DataFrame) and "store_id" in out[tbl].columns:
-                out[tbl]["store_id"] = _normalize_id_series(out[tbl]["store_id"])
+    for tbl in ("sales_raw", "inventory_snapshot"):
+        if tbl in out and isinstance(out[tbl], pd.DataFrame) and "store_id" in out[tbl].columns and store_map:
+            out[tbl]["store_id"] = _apply_id_mapping(out[tbl]["store_id"], store_map)
 
-    # Product IDs must be consistent across products, sales_raw, inventory_snapshot
+    prod_map: Dict[str, int] = {}
     if "products" in out and isinstance(out["products"], pd.DataFrame) and "product_id" in out["products"].columns:
-        out["products"]["product_id"] = _normalize_id_series(out["products"]["product_id"])
+        prod_map = _build_id_mapping(out["products"]["product_id"])
+        out["products"]["product_id"] = _apply_id_mapping(out["products"]["product_id"], prod_map)
 
-        for tbl in ["sales_raw", "inventory_snapshot"]:
-            if tbl in out and isinstance(out[tbl], pd.DataFrame) and "product_id" in out[tbl].columns:
-                out[tbl]["product_id"] = _normalize_id_series(out[tbl]["product_id"])
+    for tbl in ("sales_raw", "inventory_snapshot"):
+        if tbl in out and isinstance(out[tbl], pd.DataFrame) and "product_id" in out[tbl].columns and prod_map:
+            out[tbl]["product_id"] = _apply_id_mapping(out[tbl]["product_id"], prod_map)
 
     return out
-
-
 
 def _boolish_to_int(series: pd.Series) -> pd.Series:
     """Convert common boolean-like encodings to 0/1 numeric values.
@@ -610,13 +650,62 @@ def mapping_wizard(assets: List[Tuple[str, pd.DataFrame]]) -> Optional[Dict[str,
 # -------------------------
 # Core analytics helpers
 # -------------------------
+def _coalesce(df: pd.DataFrame, target: str, candidates: List[str], default: str = "Unknown") -> None:
+    """Create/overwrite `target` using the first non-null among candidate columns."""
+    series = None
+    for c in candidates:
+        if c in df.columns:
+            if series is None:
+                series = df[c]
+            else:
+                series = series.combine_first(df[c])
+    if series is None:
+        df[target] = default
+    else:
+        df[target] = series.fillna(default)
+
+
 def enrich_sales(sales: pd.DataFrame, products: pd.DataFrame, stores: pd.DataFrame) -> pd.DataFrame:
+    """Join sales with product/store dimensions and compute revenue, COGS and margin (defensive)."""
     s = sales.copy()
+
+    # Normalize types used across analytics
     s["order_time"] = pd.to_datetime(s.get("order_time"), errors="coerce")
-    s = s.merge(products[["product_id", "category", "brand", "tax_rate", "unit_cost_aed"]], on="product_id", how="left")
-    s = s.merge(stores[["store_id", "city", "channel", "fulfillment_type"]], on="store_id", how="left")
-    s["revenue"] = pd.to_numeric(s.get("selling_price_aed"), errors="coerce") * pd.to_numeric(s.get("qty"), errors="coerce")
-    s["cogs"] = pd.to_numeric(s.get("unit_cost_aed"), errors="coerce") * pd.to_numeric(s.get("qty"), errors="coerce")
+    s["qty"] = pd.to_numeric(s.get("qty"), errors="coerce").fillna(0)
+    s["selling_price_aed"] = pd.to_numeric(s.get("selling_price_aed"), errors="coerce").fillna(0)
+
+    # Avoid merge suffix collisions by renaming any pre-existing dims in sales extract
+    for col in ("city", "channel", "fulfillment_type", "category", "brand", "tax_rate", "unit_cost_aed"):
+        if col in s.columns:
+            s.rename(columns={col: f"{col}_src"}, inplace=True)
+
+    # Defensive: choose available columns in dimension tables
+    prod_cols = ["product_id"] + [c for c in ("category", "brand", "tax_rate", "unit_cost_aed") if c in products.columns]
+    store_cols = ["store_id"] + [c for c in ("city", "channel", "fulfillment_type") if c in stores.columns]
+
+    if "product_id" in s.columns and "product_id" in products.columns:
+        s = s.merge(products[prod_cols], on="product_id", how="left")
+    if "store_id" in s.columns and "store_id" in stores.columns:
+        s = s.merge(stores[store_cols], on="store_id", how="left")
+
+    # Coalesce dims to canonical names
+    _coalesce(s, "city", ["city", "city_y", "city_x", "city_src"])
+    _coalesce(s, "channel", ["channel", "channel_y", "channel_x", "channel_src"])
+    _coalesce(s, "fulfillment_type", ["fulfillment_type", "fulfillment_type_y", "fulfillment_type_x", "fulfillment_type_src"])
+    _coalesce(s, "category", ["category", "category_y", "category_x", "category_src"])
+    _coalesce(s, "brand", ["brand", "brand_y", "brand_x", "brand_src"])
+
+    if "unit_cost_aed" not in s.columns:
+        _coalesce(s, "unit_cost_aed", ["unit_cost_aed", "unit_cost_aed_y", "unit_cost_aed_x", "unit_cost_aed_src"], default="0")
+    if "tax_rate" not in s.columns:
+        _coalesce(s, "tax_rate", ["tax_rate", "tax_rate_y", "tax_rate_x", "tax_rate_src"], default="0")
+
+    s["unit_cost_aed"] = pd.to_numeric(s["unit_cost_aed"], errors="coerce").fillna(0)
+    s["tax_rate"] = pd.to_numeric(s["tax_rate"], errors="coerce").fillna(0)
+
+    # Compute pre-tax revenue and COGS
+    s["revenue"] = s["selling_price_aed"] * s["qty"]
+    s["cogs"] = s["unit_cost_aed"] * s["qty"]
     s["gross_margin_aed"] = s["revenue"] - s["cogs"]
     return s
 
@@ -1032,7 +1121,11 @@ if view_mode == "Executive View":
         st.plotly_chart(fig, use_container_width=True)
     with c2:
         st.markdown("#### Revenue by City & Channel (Paid)")
-        grp = paid_filtered.groupby(["city", "channel"], as_index=False)["revenue"].sum()
+        if not {"city","channel"}.issubset(set(paid_filtered.columns)):
+            st.warning("Cannot plot Revenue by City & Channel because required columns are missing in the enriched sales view.")
+            grp = pd.DataFrame(columns=["city","channel","revenue"])
+        else:
+            grp = paid_filtered.groupby(["city", "channel"], as_index=False)["revenue"].sum()
         if len(grp):
             fig = px.bar(grp, x="city", y="revenue", color="channel", barmode="group", labels={"city":"City","revenue":"Paid Revenue (AED)","channel":"Channel"})
             fig = style_fig(fig, height=360)
