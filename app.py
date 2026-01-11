@@ -11,6 +11,7 @@
 # - KPIs are reported pre-tax; tax_rate is shown for informational context.
 
 from __future__ import annotations
+from datetime import datetime, date, timedelta
 
 import io
 import json
