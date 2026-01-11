@@ -308,6 +308,76 @@ def normalize_ids_for_cleaner(raw: Dict[str, pd.DataFrame]) -> Dict[str, pd.Data
 
 
 
+def _boolish_to_int(series: pd.Series) -> pd.Series:
+    """Convert common boolean-like encodings to 0/1 numeric values.
+
+    Handles: 1/0, True/False, Y/N, Yes/No, T/F, Returned/Not Returned.
+    Unknowns become NaN (caller decides fill behavior).
+    """
+    if series is None:
+        return series
+
+    # Numeric fast path
+    num = pd.to_numeric(series, errors="coerce")
+    if len(series) and float(num.notna().mean()) >= 0.85:
+        return num
+
+    s_str = series.astype(str).str.strip().str.lower()
+    true_set = {"1", "true", "t", "yes", "y", "returned", "return", "r"}
+    false_set = {"0", "false", "f", "no", "n", "not returned", "not_returned", "nr", "none", "nan", ""}
+    out = s_str.map(lambda v: 1 if v in true_set else (0 if v in false_set else np.nan))
+    return out
+
+
+def normalize_sales_for_simulator(df_sales: pd.DataFrame) -> pd.DataFrame:
+    """Ensure simulator-critical sales columns have safe, numeric types.
+
+    External datasets often encode fields like return_flag as strings (e.g., 'Y'/'N').
+    The promo simulator expects numeric arithmetic on these fields.
+    """
+    if df_sales is None or not isinstance(df_sales, pd.DataFrame) or df_sales.empty:
+        return df_sales
+
+    df = df_sales.copy()
+
+    if "return_flag" in df.columns:
+        rf = _boolish_to_int(df["return_flag"])
+        df["return_flag"] = pd.to_numeric(rf, errors="coerce").fillna(0).clip(0, 1)
+
+    if "qty" in df.columns:
+        df["qty"] = pd.to_numeric(df["qty"], errors="coerce").fillna(0)
+
+    if "selling_price_aed" in df.columns:
+        s = df["selling_price_aed"].astype(str).str.replace(r"[^0-9.\-]", "", regex=True)
+        df["selling_price_aed"] = pd.to_numeric(s, errors="coerce").fillna(0)
+
+    if "discount_pct" in df.columns:
+        d = df["discount_pct"].astype(str).str.replace("%", "", regex=False).str.strip()
+        df["discount_pct"] = pd.to_numeric(d, errors="coerce").fillna(0).clip(0, 100)
+
+    if "payment_status" in df.columns:
+        ps = df["payment_status"].astype(str).str.strip().str.title()
+        repl = {
+            "Completed": "Paid",
+            "Success": "Paid",
+            "Successful": "Paid",
+            "Refund": "Refunded",
+            "Returned": "Refunded",
+            "Fail": "Failed",
+            "Declined": "Failed",
+            "Cancelled": "Failed",
+            "Canceled": "Failed",
+        }
+        df["payment_status"] = ps.map(lambda v: repl.get(v, v))
+
+    if "order_time" in df.columns:
+        df["order_time"] = pd.to_datetime(df["order_time"], errors="coerce")
+
+    return df
+
+
+
+
 
 def normalize_col(c: str) -> str:
     return (
@@ -793,8 +863,8 @@ payment_failure_pct_f = compute_payment_failure_pct(filtered)
 payment_failure_pct_prev = compute_payment_failure_pct(filtered_prev) if has_prev_period else 0.0
 
 # KPIs (baseline)
+sales_df = normalize_sales_for_simulator(sales_df)
 base_kpis, _ = sim.calculate_historical_kpis(sales_df, products_df)
-
 # Baseline demand & simulation
 baseline_df = sim.calculate_baseline_demand(sales_df, products_df, stores_df, lookback_days=30)
 sim_filters = {"city": f_city, "channel": f_channel, "category": f_category}
