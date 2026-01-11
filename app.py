@@ -11,7 +11,6 @@
 # - KPIs are reported pre-tax; tax_rate is shown for informational context.
 
 from __future__ import annotations
-from datetime import datetime, date, timedelta
 
 import io
 import json
@@ -246,6 +245,69 @@ def style_fig(fig, height: int = 360):
 
 
 
+def _normalize_id_series(s: pd.Series) -> pd.Series:
+    """Normalize identifier series to integer IDs (robust to codes like 'S001', 'P-0007').
+
+    This is required because the project cleaner expects store_id to be convertible to int in some paths.
+    For external datasets, IDs are frequently alphanumeric; we normalize them consistently across tables.
+    """
+    if s is None or len(s) == 0:
+        return s
+
+    s_str = s.astype(str).str.strip()
+    # Treat placeholders as missing
+    s_str = s_str.replace({"nan": np.nan, "None": np.nan, "": np.nan})
+
+    # Attempt: extract digits and use them if they preserve uniqueness (e.g., S001 -> 1)
+    digits = s_str.str.extract(r"(\d+)")[0]
+    num = pd.to_numeric(digits, errors="coerce")
+
+    coverage = float(num.notna().mean()) if len(num) else 0.0
+    uniq_ok = False
+    if coverage >= 0.95:
+        try:
+            uniq_ok = int(num.dropna().astype(int).nunique()) == int(s_str.dropna().nunique())
+        except Exception:
+            uniq_ok = False
+
+    if coverage >= 0.95 and uniq_ok:
+        return num.fillna(-1).astype(int)
+
+    # Fallback: stable mapping from unique string IDs -> 1..N
+    uniq = sorted(pd.Series(s_str.dropna().unique()).astype(str).tolist())
+    mapper = {u: i + 1 for i, u in enumerate(uniq)}
+    mapped = s_str.map(mapper)
+
+    # Any truly unknown remains NaN (downstream cleaner may drop/log)
+    return pd.to_numeric(mapped, errors="coerce")
+
+
+def normalize_ids_for_cleaner(raw: Dict[str, pd.DataFrame]) -> Dict[str, pd.DataFrame]:
+    """Normalize store_id and product_id across tables to avoid cleaner failures on external datasets."""
+    out = {k: (v.copy() if isinstance(v, pd.DataFrame) else v) for k, v in raw.items()}
+
+    # Store IDs must be consistent across stores, sales_raw, inventory_snapshot
+    if "stores" in out and isinstance(out["stores"], pd.DataFrame) and "store_id" in out["stores"].columns:
+        store_norm = _normalize_id_series(out["stores"]["store_id"])
+        out["stores"]["store_id"] = store_norm
+
+        for tbl in ["sales_raw", "inventory_snapshot"]:
+            if tbl in out and isinstance(out[tbl], pd.DataFrame) and "store_id" in out[tbl].columns:
+                out[tbl]["store_id"] = _normalize_id_series(out[tbl]["store_id"])
+
+    # Product IDs must be consistent across products, sales_raw, inventory_snapshot
+    if "products" in out and isinstance(out["products"], pd.DataFrame) and "product_id" in out["products"].columns:
+        out["products"]["product_id"] = _normalize_id_series(out["products"]["product_id"])
+
+        for tbl in ["sales_raw", "inventory_snapshot"]:
+            if tbl in out and isinstance(out[tbl], pd.DataFrame) and "product_id" in out[tbl].columns:
+                out[tbl]["product_id"] = _normalize_id_series(out[tbl]["product_id"])
+
+    return out
+
+
+
+
 def normalize_col(c: str) -> str:
     return (
         str(c).strip().lower()
@@ -344,6 +406,7 @@ def load_repo_clean() -> Dict[str, pd.DataFrame]:
 
 
 def clean_pipeline(raw: Dict[str, pd.DataFrame]) -> Dict[str, pd.DataFrame]:
+    raw = normalize_ids_for_cleaner(raw)
     cleaner.ISSUES_LOG.clear()
     stores_clean, store_mapping = cleaner.clean_stores(raw["stores"])
     products_clean = cleaner.clean_products(raw["products"])
