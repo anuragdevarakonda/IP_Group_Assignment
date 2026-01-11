@@ -12,7 +12,6 @@
 
 from __future__ import annotations
 from datetime import datetime, date, timedelta
-
 import io
 import json
 import zipfile
@@ -862,11 +861,29 @@ return_rate_pct_prev = compute_return_rate_pct(filtered_prev) if has_prev_period
 payment_failure_pct_f = compute_payment_failure_pct(filtered)
 payment_failure_pct_prev = compute_payment_failure_pct(filtered_prev) if has_prev_period else 0.0
 
-# KPIs (baseline)
-sales_df = normalize_sales_for_simulator(sales_df)
-base_kpis, _ = sim.calculate_historical_kpis(sales_df, products_df)
+# KPIs (baseline) + simulator preparation
+# Note: some external sales extracts may already contain columns like 'city'/'channel'/'category'.
+# The promo simulator merges these in from stores/products; to avoid merge suffixes (city_x/city_y),
+# we rename any pre-existing columns in the sales extract.
+sales_for_sim = normalize_sales_for_simulator(sales_df).copy()
+for _col in ("city", "channel", "category"):
+    if _col in sales_for_sim.columns:
+        sales_for_sim.rename(columns={_col: f"{_col}_src"}, inplace=True)
+
+# Ensure stores table provides required dimensions for baseline demand
+missing_store_dims = [c for c in ("city", "channel") if c not in stores_df.columns]
+if missing_store_dims:
+    st.error(
+        "Stores table is missing required columns for simulation: "
+        + ", ".join(missing_store_dims)
+        + ". Please map these fields in the External Dataset schema mapping step."
+    )
+    st.stop()
+
+base_kpis, _ = sim.calculate_historical_kpis(sales_for_sim, products_df)
+
 # Baseline demand & simulation
-baseline_df = sim.calculate_baseline_demand(sales_df, products_df, stores_df, lookback_days=30)
+baseline_df = sim.calculate_baseline_demand(sales_for_sim, products_df, stores_df, lookback_days=30)
 sim_filters = {"city": f_city, "channel": f_channel, "category": f_category}
 sim_out, constraints, sim_kpis = sim.run_simulation(
     baseline_df=baseline_df,
