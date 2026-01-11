@@ -24,10 +24,28 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 # Plot styling defaults (presentation-friendly)
 px.defaults.template = "plotly_white"
-px.defaults.color_discrete_sequence = px.colors.qualitative.Set2
+px.defaults.color_discrete_sequence = px.colors.qualitative.Vivid
+
+# Custom vibrant palette (presentation-friendly)
+VIBRANT_COLORWAY = [
+    "#00A3E0",  # blue
+    "#FF6F61",  # coral
+    "#6B5B95",  # purple
+    "#88B04B",  # green
+    "#F7CAC9",  # light pink
+    "#92A8D1",  # periwinkle
+    "#F4A261",  # orange
+    "#2A9D8F",  # teal
+    "#E76F51",  # red-orange
+    "#E9C46A",  # yellow
+    "#264653",  # dark teal
+    "#D90368",  # magenta
+]
 
 
 import cleaner
@@ -240,10 +258,13 @@ def style_fig(fig, height: int = 360):
         margin=dict(l=12, r=12, t=46, b=12),
         font=dict(size=14),
         legend=dict(font=dict(size=12), title_font=dict(size=12)),
+        colorway=VIBRANT_COLORWAY,
+        hovermode="x unified",
     )
     fig.update_xaxes(title_font=dict(size=13), tickfont=dict(size=12))
     fig.update_yaxes(title_font=dict(size=13), tickfont=dict(size=12))
     return fig
+
 
 
 
@@ -1170,12 +1191,27 @@ if view_mode == "Executive View":
 
     c1, c2 = st.columns([1.2, 1])
     with c1:
-        st.markdown("#### Net Revenue Trend")
+        st.markdown("#### Net Revenue Trend (Monthly)")
         ts = net_revenue_ts(filtered)
-        fig = px.line(ts, x="date", y="net_revenue", markers=True, labels={"date":"Date","net_revenue":"Net Revenue (AED)"})
-        fig = style_fig(fig, height=360)
-        fig.update_yaxes(tickformat=",.0f")
-        st.plotly_chart(fig, use_container_width=True)
+        if len(ts):
+            ts["date"] = pd.to_datetime(ts["date"])
+            ts["month"] = ts["date"].dt.to_period("M").dt.to_timestamp()
+            m = ts.groupby("month", as_index=False)["net_revenue"].sum().sort_values("month")
+            m["roll_3m"] = m["net_revenue"].rolling(3).mean()
+            m["roll_6m"] = m["net_revenue"].rolling(6).mean()
+
+            fig = go.Figure()
+            fig.add_trace(go.Bar(x=m["month"], y=m["net_revenue"], name="Net Revenue (Monthly)"))
+            fig.add_trace(go.Scatter(x=m["month"], y=m["roll_3m"], name="Rolling Avg (3M)", mode="lines+markers", line=dict(width=3)))
+            fig.add_trace(go.Scatter(x=m["month"], y=m["roll_6m"], name="Rolling Avg (6M)", mode="lines+markers", line=dict(width=3, dash="dash")))
+
+            fig = style_fig(fig, height=360)
+            fig.update_xaxes(title_text="Month", tickformat="%b %Y", dtick="M1")
+            fig.update_yaxes(title_text="Net Revenue (AED)", tickformat=",.0f")
+            st.plotly_chart(fig, use_container_width=True)
+        else:
+            st.info("Not enough data to plot net revenue trend in the selected scope.")
+
     with c2:
         st.markdown("#### Revenue by City & Channel (Paid)")
         if not {"city","channel"}.issubset(set(paid_filtered.columns)):
@@ -1197,12 +1233,22 @@ if view_mode == "Executive View":
         cat = paid_filtered.groupby("category", as_index=False).agg(revenue=("revenue", "sum"), cogs=("cogs", "sum"))
         if len(cat):
             cat["margin_pct"] = np.where(cat["revenue"] > 0, (cat["revenue"] - cat["cogs"]) / cat["revenue"] * 100, 0)
-            fig = px.bar(cat.sort_values("margin_pct", ascending=False), x="category", y="margin_pct", labels={"category":"Category","margin_pct":"Gross Margin (%)"})
+            cat = cat.sort_values("margin_pct", ascending=False)
+            fig = px.bar(
+                cat,
+                x="category",
+                y="margin_pct",
+                color="category",
+                color_discrete_sequence=VIBRANT_COLORWAY,
+                labels={"category": "Category", "margin_pct": "Gross Margin (%)"},
+            )
+            fig.update_layout(showlegend=False)
             fig = style_fig(fig, height=340)
             fig.update_yaxes(ticksuffix="%")
             st.plotly_chart(fig, use_container_width=True)
         else:
             st.info("Not enough data to compute margin by category.")
+
 
     with c4:
         st.markdown("#### Profit Proxy vs Discount (Scenario Curve)")
@@ -1317,13 +1363,51 @@ else:
     with t2:
         st.markdown("#### Data Quality Pareto (Issues)")
         if len(issues_df):
-            pareto = issues_df.groupby("issue_type", as_index=False).size().sort_values("size", ascending=False).head(12)
-            fig = px.bar(pareto, x="issue_type", y="size")
-            fig.update_layout(height=320, margin=dict(l=10, r=10, t=30, b=10))
-            fig.update_xaxes(tickangle=25)
+            pareto = (
+                issues_df.groupby("issue_type", as_index=False)
+                .size()
+                .sort_values("size", ascending=False)
+                .head(12)
+                .reset_index(drop=True)
+            )
+            total = float(pareto["size"].sum()) if len(pareto) else 0.0
+            pareto["cum"] = pareto["size"].cumsum()
+            pareto["cum_pct"] = np.where(total > 0, pareto["cum"] / total * 100.0, 0.0)
+
+            fig = make_subplots(specs=[[{"secondary_y": True}]])
+            fig.add_trace(
+                go.Bar(
+                    x=pareto["issue_type"],
+                    y=pareto["size"],
+                    name="Issue Count",
+                    marker=dict(line=dict(width=0)),
+                ),
+                secondary_y=False,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=pareto["issue_type"],
+                    y=pareto["cum_pct"],
+                    name="Cumulative %",
+                    mode="lines+markers",
+                    line=dict(width=3),
+                ),
+                secondary_y=True,
+            )
+
+            fig.update_layout(
+                height=320,
+                margin=dict(l=12, r=12, t=46, b=12),
+                legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+                colorway=VIBRANT_COLORWAY,
+            )
+            fig.update_xaxes(tickangle=25, title_text="Issue Type")
+            fig.update_yaxes(title_text="Count", secondary_y=False)
+            fig.update_yaxes(title_text="Cumulative %", range=[0, 100], ticksuffix="%", secondary_y=True)
             st.plotly_chart(fig, use_container_width=True)
         else:
             st.info("No issues logged by the cleaner.")
+
 
     with st.expander("Issues log (drill-down)"):
         if len(issues_df):
