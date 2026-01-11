@@ -1,0 +1,2078 @@
+record identifier,issue_type,issue_detail,action_taken
+stores | store_id: 1,DATA_NORMALIZATION,Field 'city' had value 'Sharjah-Emirate',Standardized
+stores | store_id: 4,DATA_NORMALIZATION,Field 'city' had value 'abu dhabi',Standardized
+stores | store_id: 5,DATA_NORMALIZATION,Field 'city' had value 'Abu-Dhabi',Standardized
+stores | store_id: 7,DATA_NORMALIZATION,Field 'city' had value 'DUBAI',Standardized
+stores | store_id: 8,DATA_NORMALIZATION,Field 'city' had value 'dubai',Standardized
+stores | store_id: 10,DATA_NORMALIZATION,Field 'city' had value 'SHARJAH',Standardized
+stores | store_id: 11,DATA_NORMALIZATION,Field 'city' had value 'dubai',Standardized
+stores | store_id: 12,DATA_NORMALIZATION,Field 'city' had value 'Sharjah-Emirate',Standardized
+stores | store_id: 13,DATA_NORMALIZATION,Field 'city' had value 'sharjah',Standardized
+stores | store_id: 14,DATA_NORMALIZATION,Field 'city' had value 'Dubayy',Standardized
+stores | store_id: 16,DATA_NORMALIZATION,Field 'city' had value 'dubai',Standardized
+stores | store_id: 17,DATA_NORMALIZATION,Field 'city' had value 'SHARJAH',Standardized
+stores | store_id: 1,DATA_NORMALIZATION,Field 'channel' had value 'MARKETPLACE',Standardized
+stores | store_id: 2,DATA_NORMALIZATION,Field 'channel' had value 'WEB',Standardized
+stores | store_id: 3,DATA_NORMALIZATION,Field 'channel' had value 'APP',Standardized
+stores | store_id: 5,DATA_NORMALIZATION,Field 'channel' had value 'marketplace',Standardized
+stores | store_id: 8,DATA_NORMALIZATION,Field 'channel' had value 'WEB',Standardized
+stores | store_id: 9,DATA_NORMALIZATION,Field 'channel' had value 'APP',Standardized
+stores | store_id: 10,DATA_NORMALIZATION,Field 'channel' had value 'APP',Standardized
+stores | store_id: 13,DATA_NORMALIZATION,Field 'channel' had value 'web',Standardized
+stores | store_id: 14,DATA_NORMALIZATION,Field 'channel' had value 'MARKETPLACE',Standardized
+stores | store_id: 15,DATA_NORMALIZATION,Field 'channel' had value 'MARKETPLACE',Standardized
+stores | store_id: 17,DATA_NORMALIZATION,Field 'channel' had value 'WEB',Standardized
+stores | store_id: 18,DATA_NORMALIZATION,Field 'channel' had value 'APP',Standardized
+stores | store_id: 11,DUPLICATE_ENTITY,Field 'store_id' had value '11',Merged into Store 9
+stores | store_id: 18,DUPLICATE_ENTITY,Field 'store_id' had value '18',Merged into Store 9
+stores | store_id: 14,DUPLICATE_ENTITY,Field 'store_id' had value '14',Merged into Store 7
+stores | store_id: 15,DUPLICATE_ENTITY,Field 'store_id' had value '15',Merged into Store 7
+stores | store_id: 16,DUPLICATE_ENTITY,Field 'store_id' had value '16',Merged into Store 8
+stores | store_id: 10,DUPLICATE_ENTITY,Field 'store_id' had value '10',Merged into Store 3
+stores | store_id: 12,DUPLICATE_ENTITY,Field 'store_id' had value '12',Merged into Store 1
+stores | store_id: 13,DUPLICATE_ENTITY,Field 'store_id' had value '13',Merged into Store 2
+stores | store_id: 17,DUPLICATE_ENTITY,Field 'store_id' had value '17',Merged into Store 2
+products | product_id: 2,DATA_NORMALIZATION,Field 'category' had value 'FASHION',Standardized
+products | product_id: 3,DATA_NORMALIZATION,Field 'category' had value 'Groceries',Standardized
+products | product_id: 4,DATA_NORMALIZATION,Field 'category' had value 'HOME',Standardized
+products | product_id: 5,DATA_NORMALIZATION,Field 'category' had value 'Beauty-Cosmetics',Standardized
+products | product_id: 7,DATA_NORMALIZATION,Field 'category' had value 'fashion',Standardized
+products | product_id: 9,DATA_NORMALIZATION,Field 'category' had value 'home',Standardized
+products | product_id: 10,DATA_NORMALIZATION,Field 'category' had value 'Beauty-Cosmetics',Standardized
+products | product_id: 12,DATA_NORMALIZATION,Field 'category' had value 'FASHION',Standardized
+products | product_id: 13,DATA_NORMALIZATION,Field 'category' had value 'grocery',Standardized
+products | product_id: 14,DATA_NORMALIZATION,Field 'category' had value 'Home-Decor',Standardized
+products | product_id: 15,DATA_NORMALIZATION,Field 'category' had value 'BEAUTY',Standardized
+products | product_id: 16,DATA_NORMALIZATION,Field 'category' had value 'electronics',Standardized
+products | product_id: 17,DATA_NORMALIZATION,Field 'category' had value 'FASHION',Standardized
+products | product_id: 18,DATA_NORMALIZATION,Field 'category' had value 'GROCERY',Standardized
+products | product_id: 21,DATA_NORMALIZATION,Field 'category' had value 'Elec-Gadgets',Standardized
+products | product_id: 22,DATA_NORMALIZATION,Field 'category' had value 'fashion',Standardized
+products | product_id: 23,DATA_NORMALIZATION,Field 'category' had value 'Groceries',Standardized
+products | product_id: 24,DATA_NORMALIZATION,Field 'category' had value 'HOME',Standardized
+products | product_id: 26,DATA_NORMALIZATION,Field 'category' had value 'Elec-Gadgets',Standardized
+products | product_id: 27,DATA_NORMALIZATION,Field 'category' had value 'Fashion-Wear',Standardized
+products | product_id: 30,DATA_NORMALIZATION,Field 'category' had value 'Beauty-Cosmetics',Standardized
+products | product_id: 32,DATA_NORMALIZATION,Field 'category' had value 'fashion',Standardized
+products | product_id: 33,DATA_NORMALIZATION,Field 'category' had value 'Groceries',Standardized
+products | product_id: 34,DATA_NORMALIZATION,Field 'category' had value 'home',Standardized
+products | product_id: 36,DATA_NORMALIZATION,Field 'category' had value 'ELECTRONICS',Standardized
+products | product_id: 37,DATA_NORMALIZATION,Field 'category' had value 'fashion',Standardized
+products | product_id: 38,DATA_NORMALIZATION,Field 'category' had value 'GROCERY',Standardized
+products | product_id: 39,DATA_NORMALIZATION,Field 'category' had value 'Home-Decor',Standardized
+products | product_id: 40,DATA_NORMALIZATION,Field 'category' had value 'BEAUTY',Standardized
+products | product_id: 44,DATA_NORMALIZATION,Field 'category' had value 'HOME',Standardized
+products | product_id: 45,DATA_NORMALIZATION,Field 'category' had value 'BEAUTY',Standardized
+products | product_id: 46,DATA_NORMALIZATION,Field 'category' had value 'Elec-Gadgets',Standardized
+products | product_id: 48,DATA_NORMALIZATION,Field 'category' had value 'Groceries',Standardized
+products | product_id: 50,DATA_NORMALIZATION,Field 'category' had value 'BEAUTY',Standardized
+products | product_id: 51,DATA_NORMALIZATION,Field 'category' had value 'ELECTRONICS',Standardized
+products | product_id: 52,DATA_NORMALIZATION,Field 'category' had value 'Fashion-Wear',Standardized
+products | product_id: 54,DATA_NORMALIZATION,Field 'category' had value 'HOME',Standardized
+products | product_id: 55,DATA_NORMALIZATION,Field 'category' had value 'Beauty-Cosmetics',Standardized
+products | product_id: 56,DATA_NORMALIZATION,Field 'category' had value 'ELECTRONICS',Standardized
+products | product_id: 57,DATA_NORMALIZATION,Field 'category' had value 'fashion',Standardized
+products | product_id: 58,DATA_NORMALIZATION,Field 'category' had value 'Groceries',Standardized
+products | product_id: 59,DATA_NORMALIZATION,Field 'category' had value 'HOME',Standardized
+products | product_id: 63,DATA_NORMALIZATION,Field 'category' had value 'Groceries',Standardized
+products | product_id: 65,DATA_NORMALIZATION,Field 'category' had value 'BEAUTY',Standardized
+products | product_id: 66,DATA_NORMALIZATION,Field 'category' had value 'Elec-Gadgets',Standardized
+products | product_id: 67,DATA_NORMALIZATION,Field 'category' had value 'fashion',Standardized
+products | product_id: 69,DATA_NORMALIZATION,Field 'category' had value 'HOME',Standardized
+products | product_id: 70,DATA_NORMALIZATION,Field 'category' had value 'beauty',Standardized
+products | product_id: 71,DATA_NORMALIZATION,Field 'category' had value 'electronics',Standardized
+products | product_id: 74,DATA_NORMALIZATION,Field 'category' had value 'home',Standardized
+products | product_id: 75,DATA_NORMALIZATION,Field 'category' had value 'BEAUTY',Standardized
+products | product_id: 78,DATA_NORMALIZATION,Field 'category' had value 'grocery',Standardized
+products | product_id: 81,DATA_NORMALIZATION,Field 'category' had value 'ELECTRONICS',Standardized
+products | product_id: 84,DATA_NORMALIZATION,Field 'category' had value 'HOME',Standardized
+products | product_id: 86,DATA_NORMALIZATION,Field 'category' had value 'ELECTRONICS',Standardized
+products | product_id: 87,DATA_NORMALIZATION,Field 'category' had value 'Fashion-Wear',Standardized
+products | product_id: 88,DATA_NORMALIZATION,Field 'category' had value 'GROCERY',Standardized
+products | product_id: 89,DATA_NORMALIZATION,Field 'category' had value 'HOME',Standardized
+products | product_id: 90,DATA_NORMALIZATION,Field 'category' had value 'Beauty-Cosmetics',Standardized
+products | product_id: 91,DATA_NORMALIZATION,Field 'category' had value 'electronics',Standardized
+products | product_id: 93,DATA_NORMALIZATION,Field 'category' had value 'grocery',Standardized
+products | product_id: 94,DATA_NORMALIZATION,Field 'category' had value 'home',Standardized
+products | product_id: 95,DATA_NORMALIZATION,Field 'category' had value 'Beauty-Cosmetics',Standardized
+products | product_id: 97,DATA_NORMALIZATION,Field 'category' had value 'fashion',Standardized
+products | product_id: 98,DATA_NORMALIZATION,Field 'category' had value 'grocery',Standardized
+products | product_id: 99,DATA_NORMALIZATION,Field 'category' had value 'Home-Decor',Standardized
+products | product_id: 100,DATA_NORMALIZATION,Field 'category' had value 'BEAUTY',Standardized
+products | product_id: 101,DATA_NORMALIZATION,Field 'category' had value 'ELECTRONICS',Standardized
+products | product_id: 103,DATA_NORMALIZATION,Field 'category' had value 'Groceries',Standardized
+products | product_id: 104,DATA_NORMALIZATION,Field 'category' had value 'Home-Decor',Standardized
+products | product_id: 105,DATA_NORMALIZATION,Field 'category' had value 'BEAUTY',Standardized
+products | product_id: 107,DATA_NORMALIZATION,Field 'category' had value 'FASHION',Standardized
+products | product_id: 108,DATA_NORMALIZATION,Field 'category' had value 'GROCERY',Standardized
+products | product_id: 109,DATA_NORMALIZATION,Field 'category' had value 'Home-Decor',Standardized
+products | product_id: 110,DATA_NORMALIZATION,Field 'category' had value 'Beauty-Cosmetics',Standardized
+products | product_id: 112,DATA_NORMALIZATION,Field 'category' had value 'FASHION',Standardized
+products | product_id: 113,DATA_NORMALIZATION,Field 'category' had value 'GROCERY',Standardized
+products | product_id: 114,DATA_NORMALIZATION,Field 'category' had value 'Home-Decor',Standardized
+products | product_id: 115,DATA_NORMALIZATION,Field 'category' had value 'Beauty-Cosmetics',Standardized
+products | product_id: 116,DATA_NORMALIZATION,Field 'category' had value 'Elec-Gadgets',Standardized
+products | product_id: 117,DATA_NORMALIZATION,Field 'category' had value 'fashion',Standardized
+products | product_id: 118,DATA_NORMALIZATION,Field 'category' had value 'grocery',Standardized
+products | product_id: 119,DATA_NORMALIZATION,Field 'category' had value 'HOME',Standardized
+products | product_id: 121,DATA_NORMALIZATION,Field 'category' had value 'Elec-Gadgets',Standardized
+products | product_id: 122,DATA_NORMALIZATION,Field 'category' had value 'Fashion-Wear',Standardized
+products | product_id: 123,DATA_NORMALIZATION,Field 'category' had value 'Groceries',Standardized
+products | product_id: 124,DATA_NORMALIZATION,Field 'category' had value 'Home-Decor',Standardized
+products | product_id: 125,DATA_NORMALIZATION,Field 'category' had value 'Beauty-Cosmetics',Standardized
+products | product_id: 126,DATA_NORMALIZATION,Field 'category' had value 'Elec-Gadgets',Standardized
+products | product_id: 127,DATA_NORMALIZATION,Field 'category' had value 'FASHION',Standardized
+products | product_id: 129,DATA_NORMALIZATION,Field 'category' had value 'HOME',Standardized
+products | product_id: 130,DATA_NORMALIZATION,Field 'category' had value 'Beauty-Cosmetics',Standardized
+products | product_id: 131,DATA_NORMALIZATION,Field 'category' had value 'Elec-Gadgets',Standardized
+products | product_id: 133,DATA_NORMALIZATION,Field 'category' had value 'GROCERY',Standardized
+products | product_id: 134,DATA_NORMALIZATION,Field 'category' had value 'Home-Decor',Standardized
+products | product_id: 136,DATA_NORMALIZATION,Field 'category' had value 'electronics',Standardized
+products | product_id: 138,DATA_NORMALIZATION,Field 'category' had value 'GROCERY',Standardized
+products | product_id: 140,DATA_NORMALIZATION,Field 'category' had value 'beauty',Standardized
+products | product_id: 141,DATA_NORMALIZATION,Field 'category' had value 'ELECTRONICS',Standardized
+products | product_id: 142,DATA_NORMALIZATION,Field 'category' had value 'fashion',Standardized
+products | product_id: 143,DATA_NORMALIZATION,Field 'category' had value 'GROCERY',Standardized
+products | product_id: 144,DATA_NORMALIZATION,Field 'category' had value 'home',Standardized
+products | product_id: 145,DATA_NORMALIZATION,Field 'category' had value 'beauty',Standardized
+products | product_id: 147,DATA_NORMALIZATION,Field 'category' had value 'Fashion-Wear',Standardized
+products | product_id: 148,DATA_NORMALIZATION,Field 'category' had value 'grocery',Standardized
+products | product_id: 149,DATA_NORMALIZATION,Field 'category' had value 'HOME',Standardized
+products | product_id: 150,DATA_NORMALIZATION,Field 'category' had value 'Beauty-Cosmetics',Standardized
+products | product_id: 151,DATA_NORMALIZATION,Field 'category' had value 'ELECTRONICS',Standardized
+products | product_id: 152,DATA_NORMALIZATION,Field 'category' had value 'FASHION',Standardized
+products | product_id: 154,DATA_NORMALIZATION,Field 'category' had value 'Home-Decor',Standardized
+products | product_id: 155,DATA_NORMALIZATION,Field 'category' had value 'beauty',Standardized
+products | product_id: 156,DATA_NORMALIZATION,Field 'category' had value 'ELECTRONICS',Standardized
+products | product_id: 157,DATA_NORMALIZATION,Field 'category' had value 'Fashion-Wear',Standardized
+products | product_id: 158,DATA_NORMALIZATION,Field 'category' had value 'Groceries',Standardized
+products | product_id: 159,DATA_NORMALIZATION,Field 'category' had value 'home',Standardized
+products | product_id: 160,DATA_NORMALIZATION,Field 'category' had value 'beauty',Standardized
+products | product_id: 161,DATA_NORMALIZATION,Field 'category' had value 'electronics',Standardized
+products | product_id: 162,DATA_NORMALIZATION,Field 'category' had value 'Fashion-Wear',Standardized
+products | product_id: 163,DATA_NORMALIZATION,Field 'category' had value 'GROCERY',Standardized
+products | product_id: 165,DATA_NORMALIZATION,Field 'category' had value 'BEAUTY',Standardized
+products | product_id: 167,DATA_NORMALIZATION,Field 'category' had value 'fashion',Standardized
+products | product_id: 168,DATA_NORMALIZATION,Field 'category' had value 'GROCERY',Standardized
+products | product_id: 169,DATA_NORMALIZATION,Field 'category' had value 'home',Standardized
+products | product_id: 171,DATA_NORMALIZATION,Field 'category' had value 'Elec-Gadgets',Standardized
+products | product_id: 176,DATA_NORMALIZATION,Field 'category' had value 'ELECTRONICS',Standardized
+products | product_id: 177,DATA_NORMALIZATION,Field 'category' had value 'Fashion-Wear',Standardized
+products | product_id: 179,DATA_NORMALIZATION,Field 'category' had value 'HOME',Standardized
+products | product_id: 180,DATA_NORMALIZATION,Field 'category' had value 'BEAUTY',Standardized
+products | product_id: 182,DATA_NORMALIZATION,Field 'category' had value 'fashion',Standardized
+products | product_id: 183,DATA_NORMALIZATION,Field 'category' had value 'grocery',Standardized
+products | product_id: 184,DATA_NORMALIZATION,Field 'category' had value 'home',Standardized
+products | product_id: 186,DATA_NORMALIZATION,Field 'category' had value 'electronics',Standardized
+products | product_id: 187,DATA_NORMALIZATION,Field 'category' had value 'FASHION',Standardized
+products | product_id: 189,DATA_NORMALIZATION,Field 'category' had value 'home',Standardized
+products | product_id: 191,DATA_NORMALIZATION,Field 'category' had value 'electronics',Standardized
+products | product_id: 194,DATA_NORMALIZATION,Field 'category' had value 'home',Standardized
+products | product_id: 196,DATA_NORMALIZATION,Field 'category' had value 'electronics',Standardized
+products | product_id: 197,DATA_NORMALIZATION,Field 'category' had value 'fashion',Standardized
+products | product_id: 198,DATA_NORMALIZATION,Field 'category' had value 'Groceries',Standardized
+products | product_id: 201,DATA_NORMALIZATION,Field 'category' had value 'Elec-Gadgets',Standardized
+products | product_id: 202,DATA_NORMALIZATION,Field 'category' had value 'Fashion-Wear',Standardized
+products | product_id: 203,DATA_NORMALIZATION,Field 'category' had value 'grocery',Standardized
+products | product_id: 204,DATA_NORMALIZATION,Field 'category' had value 'Home-Decor',Standardized
+products | product_id: 205,DATA_NORMALIZATION,Field 'category' had value 'BEAUTY',Standardized
+products | product_id: 206,DATA_NORMALIZATION,Field 'category' had value 'Elec-Gadgets',Standardized
+products | product_id: 207,DATA_NORMALIZATION,Field 'category' had value 'Fashion-Wear',Standardized
+products | product_id: 208,DATA_NORMALIZATION,Field 'category' had value 'grocery',Standardized
+products | product_id: 209,DATA_NORMALIZATION,Field 'category' had value 'Home-Decor',Standardized
+products | product_id: 210,DATA_NORMALIZATION,Field 'category' had value 'BEAUTY',Standardized
+products | product_id: 212,DATA_NORMALIZATION,Field 'category' had value 'fashion',Standardized
+products | product_id: 213,DATA_NORMALIZATION,Field 'category' had value 'Groceries',Standardized
+products | product_id: 214,DATA_NORMALIZATION,Field 'category' had value 'home',Standardized
+products | product_id: 215,DATA_NORMALIZATION,Field 'category' had value 'beauty',Standardized
+products | product_id: 216,DATA_NORMALIZATION,Field 'category' had value 'ELECTRONICS',Standardized
+products | product_id: 217,DATA_NORMALIZATION,Field 'category' had value 'Fashion-Wear',Standardized
+products | product_id: 218,DATA_NORMALIZATION,Field 'category' had value 'Groceries',Standardized
+products | product_id: 222,DATA_NORMALIZATION,Field 'category' had value 'Fashion-Wear',Standardized
+products | product_id: 223,DATA_NORMALIZATION,Field 'category' had value 'grocery',Standardized
+products | product_id: 224,DATA_NORMALIZATION,Field 'category' had value 'HOME',Standardized
+products | product_id: 225,DATA_NORMALIZATION,Field 'category' had value 'Beauty-Cosmetics',Standardized
+products | product_id: 226,DATA_NORMALIZATION,Field 'category' had value 'ELECTRONICS',Standardized
+products | product_id: 227,DATA_NORMALIZATION,Field 'category' had value 'fashion',Standardized
+products | product_id: 228,DATA_NORMALIZATION,Field 'category' had value 'grocery',Standardized
+products | product_id: 229,DATA_NORMALIZATION,Field 'category' had value 'Home-Decor',Standardized
+products | product_id: 230,DATA_NORMALIZATION,Field 'category' had value 'BEAUTY',Standardized
+products | product_id: 231,DATA_NORMALIZATION,Field 'category' had value 'Elec-Gadgets',Standardized
+products | product_id: 232,DATA_NORMALIZATION,Field 'category' had value 'Fashion-Wear',Standardized
+products | product_id: 235,DATA_NORMALIZATION,Field 'category' had value 'Beauty-Cosmetics',Standardized
+products | product_id: 236,DATA_NORMALIZATION,Field 'category' had value 'ELECTRONICS',Standardized
+products | product_id: 237,DATA_NORMALIZATION,Field 'category' had value 'FASHION',Standardized
+products | product_id: 238,DATA_NORMALIZATION,Field 'category' had value 'grocery',Standardized
+products | product_id: 240,DATA_NORMALIZATION,Field 'category' had value 'beauty',Standardized
+products | product_id: 241,DATA_NORMALIZATION,Field 'category' had value 'ELECTRONICS',Standardized
+products | product_id: 245,DATA_NORMALIZATION,Field 'category' had value 'BEAUTY',Standardized
+products | product_id: 246,DATA_NORMALIZATION,Field 'category' had value 'electronics',Standardized
+products | product_id: 247,DATA_NORMALIZATION,Field 'category' had value 'fashion',Standardized
+products | product_id: 249,DATA_NORMALIZATION,Field 'category' had value 'home',Standardized
+products | product_id: 250,DATA_NORMALIZATION,Field 'category' had value 'beauty',Standardized
+products | product_id: 251,DATA_NORMALIZATION,Field 'category' had value 'electronics',Standardized
+products | product_id: 253,DATA_NORMALIZATION,Field 'category' had value 'grocery',Standardized
+products | product_id: 254,DATA_NORMALIZATION,Field 'category' had value 'Home-Decor',Standardized
+products | product_id: 255,DATA_NORMALIZATION,Field 'category' had value 'BEAUTY',Standardized
+products | product_id: 256,DATA_NORMALIZATION,Field 'category' had value 'Elec-Gadgets',Standardized
+products | product_id: 257,DATA_NORMALIZATION,Field 'category' had value 'FASHION',Standardized
+products | product_id: 258,DATA_NORMALIZATION,Field 'category' had value 'Groceries',Standardized
+products | product_id: 261,DATA_NORMALIZATION,Field 'category' had value 'Elec-Gadgets',Standardized
+products | product_id: 262,DATA_NORMALIZATION,Field 'category' had value 'fashion',Standardized
+products | product_id: 263,DATA_NORMALIZATION,Field 'category' had value 'Groceries',Standardized
+products | product_id: 264,DATA_NORMALIZATION,Field 'category' had value 'Home-Decor',Standardized
+products | product_id: 266,DATA_NORMALIZATION,Field 'category' had value 'ELECTRONICS',Standardized
+products | product_id: 267,DATA_NORMALIZATION,Field 'category' had value 'FASHION',Standardized
+products | product_id: 268,DATA_NORMALIZATION,Field 'category' had value 'grocery',Standardized
+products | product_id: 269,DATA_NORMALIZATION,Field 'category' had value 'HOME',Standardized
+products | product_id: 272,DATA_NORMALIZATION,Field 'category' had value 'FASHION',Standardized
+products | product_id: 273,DATA_NORMALIZATION,Field 'category' had value 'Groceries',Standardized
+products | product_id: 274,DATA_NORMALIZATION,Field 'category' had value 'Home-Decor',Standardized
+products | product_id: 275,DATA_NORMALIZATION,Field 'category' had value 'beauty',Standardized
+products | product_id: 276,DATA_NORMALIZATION,Field 'category' had value 'Elec-Gadgets',Standardized
+products | product_id: 277,DATA_NORMALIZATION,Field 'category' had value 'Fashion-Wear',Standardized
+products | product_id: 278,DATA_NORMALIZATION,Field 'category' had value 'grocery',Standardized
+products | product_id: 279,DATA_NORMALIZATION,Field 'category' had value 'HOME',Standardized
+products | product_id: 280,DATA_NORMALIZATION,Field 'category' had value 'beauty',Standardized
+products | product_id: 282,DATA_NORMALIZATION,Field 'category' had value 'Fashion-Wear',Standardized
+products | product_id: 283,DATA_NORMALIZATION,Field 'category' had value 'Groceries',Standardized
+products | product_id: 284,DATA_NORMALIZATION,Field 'category' had value 'home',Standardized
+products | product_id: 285,DATA_NORMALIZATION,Field 'category' had value 'beauty',Standardized
+products | product_id: 288,DATA_NORMALIZATION,Field 'category' had value 'grocery',Standardized
+products | product_id: 289,DATA_NORMALIZATION,Field 'category' had value 'Home-Decor',Standardized
+products | product_id: 290,DATA_NORMALIZATION,Field 'category' had value 'beauty',Standardized
+products | product_id: 291,DATA_NORMALIZATION,Field 'category' had value 'Elec-Gadgets',Standardized
+products | product_id: 292,DATA_NORMALIZATION,Field 'category' had value 'fashion',Standardized
+products | product_id: 293,DATA_NORMALIZATION,Field 'category' had value 'Groceries',Standardized
+products | product_id: 295,DATA_NORMALIZATION,Field 'category' had value 'beauty',Standardized
+products | product_id: 296,DATA_NORMALIZATION,Field 'category' had value 'ELECTRONICS',Standardized
+products | product_id: 297,DATA_NORMALIZATION,Field 'category' had value 'FASHION',Standardized
+products | product_id: 298,DATA_NORMALIZATION,Field 'category' had value 'Groceries',Standardized
+products | product_id: 299,DATA_NORMALIZATION,Field 'category' had value 'HOME',Standardized
+products | product_id: 159,MISSING_VALUE_IMPUTED,Field 'unit_cost_aed' had value 'nan',Imputed with 216.38
+products | product_id: 270,MISSING_VALUE_IMPUTED,Field 'unit_cost_aed' had value 'nan',Imputed with 230.58
+products | product_id: 273,MISSING_VALUE_IMPUTED,Field 'unit_cost_aed' had value 'nan',Imputed with 328.57
+products | product_id: 292,MISSING_VALUE_IMPUTED,Field 'unit_cost_aed' had value 'nan',Imputed with 263.4
+sales | order_id: 13984,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 6434,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 27299,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 14962,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 9300,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 7575,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 23884,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8738,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 6967,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 3329,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 27207,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 26276,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 26570,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12367,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 16943,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11974,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 26894,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5615,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 2078,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 3758,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 23258,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 25460,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 3186,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 4479,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11095,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18267,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 25499,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 25184,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 24433,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12061,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11642,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8205,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12423,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 16171,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 4869,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 24575,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 21479,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 3335,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 15682,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 28037,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5135,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8919,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 28003,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12286,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 23112,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 4171,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 21323,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5962,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 6805,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 1212,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 14051,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 23180,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 9460,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 20357,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 7564,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 439,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 4509,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5256,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 27422,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5210,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 27087,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 15315,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 6298,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11769,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 17164,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 28297,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 14566,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 23030,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 1621,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 29364,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 26627,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 29157,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12030,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5359,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 894,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 22473,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 1135,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 24566,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 23557,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 22823,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 888,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18601,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 10009,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 13655,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12488,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 10400,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12888,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 13307,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 10033,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 21913,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11099,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 24770,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 29697,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5907,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 25164,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 10465,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 757,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 19103,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 28555,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 19592,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 28573,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 23825,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 10695,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 24957,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 362,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 22383,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 7918,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 14004,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12425,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 9384,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 23481,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 27509,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12994,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 15543,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 7359,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 7323,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 29686,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11465,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 19554,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 4339,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5996,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 6243,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 17633,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 19905,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18150,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 7106,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 17777,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18885,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18462,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 19474,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 26031,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 9120,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8823,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 10593,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11403,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12943,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 9485,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 4726,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 24274,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18627,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 24558,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 19174,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 22073,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 6932,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 9755,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12639,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 21608,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 513,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 19280,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8941,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 20115,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5357,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 6795,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 26681,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 25558,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 24884,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 22160,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18483,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 1339,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 1551,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 4696,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5021,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 23253,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 16228,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 2785,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8381,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18175,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5375,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 1867,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 13556,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 23806,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 6453,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 22381,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 27159,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18209,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 3701,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11765,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 23342,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5436,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 29426,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 793,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 26040,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 25628,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12946,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5115,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12804,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8787,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 1309,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 21888,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 3159,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 13971,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 20388,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 7222,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11607,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 2335,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 3336,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 27800,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 29183,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 13235,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 25519,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 20256,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 9203,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18264,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 14761,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 25849,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 7878,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 21326,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 21950,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 6720,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 28626,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 15173,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 16921,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 20668,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 24833,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5254,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 19548,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 26597,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 27939,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 25057,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11087,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 21443,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5189,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 4514,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 19201,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 1659,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12855,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 14505,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 27811,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 696,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11170,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12193,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 20429,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 20065,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 24353,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 13790,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 27295,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 215,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 3136,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 25013,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 1305,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 10581,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8033,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8540,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 4722,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18108,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 14933,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5604,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 2652,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 17705,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 37,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 20984,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 1052,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 19756,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 1534,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 19973,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 4590,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8101,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 29086,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 28382,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12891,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 9680,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8760,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 21940,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 28754,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18569,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 300,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18876,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 26599,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 6680,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 6025,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 23195,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 23059,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 23229,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 21704,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 4407,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8704,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 6107,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 7518,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 29199,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 19578,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 29025,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 2488,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 14797,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 22613,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 15348,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11623,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11194,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5453,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 26382,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 27448,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 26092,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 25514,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 22072,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 10402,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 27669,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 28983,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 13842,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 25899,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 15151,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 3175,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12861,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 24847,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 27672,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12816,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 9910,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 19718,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 6867,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18582,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 1232,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 15631,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 19762,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 26367,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18726,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 7687,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 261,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 26421,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 14348,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 29065,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18084,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 6657,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8046,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 26478,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 14203,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 25407,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 509,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 1973,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 20185,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11502,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11409,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 29393,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 27107,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 21783,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 16128,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 15114,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 7530,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 15429,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12562,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 7609,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 17786,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 1656,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 9336,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 3941,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11524,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8458,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 29872,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 2566,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 23324,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 19511,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 27567,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 22995,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 10990,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 22116,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 29854,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 4900,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 24354,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 22123,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 10287,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 2493,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 21245,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 9017,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 25032,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 9652,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 15064,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18439,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 24402,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 29820,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 28464,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 7860,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 4550,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11365,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 21244,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18332,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 1612,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 27818,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 26207,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8200,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 20863,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 15124,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 346,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8113,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 25851,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 20852,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 10595,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 25044,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 20623,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 1513,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 9512,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 16913,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 21358,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 344,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11318,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8984,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12905,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 6918,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 17734,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 27334,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5266,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12434,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 24200,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 225,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 10637,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 7376,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 997,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5012,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 14375,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 28465,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 3446,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 251,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 25738,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 19388,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 9847,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 22848,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8295,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 6888,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8432,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 7115,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 21742,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 22913,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 16752,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11604,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 16382,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 17103,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 17900,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 19950,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 22387,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 10467,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 29035,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 11558,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8793,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 18138,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 3744,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 15764,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 2722,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 21806,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 17717,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 3872,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 28254,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 25453,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5224,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 3455,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 9255,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 22058,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 7623,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 29625,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 14172,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 29241,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 8173,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 3751,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 12675,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 6560,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 28162,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 26674,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 5920,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 737,INVALID_FORMAT,Field 'order_time' had value 'not_a_time',Dropped Record
+sales | order_id: 19813,DUPLICATE_ID,Field 'order_id' had value '19813',Dropped Record
+sales | order_id: 12549,DUPLICATE_ID,Field 'order_id' had value '12549',Dropped Record
+sales | order_id: 25624,DUPLICATE_ID,Field 'order_id' had value '25624',Dropped Record
+sales | order_id: 3737,DUPLICATE_ID,Field 'order_id' had value '3737',Dropped Record
+sales | order_id: 9762,DUPLICATE_ID,Field 'order_id' had value '9762',Dropped Record
+sales | order_id: 3229,DUPLICATE_ID,Field 'order_id' had value '3229',Dropped Record
+sales | order_id: 22867,DUPLICATE_ID,Field 'order_id' had value '22867',Dropped Record
+sales | order_id: 19674,DUPLICATE_ID,Field 'order_id' had value '19674',Dropped Record
+sales | order_id: 26099,DUPLICATE_ID,Field 'order_id' had value '26099',Dropped Record
+sales | order_id: 17791,DUPLICATE_ID,Field 'order_id' had value '17791',Dropped Record
+sales | order_id: 28415,DUPLICATE_ID,Field 'order_id' had value '28415',Dropped Record
+sales | order_id: 7417,DUPLICATE_ID,Field 'order_id' had value '7417',Dropped Record
+sales | order_id: 18683,DUPLICATE_ID,Field 'order_id' had value '18683',Dropped Record
+sales | order_id: 21661,DUPLICATE_ID,Field 'order_id' had value '21661',Dropped Record
+sales | order_id: 17943,DUPLICATE_ID,Field 'order_id' had value '17943',Dropped Record
+sales | order_id: 4347,DUPLICATE_ID,Field 'order_id' had value '4347',Dropped Record
+sales | order_id: 24450,DUPLICATE_ID,Field 'order_id' had value '24450',Dropped Record
+sales | order_id: 28240,DUPLICATE_ID,Field 'order_id' had value '28240',Dropped Record
+sales | order_id: 21464,DUPLICATE_ID,Field 'order_id' had value '21464',Dropped Record
+sales | order_id: 7431,DUPLICATE_ID,Field 'order_id' had value '7431',Dropped Record
+sales | order_id: 22223,DUPLICATE_ID,Field 'order_id' had value '22223',Dropped Record
+sales | order_id: 738,DUPLICATE_ID,Field 'order_id' had value '738',Dropped Record
+sales | order_id: 4857,DUPLICATE_ID,Field 'order_id' had value '4857',Dropped Record
+sales | order_id: 13519,DUPLICATE_ID,Field 'order_id' had value '13519',Dropped Record
+sales | order_id: 16536,DUPLICATE_ID,Field 'order_id' had value '16536',Dropped Record
+sales | order_id: 4524,DUPLICATE_ID,Field 'order_id' had value '4524',Dropped Record
+sales | order_id: 25513,DUPLICATE_ID,Field 'order_id' had value '25513',Dropped Record
+sales | order_id: 26554,DUPLICATE_ID,Field 'order_id' had value '26554',Dropped Record
+sales | order_id: 14490,DUPLICATE_ID,Field 'order_id' had value '14490',Dropped Record
+sales | order_id: 9555,DUPLICATE_ID,Field 'order_id' had value '9555',Dropped Record
+sales | order_id: 460,DUPLICATE_ID,Field 'order_id' had value '460',Dropped Record
+sales | order_id: 8070,DUPLICATE_ID,Field 'order_id' had value '8070',Dropped Record
+sales | order_id: 9877,DUPLICATE_ID,Field 'order_id' had value '9877',Dropped Record
+sales | order_id: 2072,DUPLICATE_ID,Field 'order_id' had value '2072',Dropped Record
+sales | order_id: 18237,DUPLICATE_ID,Field 'order_id' had value '18237',Dropped Record
+sales | order_id: 28600,DUPLICATE_ID,Field 'order_id' had value '28600',Dropped Record
+sales | order_id: 21850,DUPLICATE_ID,Field 'order_id' had value '21850',Dropped Record
+sales | order_id: 21030,DUPLICATE_ID,Field 'order_id' had value '21030',Dropped Record
+sales | order_id: 8505,DUPLICATE_ID,Field 'order_id' had value '8505',Dropped Record
+sales | order_id: 11417,DUPLICATE_ID,Field 'order_id' had value '11417',Dropped Record
+sales | order_id: 14385,DUPLICATE_ID,Field 'order_id' had value '14385',Dropped Record
+sales | order_id: 2440,DUPLICATE_ID,Field 'order_id' had value '2440',Dropped Record
+sales | order_id: 12,DUPLICATE_ID,Field 'order_id' had value '12',Dropped Record
+sales | order_id: 4718,DUPLICATE_ID,Field 'order_id' had value '4718',Dropped Record
+sales | order_id: 27716,DUPLICATE_ID,Field 'order_id' had value '27716',Dropped Record
+sales | order_id: 25497,DUPLICATE_ID,Field 'order_id' had value '25497',Dropped Record
+sales | order_id: 19745,DUPLICATE_ID,Field 'order_id' had value '19745',Dropped Record
+sales | order_id: 14086,DUPLICATE_ID,Field 'order_id' had value '14086',Dropped Record
+sales | order_id: 14945,DUPLICATE_ID,Field 'order_id' had value '14945',Dropped Record
+sales | order_id: 24293,DUPLICATE_ID,Field 'order_id' had value '24293',Dropped Record
+sales | order_id: 3611,DUPLICATE_ID,Field 'order_id' had value '3611',Dropped Record
+sales | order_id: 18180,DUPLICATE_ID,Field 'order_id' had value '18180',Dropped Record
+sales | order_id: 28128,DUPLICATE_ID,Field 'order_id' had value '28128',Dropped Record
+sales | order_id: 23057,DUPLICATE_ID,Field 'order_id' had value '23057',Dropped Record
+sales | order_id: 2385,DUPLICATE_ID,Field 'order_id' had value '2385',Dropped Record
+sales | order_id: 11712,DUPLICATE_ID,Field 'order_id' had value '11712',Dropped Record
+sales | order_id: 3328,DUPLICATE_ID,Field 'order_id' had value '3328',Dropped Record
+sales | order_id: 14384,DUPLICATE_ID,Field 'order_id' had value '14384',Dropped Record
+sales | order_id: 13191,DUPLICATE_ID,Field 'order_id' had value '13191',Dropped Record
+sales | order_id: 25208,DUPLICATE_ID,Field 'order_id' had value '25208',Dropped Record
+sales | order_id: 2969,DUPLICATE_ID,Field 'order_id' had value '2969',Dropped Record
+sales | order_id: 3707,DUPLICATE_ID,Field 'order_id' had value '3707',Dropped Record
+sales | order_id: 17491,DUPLICATE_ID,Field 'order_id' had value '17491',Dropped Record
+sales | order_id: 17321,DUPLICATE_ID,Field 'order_id' had value '17321',Dropped Record
+sales | order_id: 17968,DUPLICATE_ID,Field 'order_id' had value '17968',Dropped Record
+sales | order_id: 18153,DUPLICATE_ID,Field 'order_id' had value '18153',Dropped Record
+sales | order_id: 27083,DUPLICATE_ID,Field 'order_id' had value '27083',Dropped Record
+sales | order_id: 23547,DUPLICATE_ID,Field 'order_id' had value '23547',Dropped Record
+sales | order_id: 22909,DUPLICATE_ID,Field 'order_id' had value '22909',Dropped Record
+sales | order_id: 17131,DUPLICATE_ID,Field 'order_id' had value '17131',Dropped Record
+sales | order_id: 25137,DUPLICATE_ID,Field 'order_id' had value '25137',Dropped Record
+sales | order_id: 27070,DUPLICATE_ID,Field 'order_id' had value '27070',Dropped Record
+sales | order_id: 4776,DUPLICATE_ID,Field 'order_id' had value '4776',Dropped Record
+sales | order_id: 21846,DUPLICATE_ID,Field 'order_id' had value '21846',Dropped Record
+sales | order_id: 9593,DUPLICATE_ID,Field 'order_id' had value '9593',Dropped Record
+sales | order_id: 6704,DUPLICATE_ID,Field 'order_id' had value '6704',Dropped Record
+sales | order_id: 14974,DUPLICATE_ID,Field 'order_id' had value '14974',Dropped Record
+sales | order_id: 28964,DUPLICATE_ID,Field 'order_id' had value '28964',Dropped Record
+sales | order_id: 5884,DUPLICATE_ID,Field 'order_id' had value '5884',Dropped Record
+sales | order_id: 10377,DUPLICATE_ID,Field 'order_id' had value '10377',Dropped Record
+sales | order_id: 10277,DUPLICATE_ID,Field 'order_id' had value '10277',Dropped Record
+sales | order_id: 22415,DUPLICATE_ID,Field 'order_id' had value '22415',Dropped Record
+sales | order_id: 27364,DUPLICATE_ID,Field 'order_id' had value '27364',Dropped Record
+sales | order_id: 29349,DUPLICATE_ID,Field 'order_id' had value '29349',Dropped Record
+sales | order_id: 24842,DUPLICATE_ID,Field 'order_id' had value '24842',Dropped Record
+sales | order_id: 16919,DUPLICATE_ID,Field 'order_id' had value '16919',Dropped Record
+sales | order_id: 21551,DUPLICATE_ID,Field 'order_id' had value '21551',Dropped Record
+sales | order_id: 19087,DUPLICATE_ID,Field 'order_id' had value '19087',Dropped Record
+sales | order_id: 10163,DUPLICATE_ID,Field 'order_id' had value '10163',Dropped Record
+sales | order_id: 16373,DUPLICATE_ID,Field 'order_id' had value '16373',Dropped Record
+sales | order_id: 21757,DUPLICATE_ID,Field 'order_id' had value '21757',Dropped Record
+sales | order_id: 20152,DUPLICATE_ID,Field 'order_id' had value '20152',Dropped Record
+sales | order_id: 8860,DUPLICATE_ID,Field 'order_id' had value '8860',Dropped Record
+sales | order_id: 4153,DUPLICATE_ID,Field 'order_id' had value '4153',Dropped Record
+sales | order_id: 17198,DUPLICATE_ID,Field 'order_id' had value '17198',Dropped Record
+sales | order_id: 7653,DUPLICATE_ID,Field 'order_id' had value '7653',Dropped Record
+sales | order_id: 9155,DUPLICATE_ID,Field 'order_id' had value '9155',Dropped Record
+sales | order_id: 26641,DUPLICATE_ID,Field 'order_id' had value '26641',Dropped Record
+sales | order_id: 29416,DUPLICATE_ID,Field 'order_id' had value '29416',Dropped Record
+sales | order_id: 1415,DUPLICATE_ID,Field 'order_id' had value '1415',Dropped Record
+sales | order_id: 11699,DUPLICATE_ID,Field 'order_id' had value '11699',Dropped Record
+sales | order_id: 7381,DUPLICATE_ID,Field 'order_id' had value '7381',Dropped Record
+sales | order_id: 23727,DUPLICATE_ID,Field 'order_id' had value '23727',Dropped Record
+sales | order_id: 26823,DUPLICATE_ID,Field 'order_id' had value '26823',Dropped Record
+sales | order_id: 15323,DUPLICATE_ID,Field 'order_id' had value '15323',Dropped Record
+sales | order_id: 7233,DUPLICATE_ID,Field 'order_id' had value '7233',Dropped Record
+sales | order_id: 5394,DUPLICATE_ID,Field 'order_id' had value '5394',Dropped Record
+sales | order_id: 23807,DUPLICATE_ID,Field 'order_id' had value '23807',Dropped Record
+sales | order_id: 2348,DUPLICATE_ID,Field 'order_id' had value '2348',Dropped Record
+sales | order_id: 2250,DUPLICATE_ID,Field 'order_id' had value '2250',Dropped Record
+sales | order_id: 29396,DUPLICATE_ID,Field 'order_id' had value '29396',Dropped Record
+sales | order_id: 7078,DUPLICATE_ID,Field 'order_id' had value '7078',Dropped Record
+sales | order_id: 1480,DUPLICATE_ID,Field 'order_id' had value '1480',Dropped Record
+sales | order_id: 14712,DUPLICATE_ID,Field 'order_id' had value '14712',Dropped Record
+sales | order_id: 17652,DUPLICATE_ID,Field 'order_id' had value '17652',Dropped Record
+sales | order_id: 16995,DUPLICATE_ID,Field 'order_id' had value '16995',Dropped Record
+sales | order_id: 5670,DUPLICATE_ID,Field 'order_id' had value '5670',Dropped Record
+sales | order_id: 13271,DUPLICATE_ID,Field 'order_id' had value '13271',Dropped Record
+sales | order_id: 18987,DUPLICATE_ID,Field 'order_id' had value '18987',Dropped Record
+sales | order_id: 5660,DUPLICATE_ID,Field 'order_id' had value '5660',Dropped Record
+sales | order_id: 9967,DUPLICATE_ID,Field 'order_id' had value '9967',Dropped Record
+sales | order_id: 8168,DUPLICATE_ID,Field 'order_id' had value '8168',Dropped Record
+sales | order_id: 29884,DUPLICATE_ID,Field 'order_id' had value '29884',Dropped Record
+sales | order_id: 10497,DUPLICATE_ID,Field 'order_id' had value '10497',Dropped Record
+sales | order_id: 19110,DUPLICATE_ID,Field 'order_id' had value '19110',Dropped Record
+sales | order_id: 27970,DUPLICATE_ID,Field 'order_id' had value '27970',Dropped Record
+sales | order_id: 20326,DUPLICATE_ID,Field 'order_id' had value '20326',Dropped Record
+sales | order_id: 13137,DUPLICATE_ID,Field 'order_id' had value '13137',Dropped Record
+sales | order_id: 21410,DUPLICATE_ID,Field 'order_id' had value '21410',Dropped Record
+sales | order_id: 18798,DUPLICATE_ID,Field 'order_id' had value '18798',Dropped Record
+sales | order_id: 12966,DUPLICATE_ID,Field 'order_id' had value '12966',Dropped Record
+sales | order_id: 1066,DUPLICATE_ID,Field 'order_id' had value '1066',Dropped Record
+sales | order_id: 27218,DUPLICATE_ID,Field 'order_id' had value '27218',Dropped Record
+sales | order_id: 14870,DUPLICATE_ID,Field 'order_id' had value '14870',Dropped Record
+sales | order_id: 4018,DUPLICATE_ID,Field 'order_id' had value '4018',Dropped Record
+sales | order_id: 17050,DUPLICATE_ID,Field 'order_id' had value '17050',Dropped Record
+sales | order_id: 1714,DUPLICATE_ID,Field 'order_id' had value '1714',Dropped Record
+sales | order_id: 9159,DUPLICATE_ID,Field 'order_id' had value '9159',Dropped Record
+sales | order_id: 15229,DUPLICATE_ID,Field 'order_id' had value '15229',Dropped Record
+sales | order_id: 1017,DUPLICATE_ID,Field 'order_id' had value '1017',Dropped Record
+sales | order_id: 19876,DUPLICATE_ID,Field 'order_id' had value '19876',Dropped Record
+sales | order_id: 24361,DUPLICATE_ID,Field 'order_id' had value '24361',Dropped Record
+sales | order_id: 11211,DUPLICATE_ID,Field 'order_id' had value '11211',Dropped Record
+sales | order_id: 1529,DUPLICATE_ID,Field 'order_id' had value '1529',Dropped Record
+sales | order_id: 10779,DUPLICATE_ID,Field 'order_id' had value '10779',Dropped Record
+sales | order_id: 10691,DUPLICATE_ID,Field 'order_id' had value '10691',Dropped Record
+sales | order_id: 22330,DUPLICATE_ID,Field 'order_id' had value '22330',Dropped Record
+sales | order_id: 22046,DUPLICATE_ID,Field 'order_id' had value '22046',Dropped Record
+sales | order_id: 5866,DUPLICATE_ID,Field 'order_id' had value '5866',Dropped Record
+sales | order_id: 25607,DUPLICATE_ID,Field 'order_id' had value '25607',Dropped Record
+sales | order_id: 28528,DUPLICATE_ID,Field 'order_id' had value '28528',Dropped Record
+sales | order_id: 29301,DUPLICATE_ID,Field 'order_id' had value '29301',Dropped Record
+sales | order_id: 3467,DUPLICATE_ID,Field 'order_id' had value '3467',Dropped Record
+sales | order_id: 660,DUPLICATE_ID,Field 'order_id' had value '660',Dropped Record
+sales | order_id: 20204,DUPLICATE_ID,Field 'order_id' had value '20204',Dropped Record
+sales | order_id: 15730,DUPLICATE_ID,Field 'order_id' had value '15730',Dropped Record
+sales | order_id: 4981,DUPLICATE_ID,Field 'order_id' had value '4981',Dropped Record
+sales | order_id: 28316,DUPLICATE_ID,Field 'order_id' had value '28316',Dropped Record
+sales | order_id: 10715,DUPLICATE_ID,Field 'order_id' had value '10715',Dropped Record
+sales | order_id: 7862,DUPLICATE_ID,Field 'order_id' had value '7862',Dropped Record
+sales | order_id: 676,DUPLICATE_ID,Field 'order_id' had value '676',Dropped Record
+sales | order_id: 1069,DUPLICATE_ID,Field 'order_id' had value '1069',Dropped Record
+sales | order_id: 19791,DUPLICATE_ID,Field 'order_id' had value '19791',Dropped Record
+sales | order_id: 28550,DUPLICATE_ID,Field 'order_id' had value '28550',Dropped Record
+sales | order_id: 6126,DUPLICATE_ID,Field 'order_id' had value '6126',Dropped Record
+sales | order_id: 2825,DUPLICATE_ID,Field 'order_id' had value '2825',Dropped Record
+sales | order_id: 4658,DUPLICATE_ID,Field 'order_id' had value '4658',Dropped Record
+sales | order_id: 29902,DUPLICATE_ID,Field 'order_id' had value '29902',Dropped Record
+sales | order_id: 8292,DUPLICATE_ID,Field 'order_id' had value '8292',Dropped Record
+sales | order_id: 19127,DUPLICATE_ID,Field 'order_id' had value '19127',Dropped Record
+sales | order_id: 21703,DUPLICATE_ID,Field 'order_id' had value '21703',Dropped Record
+sales | order_id: 17689,DUPLICATE_ID,Field 'order_id' had value '17689',Dropped Record
+sales | order_id: 20902,DUPLICATE_ID,Field 'order_id' had value '20902',Dropped Record
+sales | order_id: 9739,DUPLICATE_ID,Field 'order_id' had value '9739',Dropped Record
+sales | order_id: 13701,DUPLICATE_ID,Field 'order_id' had value '13701',Dropped Record
+sales | order_id: 21898,DUPLICATE_ID,Field 'order_id' had value '21898',Dropped Record
+sales | order_id: 12951,DUPLICATE_ID,Field 'order_id' had value '12951',Dropped Record
+sales | order_id: 20013,DUPLICATE_ID,Field 'order_id' had value '20013',Dropped Record
+sales | order_id: 10877,DUPLICATE_ID,Field 'order_id' had value '10877',Dropped Record
+sales | order_id: 22568,DUPLICATE_ID,Field 'order_id' had value '22568',Dropped Record
+sales | order_id: 9632,DUPLICATE_ID,Field 'order_id' had value '9632',Dropped Record
+sales | order_id: 15652,DUPLICATE_ID,Field 'order_id' had value '15652',Dropped Record
+sales | order_id: 21872,DUPLICATE_ID,Field 'order_id' had value '21872',Dropped Record
+sales | order_id: 22666,DUPLICATE_ID,Field 'order_id' had value '22666',Dropped Record
+sales | order_id: 17801,DUPLICATE_ID,Field 'order_id' had value '17801',Dropped Record
+sales | order_id: 25119,DUPLICATE_ID,Field 'order_id' had value '25119',Dropped Record
+sales | order_id: 26810,DUPLICATE_ID,Field 'order_id' had value '26810',Dropped Record
+sales | order_id: 7582,DUPLICATE_ID,Field 'order_id' had value '7582',Dropped Record
+sales | order_id: 16253,DUPLICATE_ID,Field 'order_id' had value '16253',Dropped Record
+sales | order_id: 19746,DUPLICATE_ID,Field 'order_id' had value '19746',Dropped Record
+sales | order_id: 15161,DUPLICATE_ID,Field 'order_id' had value '15161',Dropped Record
+sales | order_id: 13693,DUPLICATE_ID,Field 'order_id' had value '13693',Dropped Record
+sales | order_id: 23712,DUPLICATE_ID,Field 'order_id' had value '23712',Dropped Record
+sales | order_id: 28043,DUPLICATE_ID,Field 'order_id' had value '28043',Dropped Record
+sales | order_id: 15826,DUPLICATE_ID,Field 'order_id' had value '15826',Dropped Record
+sales | order_id: 28593,DUPLICATE_ID,Field 'order_id' had value '28593',Dropped Record
+sales | order_id: 5441,DUPLICATE_ID,Field 'order_id' had value '5441',Dropped Record
+sales | order_id: 29711,DUPLICATE_ID,Field 'order_id' had value '29711',Dropped Record
+sales | order_id: 18934,DUPLICATE_ID,Field 'order_id' had value '18934',Dropped Record
+sales | order_id: 6624,DUPLICATE_ID,Field 'order_id' had value '6624',Dropped Record
+sales | order_id: 11814,DUPLICATE_ID,Field 'order_id' had value '11814',Dropped Record
+sales | order_id: 13272,DUPLICATE_ID,Field 'order_id' had value '13272',Dropped Record
+sales | order_id: 8480,DUPLICATE_ID,Field 'order_id' had value '8480',Dropped Record
+sales | order_id: 17109,DUPLICATE_ID,Field 'order_id' had value '17109',Dropped Record
+sales | order_id: 4834,DUPLICATE_ID,Field 'order_id' had value '4834',Dropped Record
+sales | order_id: 10052,DUPLICATE_ID,Field 'order_id' had value '10052',Dropped Record
+sales | order_id: 19639,DUPLICATE_ID,Field 'order_id' had value '19639',Dropped Record
+sales | order_id: 17706,DUPLICATE_ID,Field 'order_id' had value '17706',Dropped Record
+sales | order_id: 21037,DUPLICATE_ID,Field 'order_id' had value '21037',Dropped Record
+sales | order_id: 8935,DUPLICATE_ID,Field 'order_id' had value '8935',Dropped Record
+sales | order_id: 17761,DUPLICATE_ID,Field 'order_id' had value '17761',Dropped Record
+sales | order_id: 28030,DUPLICATE_ID,Field 'order_id' had value '28030',Dropped Record
+sales | order_id: 8865,DUPLICATE_ID,Field 'order_id' had value '8865',Dropped Record
+sales | order_id: 21465,DUPLICATE_ID,Field 'order_id' had value '21465',Dropped Record
+sales | order_id: 11473,DUPLICATE_ID,Field 'order_id' had value '11473',Dropped Record
+sales | order_id: 18246,DUPLICATE_ID,Field 'order_id' had value '18246',Dropped Record
+sales | order_id: 9928,DUPLICATE_ID,Field 'order_id' had value '9928',Dropped Record
+sales | order_id: 16638,DUPLICATE_ID,Field 'order_id' had value '16638',Dropped Record
+sales | order_id: 16244,DUPLICATE_ID,Field 'order_id' had value '16244',Dropped Record
+sales | order_id: 9998,DUPLICATE_ID,Field 'order_id' had value '9998',Dropped Record
+sales | order_id: 1723,DUPLICATE_ID,Field 'order_id' had value '1723',Dropped Record
+sales | order_id: 29569,DUPLICATE_ID,Field 'order_id' had value '29569',Dropped Record
+sales | order_id: 14928,DUPLICATE_ID,Field 'order_id' had value '14928',Dropped Record
+sales | order_id: 24822,DUPLICATE_ID,Field 'order_id' had value '24822',Dropped Record
+sales | order_id: 12794,DUPLICATE_ID,Field 'order_id' had value '12794',Dropped Record
+sales | order_id: 24358,DUPLICATE_ID,Field 'order_id' had value '24358',Dropped Record
+sales | order_id: 9455,DUPLICATE_ID,Field 'order_id' had value '9455',Dropped Record
+sales | order_id: 5577,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 13336,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 3706,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 18977,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 17551,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 27445,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 21426,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 10725,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 18132,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 29130,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 26480,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 14639,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 5465,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 6206,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 28666,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 12098,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 27164,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 25756,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 650,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 4809,OUTLIER_VALUE,Field 'qty' had value '9',Corrected to 2
+sales | order_id: 27115,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 4228,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 27340,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 24549,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 8645,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 17008,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 14827,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 19266,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 11488,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 28539,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 23462,OUTLIER_VALUE,Field 'qty' had value '9',Corrected to 2
+sales | order_id: 15450,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 7131,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 936,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 9027,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 17610,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 11224,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 27142,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 29082,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 1218,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 2100,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 29616,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 7481,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 1062,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 28640,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 18455,OUTLIER_VALUE,Field 'qty' had value '10',Corrected to 2
+sales | order_id: 11763,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 10454,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 6859,OUTLIER_VALUE,Field 'qty' had value '10',Corrected to 2
+sales | order_id: 27943,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 6761,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 24968,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 22368,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 16932,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 24562,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 6371,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 11822,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 14538,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 27703,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 19401,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 20284,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 18147,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 23760,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 25298,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 22407,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 5575,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 402,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 644,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 2382,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 9051,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 23331,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 21021,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 28331,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 11237,OUTLIER_VALUE,Field 'qty' had value '9',Corrected to 2
+sales | order_id: 13703,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 8574,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 28650,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 18864,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 24766,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 5695,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 15120,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 19490,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 15469,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 21619,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 14254,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 11613,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 10301,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 23402,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 29549,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 17528,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 17282,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 15388,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 23993,OUTLIER_VALUE,Field 'qty' had value '9',Corrected to 2
+sales | order_id: 16615,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 7081,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 13167,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 348,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 13354,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 21771,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 10041,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 4122,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 26512,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 16393,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 25150,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 11088,OUTLIER_VALUE,Field 'qty' had value '9',Corrected to 2
+sales | order_id: 6830,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 12018,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 14801,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 1252,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 7056,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 22683,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 13973,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 13383,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 2502,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 20237,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 6769,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 27106,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 15223,OUTLIER_VALUE,Field 'qty' had value '9',Corrected to 2
+sales | order_id: 23453,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 24759,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 26487,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 28469,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 8899,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 24841,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 22870,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 1124,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 27706,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 21765,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 15641,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 23390,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 27192,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 21219,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 2972,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 25314,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 7012,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 12798,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 382,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 10668,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 10065,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 11480,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 2422,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 2321,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 15988,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 21532,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 21009,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 16954,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 7554,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 24043,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 16835,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 1118,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 5101,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 22213,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 4671,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 27391,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 15852,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 2548,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 23495,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 1645,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 6845,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 26309,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 22040,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 19033,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 3709,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 28115,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 25644,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 7100,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 29590,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 20235,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 6766,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 6213,OUTLIER_VALUE,Field 'qty' had value '9',Corrected to 2
+sales | order_id: 27555,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 8724,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 2270,OUTLIER_VALUE,Field 'qty' had value '8',Corrected to 2
+sales | order_id: 4820,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 4567,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 28952,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 15531,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 26074,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 7141,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 14201,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 4710,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 4972,OUTLIER_VALUE,Field 'qty' had value '9',Corrected to 2
+sales | order_id: 6189,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 19313,OUTLIER_VALUE,Field 'qty' had value '50',Corrected to 2
+sales | order_id: 21098,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 3066,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 8185,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 7117,OUTLIER_VALUE,Field 'qty' had value '7',Corrected to 2
+sales | order_id: 21200,OUTLIER_VALUE,Field 'selling_price_aed' had value '5277.5',Corrected to 1104.935
+sales | order_id: 27336,OUTLIER_VALUE,Field 'selling_price_aed' had value '5264.0',Corrected to 1104.935
+sales | order_id: 26486,OUTLIER_VALUE,Field 'selling_price_aed' had value '5249.8',Corrected to 1104.935
+sales | order_id: 23919,OUTLIER_VALUE,Field 'selling_price_aed' had value '1261.9',Corrected to 1104.935
+sales | order_id: 20189,OUTLIER_VALUE,Field 'selling_price_aed' had value '2840.7',Corrected to 1104.935
+sales | order_id: 6165,OUTLIER_VALUE,Field 'selling_price_aed' had value '4424.599999999999',Corrected to 1104.935
+sales | order_id: 12026,OUTLIER_VALUE,Field 'selling_price_aed' had value '1805.7',Corrected to 1104.935
+sales | order_id: 23776,OUTLIER_VALUE,Field 'selling_price_aed' had value '5422.1',Corrected to 1104.935
+sales | order_id: 1496,OUTLIER_VALUE,Field 'selling_price_aed' had value '5068.6',Corrected to 1104.935
+sales | order_id: 12442,OUTLIER_VALUE,Field 'selling_price_aed' had value '6593.9',Corrected to 1104.935
+sales | order_id: 25254,OUTLIER_VALUE,Field 'selling_price_aed' had value '1229.5',Corrected to 1104.935
+sales | order_id: 4056,OUTLIER_VALUE,Field 'selling_price_aed' had value '6075.1',Corrected to 1104.935
+sales | order_id: 18029,OUTLIER_VALUE,Field 'selling_price_aed' had value '2295.7',Corrected to 1104.935
+sales | order_id: 27412,OUTLIER_VALUE,Field 'selling_price_aed' had value '2183.5',Corrected to 1104.935
+sales | order_id: 3738,OUTLIER_VALUE,Field 'selling_price_aed' had value '5608.7',Corrected to 1104.935
+sales | order_id: 26646,OUTLIER_VALUE,Field 'selling_price_aed' had value '2731.8',Corrected to 1104.935
+sales | order_id: 28717,OUTLIER_VALUE,Field 'selling_price_aed' had value '5280.5',Corrected to 1104.935
+sales | order_id: 4755,OUTLIER_VALUE,Field 'selling_price_aed' had value '7151.4',Corrected to 1104.935
+sales | order_id: 20897,OUTLIER_VALUE,Field 'selling_price_aed' had value '3427.4',Corrected to 1104.935
+sales | order_id: 1130,OUTLIER_VALUE,Field 'selling_price_aed' had value '3999.9',Corrected to 1104.935
+sales | order_id: 12427,OUTLIER_VALUE,Field 'selling_price_aed' had value '4849.700000000001',Corrected to 1104.935
+sales | order_id: 21756,OUTLIER_VALUE,Field 'selling_price_aed' had value '1261.9',Corrected to 1104.935
+sales | order_id: 8192,OUTLIER_VALUE,Field 'selling_price_aed' had value '2909.4',Corrected to 1104.935
+sales | order_id: 4075,OUTLIER_VALUE,Field 'selling_price_aed' had value '6060.0',Corrected to 1104.935
+sales | order_id: 19725,OUTLIER_VALUE,Field 'selling_price_aed' had value '4338.3',Corrected to 1104.935
+sales | order_id: 25686,OUTLIER_VALUE,Field 'selling_price_aed' had value '4159.4',Corrected to 1104.935
+sales | order_id: 19379,OUTLIER_VALUE,Field 'selling_price_aed' had value '4031.5',Corrected to 1104.935
+sales | order_id: 23415,OUTLIER_VALUE,Field 'selling_price_aed' had value '3760.9',Corrected to 1104.935
+sales | order_id: 14417,OUTLIER_VALUE,Field 'selling_price_aed' had value '5125.4',Corrected to 1104.935
+sales | order_id: 17038,OUTLIER_VALUE,Field 'selling_price_aed' had value '6567.1',Corrected to 1104.935
+sales | order_id: 17029,OUTLIER_VALUE,Field 'selling_price_aed' had value '2211.7',Corrected to 1104.935
+sales | order_id: 21843,OUTLIER_VALUE,Field 'selling_price_aed' had value '4565.0',Corrected to 1104.935
+sales | order_id: 26216,OUTLIER_VALUE,Field 'selling_price_aed' had value '6924.099999999999',Corrected to 1104.935
+sales | order_id: 11254,OUTLIER_VALUE,Field 'selling_price_aed' had value '1376.9',Corrected to 1104.935
+sales | order_id: 22966,OUTLIER_VALUE,Field 'selling_price_aed' had value '3016.0',Corrected to 1104.935
+sales | order_id: 470,OUTLIER_VALUE,Field 'selling_price_aed' had value '1779.6',Corrected to 1104.935
+sales | order_id: 16350,OUTLIER_VALUE,Field 'selling_price_aed' had value '3085.7999999999997',Corrected to 1104.935
+sales | order_id: 12257,OUTLIER_VALUE,Field 'selling_price_aed' had value '4145.5',Corrected to 1104.935
+sales | order_id: 4557,OUTLIER_VALUE,Field 'selling_price_aed' had value '2442.7000000000003',Corrected to 1104.935
+sales | order_id: 2163,OUTLIER_VALUE,Field 'selling_price_aed' had value '2370.8',Corrected to 1104.935
+sales | order_id: 8357,OUTLIER_VALUE,Field 'selling_price_aed' had value '5038.5',Corrected to 1104.935
+sales | order_id: 9137,OUTLIER_VALUE,Field 'selling_price_aed' had value '4164.700000000001',Corrected to 1104.935
+sales | order_id: 3214,OUTLIER_VALUE,Field 'selling_price_aed' had value '7527.799999999999',Corrected to 1104.935
+sales | order_id: 1301,OUTLIER_VALUE,Field 'selling_price_aed' had value '1538.1',Corrected to 1104.935
+sales | order_id: 15769,OUTLIER_VALUE,Field 'selling_price_aed' had value '3788.4',Corrected to 1104.935
+sales | order_id: 21435,OUTLIER_VALUE,Field 'selling_price_aed' had value '3932.6',Corrected to 1104.935
+sales | order_id: 23906,OUTLIER_VALUE,Field 'selling_price_aed' had value '1536.4',Corrected to 1104.935
+sales | order_id: 20504,OUTLIER_VALUE,Field 'selling_price_aed' had value '7242.9',Corrected to 1104.935
+sales | order_id: 29256,OUTLIER_VALUE,Field 'selling_price_aed' had value '7097.9',Corrected to 1104.935
+sales | order_id: 15518,OUTLIER_VALUE,Field 'selling_price_aed' had value '4668.9',Corrected to 1104.935
+sales | order_id: 27314,OUTLIER_VALUE,Field 'selling_price_aed' had value '1399.7',Corrected to 1104.935
+sales | order_id: 9189,OUTLIER_VALUE,Field 'selling_price_aed' had value '1885.7',Corrected to 1104.935
+sales | order_id: 19953,OUTLIER_VALUE,Field 'selling_price_aed' had value '6170.1',Corrected to 1104.935
+sales | order_id: 29622,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16897,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7888,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2733,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16364,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29793,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10472,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27162,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29286,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8375,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28853,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7728,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21824,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3250,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23675,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22937,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24104,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16533,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23658,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19357,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4173,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4686,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8179,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27853,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4633,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9117,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8414,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21811,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18199,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24786,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25318,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23874,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4855,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6989,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9254,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10235,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19913,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2167,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8545,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 771,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5846,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 199,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6491,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6997,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7785,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2077,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12108,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17659,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10368,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22649,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 323,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10459,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6565,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17956,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19565,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22431,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24145,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19160,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17934,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23126,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17953,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12088,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26810,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14791,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25061,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14263,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14282,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28141,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10777,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21990,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3571,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1302,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23968,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19887,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16385,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26908,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18579,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9205,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21860,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28577,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8400,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22417,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10645,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8982,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 30,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4938,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6432,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11721,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19724,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23953,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25412,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15870,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23662,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10625,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20858,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 653,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25731,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25200,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13472,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29379,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13258,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1372,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17380,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14769,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23992,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16935,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23140,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1768,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13492,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21471,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11333,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21334,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7127,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22227,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1665,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19750,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8841,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19552,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3794,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6754,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3525,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10879,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28770,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23401,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 409,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1852,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7400,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9765,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9742,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2194,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9063,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17965,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24996,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5092,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5485,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10688,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14928,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18667,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7461,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6941,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21743,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25948,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17769,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6040,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5727,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29264,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8967,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5347,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6466,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10358,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4348,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6272,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13079,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13419,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2940,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28741,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 447,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21909,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23803,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17963,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23960,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17745,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5840,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23173,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20619,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22695,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17022,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15435,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14805,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21736,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11195,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6260,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2554,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19909,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13939,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2831,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26249,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26677,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4306,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2344,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12754,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22299,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23444,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21763,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24570,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27213,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22165,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21220,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3572,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8878,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10122,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19834,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15053,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2819,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2262,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18413,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24103,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27442,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27883,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12402,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13841,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8694,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25152,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8479,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15936,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16537,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9714,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6620,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6862,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3057,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27758,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 842,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24101,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21061,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6678,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28083,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17276,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28122,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21809,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18646,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4105,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11993,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27924,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26867,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5425,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18556,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22943,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7412,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27915,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11192,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18455,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9475,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9062,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21800,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4988,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1137,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1036,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22369,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17513,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12386,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19029,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4240,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13144,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20536,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9242,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8363,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10232,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19021,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7052,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8390,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29662,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20145,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24301,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24400,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3625,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5816,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14264,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11143,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18283,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12341,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21346,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11640,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 484,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11542,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 469,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27765,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5278,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21123,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14397,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27075,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5588,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3720,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23600,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19014,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5167,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21207,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2742,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23641,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20039,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10423,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23863,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1618,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29041,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17300,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7506,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24585,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9509,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26617,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1733,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7845,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8936,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7239,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23119,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7766,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11096,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2618,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15345,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7286,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9172,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13554,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29500,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14240,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22782,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4296,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11464,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4232,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19307,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24952,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29766,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28069,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10221,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13619,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26888,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22705,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21528,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2810,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23835,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14346,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8820,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14366,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1365,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24519,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9445,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 544,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6216,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18001,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13789,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15711,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26875,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5358,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24244,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12473,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20334,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4758,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13756,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13012,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16338,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9188,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14632,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1652,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29798,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26500,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16349,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9772,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18179,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4990,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3997,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22659,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2641,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16720,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28975,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23902,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22625,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11758,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25531,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9173,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19978,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9298,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23561,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29567,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26534,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22327,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13462,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19625,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24286,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10234,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26693,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23785,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22794,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27053,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22671,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23690,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22430,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18073,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16046,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11263,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20084,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4417,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20488,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28048,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25003,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4123,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11601,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24332,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10583,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3322,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4981,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3591,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26218,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12572,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9504,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2957,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3573,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4207,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3491,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21222,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1242,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24202,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19395,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3605,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8750,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23622,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10681,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25231,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5421,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6804,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13260,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1469,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7660,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15215,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23800,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18065,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23667,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28022,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 858,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27191,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24926,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27938,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28941,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9562,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24615,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3780,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24036,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22813,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 157,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23292,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17556,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7971,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22655,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17488,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17604,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2668,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6552,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21568,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3940,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5572,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14840,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24760,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19523,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18792,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10042,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 349,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7668,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3646,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6084,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13498,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4196,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15347,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2449,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4378,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12248,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20961,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18162,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 462,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4049,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13730,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16637,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7050,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2414,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18087,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5986,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20400,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26134,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1608,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6076,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17814,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23145,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2086,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2881,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24904,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21510,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 100,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20228,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8559,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18551,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20415,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2287,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7181,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24709,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22691,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26994,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7565,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27342,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15826,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13328,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10871,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29184,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20385,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4551,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27763,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24780,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20892,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5950,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3195,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27992,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27329,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26710,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20158,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26981,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25452,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1169,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28689,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12219,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17071,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10951,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18746,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13839,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23307,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17577,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25687,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29596,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26128,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 138,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27972,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4199,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4083,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12869,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14735,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4556,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28262,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12633,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5792,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11384,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1550,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21615,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7023,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17594,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9318,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11468,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21481,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27613,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2356,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5419,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25903,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10347,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22115,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6740,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3028,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2137,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10411,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19418,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17733,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16395,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14541,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24086,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26796,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 392,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26053,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23320,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15866,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13797,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23403,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5597,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12249,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28675,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17871,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2420,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24697,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14822,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10745,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 230,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6718,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19659,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13371,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7621,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28456,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13575,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24692,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20653,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7431,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21808,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9155,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3176,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13763,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13739,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16147,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11894,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 647,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9723,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8151,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12058,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1629,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10340,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28845,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5281,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29008,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26348,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28529,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10317,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3797,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7829,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5821,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3231,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28090,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6309,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18492,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26467,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18497,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15662,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29034,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22953,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28184,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8333,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14760,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28222,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20943,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15384,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10798,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13555,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7832,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6119,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24302,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26638,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28798,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15474,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25050,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23752,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24995,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12910,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27326,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18921,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27626,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25806,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21116,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27218,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29748,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7394,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29494,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27232,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9754,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11380,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16717,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12793,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26561,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12777,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24807,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2682,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28027,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2114,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23713,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22864,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20747,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17860,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9025,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14188,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25168,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2999,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1099,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6192,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6764,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23201,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4308,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29435,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10998,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15444,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18588,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10943,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29864,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2415,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11801,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10872,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16759,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16057,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10536,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1279,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9126,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26410,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20555,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28153,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25719,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29381,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6788,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2529,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8435,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5344,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22769,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28132,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8212,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29417,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27679,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4904,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9579,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4870,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27552,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9605,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21517,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18662,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8159,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24329,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14212,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15998,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20750,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17348,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19187,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29298,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28806,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9331,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19123,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14001,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 698,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14207,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3352,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5733,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17590,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18878,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2982,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1270,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2391,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26598,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21847,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29581,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18277,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17213,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22379,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28186,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14040,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3153,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29463,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7304,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18838,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21336,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17904,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15232,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18159,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12643,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28844,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29620,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27160,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4774,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15121,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29487,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29261,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23349,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11173,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2215,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8443,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13021,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10948,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22163,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1520,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17446,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1539,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26010,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6598,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2637,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20737,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29142,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22330,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19319,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5454,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15372,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29073,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15691,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18841,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 304,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19527,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12532,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19274,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21580,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29149,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11413,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9944,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27204,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 825,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27752,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5250,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29683,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24625,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 749,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21264,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8652,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2308,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20784,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18716,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17131,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11158,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2191,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12118,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 883,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 21467,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26101,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 18961,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26466,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26352,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26823,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16588,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 12526,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15990,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19519,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24127,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22084,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16455,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 762,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16570,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17837,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4194,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7908,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5678,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26572,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15397,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8361,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25603,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15529,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20213,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24405,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20498,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22126,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28218,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6926,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20155,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3799,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15164,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29902,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25618,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8634,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10764,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6673,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11146,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2451,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27585,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5855,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19287,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1657,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23995,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27594,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25171,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 28973,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3156,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5865,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24420,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24902,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26652,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15327,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14589,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22348,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17043,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17926,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8667,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 2177,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22169,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20070,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7678,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5355,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22312,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 11929,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 17434,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 7805,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23891,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10141,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20947,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 16817,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6652,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 27269,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9984,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1396,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10499,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 10962,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29228,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 3736,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8057,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19256,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 15438,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 8630,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25855,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23358,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 14554,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 25647,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 121,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 29954,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26979,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 22317,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 4184,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 9031,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23149,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 1514,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 19371,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 6046,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 26895,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 5546,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 178,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20026,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 13342,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 24714,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 20873,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+sales | order_id: 23806,MISSING_VALUE,Field 'discount_pct' had value 'nan',Imputed with 0
+inventory | idx: 147,INVALID_VALUE,Field 'stock_on_hand' had value '-5',Corrected to 0
+inventory | idx: 302,INVALID_VALUE,Field 'stock_on_hand' had value '-5',Corrected to 0
+inventory | idx: 392,INVALID_VALUE,Field 'stock_on_hand' had value '-5',Corrected to 0
+inventory | idx: 511,INVALID_VALUE,Field 'stock_on_hand' had value '-5',Corrected to 0
+inventory | idx: 759,INVALID_VALUE,Field 'stock_on_hand' had value '-5',Corrected to 0
+inventory | idx: 878,INVALID_VALUE,Field 'stock_on_hand' had value '-5',Corrected to 0
+inventory | idx: 918,INVALID_VALUE,Field 'stock_on_hand' had value '-5',Corrected to 0
+inventory | idx: 490,OUTLIER_VALUE,Field 'stock_on_hand' had value '9999',Corrected to 260.0
+inventory | idx: 526,OUTLIER_VALUE,Field 'stock_on_hand' had value '9999',Corrected to 260.0
+inventory | idx: 643,OUTLIER_VALUE,Field 'stock_on_hand' had value '9999',Corrected to 260.0
+inventory | idx: 691,OUTLIER_VALUE,Field 'stock_on_hand' had value '9999',Corrected to 260.0
+inventory | idx: 1188,OUTLIER_VALUE,Field 'stock_on_hand' had value '9999',Corrected to 260.0
+inventory | idx: 1200,OUTLIER_VALUE,Field 'stock_on_hand' had value '9999',Corrected to 260.0
+inventory | idx: 1434,OUTLIER_VALUE,Field 'stock_on_hand' had value '9999',Corrected to 260.0
+inventory | idx: 1483,OUTLIER_VALUE,Field 'stock_on_hand' had value '9999',Corrected to 260.0

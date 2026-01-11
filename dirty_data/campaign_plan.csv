@@ -1,0 +1,11 @@
+campaign_id,start_date,end_date,city,channel,category,discount_pct,promo_budget_aed
+1,2026-01-11,2026-01-25,All,WEB,All,5,240798
+2,2026-01-11,2026-01-25,Abu Dhabi,app,Grocery,15,649025
+3,2026-01-11,2026-01-25,All,Marketplace,Fashion,15,561792
+4,2026-01-11,2026-01-25,Abu Dhabi,APP,Electronics,10,422278
+5,2026-01-11,2026-01-25,Sharjah,All,Grocery,15,401862
+6,2026-01-11,2026-01-25,Abu Dhabi,Marketplace,Electronics,20,429388
+7,2026-01-11,2026-01-25,Dubai,App,Fashion,10,578311
+8,2026-01-11,2026-01-25,Sharjah,App,Beauty,20,236886
+9,2026-01-11,2026-01-25,Abu Dhabi,Web,Home,5,786957
+10,2026-01-11,2026-01-25,Dubai,web,Fashion,5,462799

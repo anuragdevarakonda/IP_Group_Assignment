@@ -1,0 +1,19 @@
+store_id,city,channel,fulfillment_type
+1,Sharjah-Emirate,MARKETPLACE,Own
+2,Sharjah,WEB,3PL
+3,Sharjah,APP,3PL
+4,abu dhabi,Web,Own
+5,Abu-Dhabi,marketplace,Own
+6,Abu Dhabi,App,3PL
+7,DUBAI,Marketplace,3PL
+8,dubai,WEB,Own
+9,Dubai,APP,3PL
+10,SHARJAH,APP,Own
+11,dubai,App,3PL
+12,Sharjah-Emirate,Marketplace,3PL
+13,sharjah,web,3PL
+14,Dubayy,MARKETPLACE,Own
+15,Dubai,MARKETPLACE,Own
+16,dubai,Web,3PL
+17,SHARJAH,WEB,3PL
+18,Dubai,APP,3PL

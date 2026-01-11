@@ -1,0 +1,10 @@
+store_id,city,channel,fulfillment_type
+1,Sharjah,Marketplace,Own
+2,Sharjah,Web,3PL
+3,Sharjah,App,3PL
+4,Abu Dhabi,Web,Own
+5,Abu Dhabi,Marketplace,Own
+6,Abu Dhabi,App,3PL
+7,Dubai,Marketplace,3PL
+8,Dubai,Web,Own
+9,Dubai,App,3PL
