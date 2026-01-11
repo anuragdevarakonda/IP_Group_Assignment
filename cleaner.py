@@ -1,7 +1,8 @@
 import os
 import re
+import unicodedata
 from datetime import datetime
-from typing import Dict, Tuple, Optional
+from typing import Dict, Tuple
 
 import numpy as np
 import pandas as pd
@@ -9,15 +10,15 @@ import pandas as pd
 # ---------------------------------------------------------
 # CONFIG / CONSTANTS
 # ---------------------------------------------------------
-# Use repo-relative paths by default (works locally + on Streamlit Cloud)
+# Repo-relative defaults (work locally + Streamlit Cloud)
 INPUT_DIR = os.getenv("INPUT_DIR", "dirty_data/")
 OUTPUT_DIR = os.getenv("OUTPUT_DIR", "clean_data/")
 
-# Reference Values (open vocabulary for categories; cities/channels remain controlled vocab)
+# Controlled vocab for store dimensions (still validated)
 VALID_CITIES = ["Dubai", "Abu Dhabi", "Sharjah"]
 VALID_CHANNELS = ["App", "Web", "Marketplace"]
 
-# Known categories we normalize to (NOT an allowlist)
+# Categories are OPEN vocabulary. These are only "known" categories for optional governance logging.
 KNOWN_CATEGORIES = ["Electronics", "Fashion", "Grocery", "Home", "Beauty"]
 
 ISSUES_LOG = []
@@ -39,7 +40,7 @@ ISSUE_TYPE_MAP = {
     "Deduplication (Merged)": "DUPLICATE_ENTITY",
 }
 
-# Track new categories so we don't spam the issues log
+# Avoid spamming "new category observed" logs
 _SEEN_NEW_CATEGORIES = set()
 
 
@@ -72,30 +73,47 @@ def log_issue(table, record_id_col, record_id_val, field, original, new, issue_t
 
 
 # ---------------------------------------------------------
-# SMALL HELPERS
+# TEXT NORMALIZATION HELPERS
 # ---------------------------------------------------------
+_ZERO_WIDTH_RE = re.compile(r"[\u200B-\u200D\uFEFF]")
+
+
+def normalize_text(x) -> str:
+    """Normalize text to remove hidden Unicode differences that can split categories in charts.
+
+    - NFKC normalization
+    - Replace NBSP with regular space
+    - Remove zero-width characters
+    - Collapse whitespace
+    - Strip edges
+    """
+    if pd.isna(x):
+        return ""
+    s = str(x)
+    s = unicodedata.normalize("NFKC", s)
+    s = s.replace("\u00A0", " ")  # NBSP
+    s = _ZERO_WIDTH_RE.sub("", s)
+    s = re.sub(r"\s+", " ", s)
+    return s.strip()
+
+
+def normalize_free_text_category(x) -> str:
+    """Open-vocabulary category normalization.
+
+    Ensures ' sports', 'SPORTS', 'Sports', 'Sports\u00A0' all become 'Sports'.
+    Also handles artifacts like 'sports/SPORTS/Sports' by using the first token.
+    """
+    s = normalize_text(x)
+    if not s:
+        return "Other"
+    if "/" in s:
+        s = normalize_text(s.split("/")[0])
+    # Title-case for canonical display
+    return s.title()
+
+
 def _ensure_dir(path: str) -> None:
     os.makedirs(path, exist_ok=True)
-
-
-def _coerce_numeric(series: pd.Series, table: str, id_col: str, id_val_series: pd.Series, field: str) -> pd.Series:
-    """Coerce a series to numeric and log parsing errors when non-null -> NaN."""
-    raw = series.copy()
-    # Common: currency/commas; strip everything except digits, dot, minus
-    if raw.dtype == object:
-        raw_str = raw.astype(str).str.strip()
-        raw_str = raw_str.str.replace(r"[^0-9.\-]", "", regex=True)
-        coerced = pd.to_numeric(raw_str, errors="coerce")
-    else:
-        coerced = pd.to_numeric(raw, errors="coerce")
-
-    # Log parsing errors where original value was present but couldn't parse
-    bad_mask = raw.notna() & coerced.isna()
-    if bad_mask.any():
-        for idx in series[bad_mask].index:
-            log_issue(table, id_col, id_val_series.loc[idx], field, raw.loc[idx], np.nan, "Parsing Error")
-
-    return coerced
 
 
 def _boolish_to_int(series: pd.Series) -> pd.Series:
@@ -108,28 +126,11 @@ def _boolish_to_int(series: pd.Series) -> pd.Series:
     if len(series) and float(num.notna().mean()) >= 0.85:
         return num.fillna(0).clip(0, 1)
 
-    s = series.astype(str).str.strip().str.lower()
+    s = series.astype(str).map(normalize_text).str.lower()
     true_set = {"1", "true", "t", "yes", "y", "returned", "return", "r"}
     false_set = {"0", "false", "f", "no", "n", "not returned", "not_returned", "nr", "nan", "", "none"}
     out = s.map(lambda v: 1 if v in true_set else (0 if v in false_set else np.nan))
     return pd.to_numeric(out, errors="coerce").fillna(0).clip(0, 1)
-
-
-def normalize_free_text_category(x) -> str:
-    """Open-vocabulary category normalization.
-
-    - Collapses whitespace
-    - If value contains '/', uses first token (handles 'sports/SPORTS/Sports' style artifacts)
-    - Title-cases for canonical display
-    """
-    if pd.isna(x):
-        return "Other"
-    s = str(x).strip()
-    # If a dirty generator or manual edit concatenated variants like "sports/SPORTS/Sports"
-    if "/" in s:
-        s = s.split("/")[0].strip()
-    s = re.sub(r"\s+", " ", s)
-    return s.title()
 
 
 # ---------------------------------------------------------
@@ -139,12 +140,10 @@ def clean_stores(df: pd.DataFrame) -> Tuple[pd.DataFrame, Dict]:
     print("--- Cleaning Stores ---")
     df_clean = df.copy()
 
-    # Ensure required columns exist
     for col in ["store_id", "city", "channel"]:
         if col not in df_clean.columns:
             raise KeyError(f"stores table missing required column: {col}")
 
-    # Regex Patterns for Normalization
     city_patterns = {
         r"(?i)^du.*": "Dubai",
         r"(?i)^ab.*": "Abu Dhabi",
@@ -158,54 +157,52 @@ def clean_stores(df: pd.DataFrame) -> Tuple[pd.DataFrame, Dict]:
 
     # Clean City
     for idx, row in df_clean.iterrows():
-        orig_city = str(row["city"]).strip()
-        new_city = orig_city
+        raw_city = row["city"]
+        raw_city_str = str(raw_city) if not pd.isna(raw_city) else ""
+        normalized_input = normalize_text(raw_city_str)
 
+        new_city = normalized_input
         matched = False
         for pattern, valid_val in city_patterns.items():
-            if re.match(pattern, orig_city):
+            if re.match(pattern, normalized_input):
                 new_city = valid_val
                 matched = True
                 break
 
-        if orig_city != new_city:
-            log_issue("stores", "store_id", row["store_id"], "city", orig_city, new_city, "Normalization")
+        # Standardize title-case for display
+        new_city = normalize_text(new_city).title()
+
+        if normalize_text(raw_city_str) != normalize_text(new_city):
+            log_issue("stores", "store_id", row["store_id"], "city", raw_city, new_city, "Normalization")
             df_clean.at[idx, "city"] = new_city
-        elif not matched:
-            # Standardize casing/spacing even for open datasets
-            std = re.sub(r"\s+", " ", orig_city).strip().title()
-            if std != orig_city:
-                log_issue("stores", "store_id", row["store_id"], "city", orig_city, std, "Normalization")
-                df_clean.at[idx, "city"] = std
-            if std not in VALID_CITIES:
-                log_issue("stores", "store_id", row["store_id"], "city", orig_city, std, "Unknown Value")
+
+        if new_city not in VALID_CITIES:
+            log_issue("stores", "store_id", row["store_id"], "city", raw_city, new_city, "Unknown Value")
 
     # Clean Channel
     for idx, row in df_clean.iterrows():
-        orig_channel = str(row["channel"]).strip()
-        new_channel = orig_channel
+        raw_channel = row["channel"]
+        raw_channel_str = str(raw_channel) if not pd.isna(raw_channel) else ""
+        normalized_input = normalize_text(raw_channel_str)
 
+        new_channel = normalized_input
         matched = False
         for pattern, valid_val in channel_patterns.items():
-            if re.match(pattern, orig_channel):
+            if re.match(pattern, normalized_input):
                 new_channel = valid_val
                 matched = True
                 break
 
-        if orig_channel != new_channel:
-            log_issue("stores", "store_id", row["store_id"], "channel", orig_channel, new_channel, "Normalization")
-            df_clean.at[idx, "channel"] = new_channel
-        elif not matched:
-            std = re.sub(r"\s+", " ", orig_channel).strip().title()
-            if std != orig_channel:
-                log_issue("stores", "store_id", row["store_id"], "channel", orig_channel, std, "Normalization")
-                df_clean.at[idx, "channel"] = std
-            if std not in VALID_CHANNELS:
-                log_issue("stores", "store_id", row["store_id"], "channel", orig_channel, std, "Unknown Value")
+        new_channel = normalize_text(new_channel).title()
 
-    # --- DEDUPLICATION LOGIC ---
-    # We dedupe on (city, channel). For external datasets, store_id might be alphanumeric; do not depend on min().
-    # Assign a stable integer store_id per (city, channel) group and build mapping for all original IDs.
+        if normalize_text(raw_channel_str) != normalize_text(new_channel):
+            log_issue("stores", "store_id", row["store_id"], "channel", raw_channel, new_channel, "Normalization")
+            df_clean.at[idx, "channel"] = new_channel
+
+        if new_channel not in VALID_CHANNELS:
+            log_issue("stores", "store_id", row["store_id"], "channel", raw_channel, new_channel, "Unknown Value")
+
+    # Deduplicate on (city, channel) and assign stable numeric store_id
     store_mapping: Dict = {}
     deduped_rows = []
 
@@ -216,10 +213,12 @@ def clean_stores(df: pd.DataFrame) -> Tuple[pd.DataFrame, Dict]:
         survivor_id = next_store_id
         next_store_id += 1
 
-        for old_id in group["store_id"].unique():
+        old_ids = list(group["store_id"].unique())
+        for old_id in old_ids:
             store_mapping[old_id] = survivor_id
-            # Log if multiple distinct original store IDs collapse into one
-            if len(group["store_id"].unique()) > 1 and old_id != group["store_id"].unique()[0]:
+
+        if len(old_ids) > 1:
+            for old_id in old_ids[1:]:
                 log_issue("stores", "store_id", old_id, "store_id", old_id, survivor_id, "Deduplication (Merged)")
 
         survivor_row = group.iloc[0].copy()
@@ -243,11 +242,10 @@ def clean_products(df: pd.DataFrame) -> pd.DataFrame:
         if col not in df_clean.columns:
             raise KeyError(f"products table missing required column: {col}")
 
-    # Coerce prices
     df_clean["base_price_aed"] = pd.to_numeric(df_clean["base_price_aed"], errors="coerce")
     df_clean["unit_cost_aed"] = pd.to_numeric(df_clean["unit_cost_aed"], errors="coerce")
 
-    # Regex Patterns for Normalization (known categories only)
+    # Known normalization patterns (not restrictive)
     category_patterns = {
         r"(?i)^elec.*": "Electronics",
         r"(?i)^fash.*": "Fashion",
@@ -256,43 +254,44 @@ def clean_products(df: pd.DataFrame) -> pd.DataFrame:
         r"(?i)^beauty.*": "Beauty",
     }
 
-    # Clean Category (open vocabulary)
     for idx, row in df_clean.iterrows():
-        orig_cat = row["category"]
-        orig_cat_str = str(orig_cat).strip() if not pd.isna(orig_cat) else np.nan
+        raw_cat = row["category"]
+        raw_cat_str = str(raw_cat) if not pd.isna(raw_cat) else ""
 
-        if pd.isna(orig_cat_str):
+        # Use a normalized input for matching, but always compare/assign against the RAW string
+        norm_in = normalize_text(raw_cat_str)
+
+        if not norm_in:
             new_cat = "Other"
-            log_issue("products", "product_id", row["product_id"], "category", orig_cat, new_cat, "Missing Value")
+            log_issue("products", "product_id", row["product_id"], "category", raw_cat, new_cat, "Missing Value")
             df_clean.at[idx, "category"] = new_cat
             continue
 
-        new_cat = orig_cat_str
         matched = False
+        new_cat = None
         for pattern, valid_val in category_patterns.items():
-            if re.match(pattern, orig_cat_str):
+            if re.match(pattern, norm_in):
                 new_cat = valid_val
                 matched = True
                 break
 
         if not matched:
-            # Standardize any new category value
-            new_cat = normalize_free_text_category(orig_cat_str)
+            new_cat = normalize_free_text_category(raw_cat_str)
 
-            # Optionally log once per new category (informational governance)
+            # Optional governance logging (once per new category)
             if new_cat not in KNOWN_CATEGORIES and new_cat not in _SEEN_NEW_CATEGORIES:
                 _SEEN_NEW_CATEGORIES.add(new_cat)
-                log_issue("products", "product_id", row["product_id"], "category", orig_cat_str, new_cat, "New Category")
+                log_issue("products", "product_id", row["product_id"], "category", norm_in, new_cat, "New Category")
 
-        # Always apply if changed
-        if new_cat != orig_cat_str:
-            log_issue("products", "product_id", row["product_id"], "category", orig_cat_str, new_cat, "Normalization")
-            df_clean.at[idx, "category"] = new_cat
+        # Always assign canonical category (this fixes leading/trailing/hidden whitespace issues)
+        if normalize_text(raw_cat_str) != normalize_text(new_cat):
+            log_issue("products", "product_id", row["product_id"], "category", raw_cat, new_cat, "Normalization")
 
-    # Handle Missing/Invalid Base Price
+        df_clean.at[idx, "category"] = new_cat
+
+    # Handle missing/invalid base price
     missing_base = df_clean["base_price_aed"].isna() | (df_clean["base_price_aed"] <= 0)
     if missing_base.any():
-        # Impute with median base price per category, else global median
         med_by_cat = df_clean.loc[~missing_base].groupby("category")["base_price_aed"].median().to_dict()
         global_median = float(df_clean.loc[~missing_base, "base_price_aed"].median()) if (~missing_base).any() else 100.0
 
@@ -302,7 +301,7 @@ def clean_products(df: pd.DataFrame) -> pd.DataFrame:
             log_issue("products", "product_id", df_clean.at[idx, "product_id"], "base_price_aed", df_clean.at[idx, "base_price_aed"], new_base, "Imputation")
             df_clean.at[idx, "base_price_aed"] = round(new_base, 2)
 
-    # 1) Handle Missing Unit Cost
+    # Missing unit cost -> category ratio, fallback 0.6
     valid_mask = df_clean["unit_cost_aed"].notna() & (df_clean["base_price_aed"] > 0)
     temp_df = df_clean[valid_mask].copy()
     temp_df["cost_ratio"] = temp_df["unit_cost_aed"] / temp_df["base_price_aed"]
@@ -312,12 +311,12 @@ def clean_products(df: pd.DataFrame) -> pd.DataFrame:
     for idx in df_clean[missing_cost_mask].index:
         cat = df_clean.at[idx, "category"]
         base = float(df_clean.at[idx, "base_price_aed"])
-        ratio = float(avg_ratios.get(cat, 0.6))  # Default if category is new/rare
+        ratio = float(avg_ratios.get(cat, 0.6))
         new_cost = round(base * ratio, 2)
         log_issue("products", "product_id", df_clean.at[idx, "product_id"], "unit_cost_aed", np.nan, new_cost, "Imputation")
         df_clean.at[idx, "unit_cost_aed"] = new_cost
 
-    # 2) Validate Unit Cost <= Base Price (cap)
+    # Validate cost <= price
     invalid_cost_mask = df_clean["unit_cost_aed"] > df_clean["base_price_aed"]
     for idx in df_clean[invalid_cost_mask].index:
         orig = float(df_clean.at[idx, "unit_cost_aed"])
@@ -347,9 +346,7 @@ def clean_sales(df: pd.DataFrame, products_df: pd.DataFrame, store_mapping: Dict
             log_issue("sales", "order_id", df_clean.at[idx, "order_id"], "order_time", df_clean.at[idx, "order_time"], "DROPPED (Unparsable)", "Parsing Error")
         df_clean = df_clean.dropna(subset=["order_time_clean"])
 
-    # Handle out-of-range years (very old) – cap to 1st percentile date
-    max_date = df_clean["order_time_clean"].max()
-    min_date = df_clean["order_time_clean"].quantile(0.01) if len(df_clean) else max_date
+    min_date = df_clean["order_time_clean"].quantile(0.01) if len(df_clean) else None
     out_of_range_mask = df_clean["order_time_clean"].dt.year < 2020
     for idx in df_clean[out_of_range_mask].index:
         orig = df_clean.at[idx, "order_time_clean"]
@@ -359,34 +356,34 @@ def clean_sales(df: pd.DataFrame, products_df: pd.DataFrame, store_mapping: Dict
     df_clean["order_time"] = df_clean["order_time_clean"]
     df_clean.drop(columns=["order_time_clean"], inplace=True)
 
-    # Apply store mapping (robust to string IDs)
+    # Store mapping
+    orig_store_series = df_clean["store_id"].copy()
     df_clean["store_id"] = df_clean["store_id"].map(store_mapping)
     if df_clean["store_id"].isna().any():
-        # Drop unmapped store_id rows (cannot reconcile)
         bad = df_clean["store_id"].isna()
         for idx in df_clean[bad].index:
-            log_issue("sales", "order_id", df_clean.at[idx, "order_id"], "store_id", df.at[idx, "store_id"], "DROPPED", "Unknown Value")
+            log_issue("sales", "order_id", df_clean.at[idx, "order_id"], "store_id", orig_store_series.loc[idx], "DROPPED", "Unknown Value")
         df_clean = df_clean.dropna(subset=["store_id"])
     df_clean["store_id"] = df_clean["store_id"].astype(int)
 
-    # Dedupe order_id
+    # Deduplicate order_id
     dup_mask = df_clean.duplicated(subset=["order_id"], keep="first")
     if dup_mask.any():
         for idx in df_clean[dup_mask].index:
             log_issue("sales", "order_id", df_clean.at[idx, "order_id"], "order_id", df_clean.at[idx, "order_id"], "DROPPED", "Duplicate ID")
         df_clean = df_clean[~dup_mask]
 
-    # Coerce numeric columns
+    # qty numeric
     df_clean["qty"] = pd.to_numeric(df_clean["qty"], errors="coerce")
     bad_qty = df_clean["qty"].isna()
     if bad_qty.any():
         mean_qty = float(df_clean["qty"].dropna().mean()) if df_clean["qty"].dropna().any() else 1.0
         for idx in df_clean[bad_qty].index:
-            log_issue("sales", "order_id", df_clean.at[idx, "order_id"], "qty", df.at[idx, "qty"], mean_qty, "Parsing Error")
+            log_issue("sales", "order_id", df_clean.at[idx, "order_id"], "qty", df_clean.at[idx, "qty"], mean_qty, "Parsing Error")
         df_clean.loc[bad_qty, "qty"] = mean_qty
 
-    # selling_price may contain currency symbols
-    sp = df_clean["selling_price_aed"].astype(str).str.replace(r"[^0-9.\-]", "", regex=True)
+    # selling_price numeric (strip currency)
+    sp = df_clean["selling_price_aed"].astype(str).map(normalize_text).str.replace(r"[^0-9.\-]", "", regex=True)
     df_clean["selling_price_aed"] = pd.to_numeric(sp, errors="coerce")
 
     # Fill missing selling_price from base_price
@@ -395,24 +392,24 @@ def clean_sales(df: pd.DataFrame, products_df: pd.DataFrame, store_mapping: Dict
         df_clean = df_clean.merge(products_df[["product_id", "base_price_aed"]], on="product_id", how="left")
         for idx in df_clean[missing_price_mask].index:
             base = df_clean.at[idx, "base_price_aed"]
-            log_issue("sales", "order_id", df_clean.at[idx, "order_id"], "selling_price_aed", df.at[idx, "selling_price_aed"], base, "Missing Value")
+            log_issue("sales", "order_id", df_clean.at[idx, "order_id"], "selling_price_aed", df_clean.at[idx, "selling_price_aed"], base, "Missing Value")
             df_clean.at[idx, "selling_price_aed"] = base
         df_clean.drop(columns=["base_price_aed"], inplace=True)
 
-    # discount_pct may contain % sign
-    disc = df_clean["discount_pct"].astype(str).str.replace("%", "", regex=False).str.strip()
+    # discount_pct numeric (strip %)
+    disc = df_clean["discount_pct"].astype(str).map(normalize_text).str.replace("%", "", regex=False).str.strip()
     df_clean["discount_pct"] = pd.to_numeric(disc, errors="coerce")
     nan_disc_mask = df_clean["discount_pct"].isna()
     if nan_disc_mask.any():
         for idx in df_clean[nan_disc_mask].index:
-            log_issue("sales", "order_id", df_clean.at[idx, "order_id"], "discount_pct", df.at[idx, "discount_pct"], 0, "Missing Value")
+            log_issue("sales", "order_id", df_clean.at[idx, "order_id"], "discount_pct", df_clean.at[idx, "discount_pct"], 0, "Missing Value")
         df_clean.loc[nan_disc_mask, "discount_pct"] = 0.0
 
-    # return_flag (if present) -> 0/1
+    # return_flag -> 0/1 if present
     if "return_flag" in df_clean.columns:
         df_clean["return_flag"] = _boolish_to_int(df_clean["return_flag"])
 
-    # IQR outliers for qty
+    # IQR outliers (qty)
     Q1_q = df_clean["qty"].quantile(0.25)
     Q3_q = df_clean["qty"].quantile(0.75)
     IQR_q = Q3_q - Q1_q
@@ -424,7 +421,7 @@ def clean_sales(df: pd.DataFrame, products_df: pd.DataFrame, store_mapping: Dict
         log_issue("sales", "order_id", df_clean.at[idx, "order_id"], "qty", orig, mean_qty_int, "Outlier (IQR)")
         df_clean.at[idx, "qty"] = mean_qty_int
 
-    # IQR outliers for price
+    # IQR outliers (price)
     Q1_p = df_clean["selling_price_aed"].quantile(0.25)
     Q3_p = df_clean["selling_price_aed"].quantile(0.75)
     IQR_p = Q3_p - Q1_p
@@ -457,22 +454,17 @@ def clean_inventory(df: pd.DataFrame, store_mapping: Dict) -> pd.DataFrame:
             log_issue("inventory", "idx", idx, "snapshot_date", df_clean.at[idx, "snapshot_date"], "DROPPED (Unparsable)", "Parsing Error")
         df_clean = df_clean.dropna(subset=["snapshot_date"])
 
-    # Apply Store Mapping
+    # Store mapping
     df_clean["store_id"] = df_clean["store_id"].map(store_mapping)
     df_clean.dropna(subset=["store_id"], inplace=True)
     df_clean["store_id"] = df_clean["store_id"].astype(int)
 
-    # Coerce numeric inventory fields
-    df_clean["stock_on_hand"] = pd.to_numeric(df_clean["stock_on_hand"], errors="coerce")
-    df_clean["reorder_point"] = pd.to_numeric(df_clean["reorder_point"], errors="coerce")
-    df_clean["lead_time_days"] = pd.to_numeric(df_clean["lead_time_days"], errors="coerce")
+    # Numeric coercion
+    df_clean["stock_on_hand"] = pd.to_numeric(df_clean["stock_on_hand"], errors="coerce").fillna(0)
+    df_clean["reorder_point"] = pd.to_numeric(df_clean["reorder_point"], errors="coerce").fillna(0)
+    df_clean["lead_time_days"] = pd.to_numeric(df_clean["lead_time_days"], errors="coerce").fillna(0)
 
-    # Fill NaNs with safe defaults
-    df_clean["stock_on_hand"] = df_clean["stock_on_hand"].fillna(0)
-    df_clean["reorder_point"] = df_clean["reorder_point"].fillna(0)
-    df_clean["lead_time_days"] = df_clean["lead_time_days"].fillna(0)
-
-    # Aggregate due to merged stores
+    # Aggregate after dedupe
     df_clean = df_clean.groupby(["snapshot_date", "store_id", "product_id"], as_index=False).agg(
         {"stock_on_hand": "sum", "reorder_point": "max", "lead_time_days": "max"}
     )
@@ -484,7 +476,7 @@ def clean_inventory(df: pd.DataFrame, store_mapping: Dict) -> pd.DataFrame:
         log_issue("inventory", "idx", idx, "stock_on_hand", orig, 0, "Logic Error (Negative)")
         df_clean.at[idx, "stock_on_hand"] = 0
 
-    # Unreasonable high stock -> median
+    # Extreme high stock -> median
     median_stock = float(df_clean["stock_on_hand"].median()) if len(df_clean) else 0
     high_mask = df_clean["stock_on_hand"] > 5000
     for idx in df_clean[high_mask].index:
@@ -521,7 +513,6 @@ def main():
     clean_sales_df.to_csv(os.path.join(OUTPUT_DIR, "sales_clean.csv"), index=False)
     clean_inventory_df.to_csv(os.path.join(OUTPUT_DIR, "inventory_clean.csv"), index=False)
 
-    # Save Issues Log
     if ISSUES_LOG:
         issues_df = pd.DataFrame(ISSUES_LOG)
         issues_df.to_csv(os.path.join(OUTPUT_DIR, "issues.csv"), index=False)
