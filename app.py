@@ -268,6 +268,42 @@ def style_fig(fig, height: int = 360):
 
 
 
+
+def apply_bar_value_labels(fig, value_kind: str = 'number', max_points: int = 15) -> None:
+    """Add succinct value labels to bar-like visuals for readability (no hover required).
+
+    value_kind: 'number' | 'aed' | 'pct'
+    """
+    try:
+        for tr in fig.data:
+            if getattr(tr, 'type', None) != 'bar':
+                continue
+            # Determine point count
+            n = 0
+            if getattr(tr, 'x', None) is not None:
+                try:
+                    n = len(tr.x)
+                except Exception:
+                    n = 0
+            if n and n > max_points:
+                continue
+            y = getattr(tr, 'y', None)
+            if y is None:
+                continue
+            if value_kind == 'pct':
+                text = [f"{float(v):.1f}%" if v is not None and not (isinstance(v, float) and np.isnan(v)) else "" for v in y]
+            elif value_kind == 'aed':
+                text = [f"{float(v):,.0f}" if v is not None and not (isinstance(v, float) and np.isnan(v)) else "" for v in y]
+            else:
+                text = [f"{float(v):,.0f}" if v is not None and not (isinstance(v, float) and np.isnan(v)) else "" for v in y]
+            tr.text = text
+            tr.textposition = 'outside'
+            tr.cliponaxis = False
+            # keep labels small but readable
+            tr.textfont = dict(size=12)
+    except Exception:
+        return
+
 def _normalize_id_series(s: pd.Series) -> pd.Series:
     """Normalize identifier series to integer IDs (robust to codes like 'S001', 'P-0007').
 
@@ -782,56 +818,163 @@ def inventory_risk(inventory: pd.DataFrame, products: pd.DataFrame, stores: pd.D
 
 
 def render_constraints(constraints: Dict) -> None:
-    ok_all = constraints.get("budget_ok", True) and constraints.get("margin_ok", True) and constraints.get("stock_ok", True)
+    """Readable constraint panel with PASS/FAIL, numbers, deltas, and next-step guidance."""
+    budget_ok = bool(constraints.get('budget_ok', True))
+    margin_ok = bool(constraints.get('margin_ok', True))
+    stock_ok = bool(constraints.get('stock_ok', True))
+    ok_all = budget_ok and margin_ok and stock_ok
+
+    # Pull numeric fields (present in simulator_promo.py)
+    budget_used = float(constraints.get('budget_used', 0.0) or 0.0)
+    budget_limit = float(constraints.get('budget_limit', 0.0) or 0.0)
+    budget_util = float(constraints.get('budget_util_pct', 0.0) or 0.0)
+
+    margin_ach = float(constraints.get('margin_achieved', 0.0) or 0.0)
+    margin_floor = float(constraints.get('margin_floor', 0.0) or 0.0)
+
+    stockout_count = int(constraints.get('stockout_count', 0) or 0)
+    stockout_risk_pct = float(constraints.get('stockout_risk_pct', 0.0) or 0.0)
+
     st.markdown(
         f"<div class='callout'><span class='{'badge-ok' if ok_all else 'badge-bad'}'>"
-        f"{'All constraints satisfied' if ok_all else 'Constraint violation detected'}</span>"
-        f"<div class='small-note' style='margin-top:8px'>"
-        f"Budget OK: {constraints.get('budget_ok', True)} | "
-        f"Margin OK: {constraints.get('margin_ok', True)} | "
-        f"Stock OK: {constraints.get('stock_ok', True)}"
-        f"</div></div>",
+        f"{'All constraints satisfied' if ok_all else 'Constraint violations detected'}"
+        f"</span></div>",
         unsafe_allow_html=True,
     )
 
-    viols = constraints.get("violations", [])
-    if not viols:
-        return
-    st.markdown("<div class='hr'></div>", unsafe_allow_html=True)
-    st.markdown("<div class='section-title'>Top contributors</div>", unsafe_allow_html=True)
-    for v in viols:
-        st.subheader(v.get("type", "UNKNOWN").replace("_", " ").title())
-        top = v.get("top_contributors", [])
-        if top:
-            st.dataframe(pd.DataFrame(top), use_container_width=True, height=240)
+    c1, c2, c3 = st.columns(3)
 
+    def _tile(title: str, ok: bool, body_html: str, hint: str) -> None:
+        badge = 'badge-ok' if ok else 'badge-bad'
+        st.markdown(
+            f"""
+<div style='border:1px solid rgba(255,255,255,.10); border-radius:16px; padding:14px 14px; background:rgba(255,255,255,.04);'>
+  <div style='display:flex; align-items:center; justify-content:space-between;'>
+    <div style='font-weight:700; font-size:14px'>{title}</div>
+    <span class='{badge}'>{'PASS' if ok else 'FAIL'}</span>
+  </div>
+  <div style='margin-top:8px; font-size:13px; line-height:1.35;'>
+    {body_html}
+  </div>
+  <div class='small-note' style='margin-top:10px'>{hint}</div>
+</div>
+""",
+            unsafe_allow_html=True,
+        )
+
+    with c1:
+        if budget_limit <= 0:
+            body = "Promo budget not set (0)."
+            hint = "Set a positive budget to enable budget feasibility checks."
+        else:
+            over = budget_used - budget_limit
+            body = (
+                f"Spend: <b>AED {budget_used:,.0f}</b><br>"
+                f"Budget: <b>AED {budget_limit:,.0f}</b><br>"
+                f"Utilization: <b>{budget_util:.1f}%</b>"
+            )
+            hint = (
+                "If FAIL: reduce discount, narrow scope (city/channel/category), or shorten window."
+                if over > 0
+                else "Healthy budget headroom."
+            )
+        _tile("Budget", budget_ok, body, hint)
+
+    with c2:
+        delta_pp = margin_ach - margin_floor
+        body = (
+            f"Achieved: <b>{margin_ach:.1f}%</b><br>"
+            f"Floor: <b>{margin_floor:.1f}%</b><br>"
+            f"Delta: <b>{delta_pp:+.1f}pp</b>"
+        )
+        hint = (
+            "If FAIL: reduce discount, exclude low-margin categories, or focus on higher-margin SKUs."
+            if delta_pp < 0
+            else "Margin constraint satisfied."
+        )
+        _tile("Margin", margin_ok, body, hint)
+
+    with c3:
+        body = (
+            f"Stockout risk rows: <b>{stockout_count:,}</b><br>"
+            f"Stockout risk: <b>{stockout_risk_pct:.1f}%</b>"
+        )
+        hint = (
+            "If FAIL: reduce discount, restrict to high-cover SKUs, or remove low-stock store–SKU pairs."
+            if not stock_ok
+            else "No stockout-risk detected under current scenario."
+        )
+        _tile("Stock", stock_ok, body, hint)
+
+    viols = constraints.get('violations', []) or []
+    if viols:
+        with st.expander("Top contributors (why it failed)", expanded=False):
+            for v in viols:
+                vtype = v.get('type', 'UNKNOWN').replace('_', ' ').title()
+                st.markdown(f"**{vtype}**")
+                top = v.get('top_contributors', []) or []
+                if top:
+                    st.dataframe(pd.DataFrame(top), use_container_width=True, height=260)
+                else:
+                    st.info("No contributor detail provided for this violation.")
 
 def recommendation(constraints: Dict, sim_kpis: Dict, sim_kpis_base: Dict, discount_pct: float, budget: float) -> str:
-    ok_all = constraints.get("budget_ok", True) and constraints.get("margin_ok", True) and constraints.get("stock_ok", True)
-    base_profit = float(sim_kpis_base.get("profit_proxy", 0.0))
-    sim_profit = float(sim_kpis.get("profit_proxy", 0.0))
+    """Rule-based recommendation driven by constraints + uplift vs baseline."""
+    budget_ok = bool(constraints.get('budget_ok', True))
+    margin_ok = bool(constraints.get('margin_ok', True))
+    stock_ok = bool(constraints.get('stock_ok', True))
+    ok_all = budget_ok and margin_ok and stock_ok
+
+    base_profit = float(sim_kpis_base.get('profit_proxy', 0.0) or 0.0)
+    sim_profit = float(sim_kpis.get('profit_proxy', 0.0) or 0.0)
     delta_profit = sim_profit - base_profit
 
-    lines: List[str] = []
-    if ok_all:
-        lines.append(f"Proceed with {discount_pct:.1f}% discount for the selected scope.")
-        lines.append(f"Expected Profit Proxy change vs baseline: {fmt_aed(delta_profit)}.")
-        util = (float(sim_kpis.get('promo_spend', 0.0)) / max(budget, 1e-9)) * 100
-        lines.append(f"Budget utilization: {fmt_pct(util)}.")
-        if float(sim_kpis.get("stockout_risk_pct", 0.0)) > 10:
-            lines.append("Operational note: stockout risk is elevated; consider limiting promo to high-cover SKUs.")
+    promo_spend = float(sim_kpis.get('promo_spend', 0.0) or constraints.get('budget_used', 0.0) or 0.0)
+    util = (promo_spend / max(budget, 1e-9)) * 100 if budget > 0 else 0.0
+
+    stockout_risk_pct = float(sim_kpis.get('stockout_risk_pct', constraints.get('stockout_risk_pct', 0.0)) or 0.0)
+    margin_pct = float(sim_kpis.get('promo_margin_pct', constraints.get('margin_achieved', 0.0)) or 0.0)
+    margin_floor = float(constraints.get('margin_floor', 0.0) or 0.0)
+
+    lines_out: List[str] = []
+
+    # Headline decision
+    if ok_all and delta_profit >= 0:
+        decision = 'PROCEED'
+    elif ok_all and delta_profit < 0:
+        decision = 'ADJUST (profits down)';
     else:
-        lines.append("Do not approve this scenario as-is. Adjust levers to satisfy constraints:")
-        if not constraints.get("budget_ok", True): lines.append("- Reduce discount / narrow scope, or increase budget.")
-        if not constraints.get("margin_ok", True): lines.append("- Lower discount and/or exclude low-margin categories.")
-        if not constraints.get("stock_ok", True): lines.append("- Exclude low-cover SKUs or rebalance inventory.")
-    lines.append("Tax note: KPIs are pre-tax; tax_rate is informational only.")
-    return "\n".join(lines)
+        # If exactly one constraint fails, suggest adjust; if multiple fail, stop
+        fails = sum([not budget_ok, not margin_ok, not stock_ok])
+        decision = 'ADJUST' if fails == 1 else 'DO NOT PROCEED'
 
+    lines_out.append(f"Decision: {decision}")
+    lines_out.append(f"Scenario: {discount_pct:.1f}% discount (scope = current filters)")
+    lines_out.append(f"Profit Proxy vs baseline: {fmt_aed(delta_profit)}")
+    if budget > 0:
+        lines_out.append(f"Budget utilization: {util:.1f}% (spend ≈ {fmt_aed(promo_spend)})")
+    lines_out.append(f"Promo margin: {margin_pct:.1f}% (floor {margin_floor:.1f}%)")
+    lines_out.append(f"Stockout risk: {stockout_risk_pct:.1f}%")
 
-# -------------------------
-# Sidebar: controls
-# -------------------------
+    # Action guidance
+    actions: List[str] = []
+    if not budget_ok:
+        actions.append("Reduce discount or narrow scope (city/channel/category) to fit the promo budget.")
+    if not margin_ok:
+        actions.append("Reduce discount and/or exclude low-margin categories/SKUs to meet the margin floor.")
+    if not stock_ok or stockout_risk_pct > 0:
+        actions.append("Limit promo to high-cover SKUs (raise min days-of-cover) or remove low-stock store–SKU pairs.")
+    if ok_all and delta_profit < 0:
+        actions.append("Constraints pass, but profitability declines; consider lowering discount or targeting fewer segments.")
+
+    if actions:
+        lines_out.append("")
+        lines_out.append("Recommended adjustments:")
+        for a in actions[:4]:
+            lines_out.append(f"- {a}")
+
+    return "\n".join(lines_out)
+
 with st.sidebar:
     st.markdown("### Data Source")
     data_mode = st.radio(
@@ -1206,6 +1349,7 @@ if view_mode == "Executive View":
             fig.add_trace(go.Scatter(x=m["month"], y=m["roll_6m"], name="Rolling Avg (6M)", mode="lines+markers", line=dict(width=3, dash="dash")))
 
             fig = style_fig(fig, height=360)
+            apply_bar_value_labels(fig, value_kind='aed', max_points=12)
             fig.update_xaxes(title_text="Month", tickformat="%b %Y", dtick="M1")
             fig.update_yaxes(title_text="Net Revenue (AED)", tickformat=",.0f")
             st.plotly_chart(fig, use_container_width=True)
@@ -1222,6 +1366,7 @@ if view_mode == "Executive View":
         if len(grp):
             fig = px.bar(grp, x="city", y="revenue", color="channel", barmode="group", labels={"city":"City","revenue":"Paid Revenue (AED)","channel":"Channel"})
             fig = style_fig(fig, height=360)
+            apply_bar_value_labels(fig, value_kind='aed', max_points=12)
             fig.update_yaxes(tickformat=",.0f")
             st.plotly_chart(fig, use_container_width=True)
         else:
@@ -1244,6 +1389,7 @@ if view_mode == "Executive View":
             )
             fig.update_layout(showlegend=False)
             fig = style_fig(fig, height=340)
+            apply_bar_value_labels(fig, value_kind='pct', max_points=15)
             fig.update_yaxes(ticksuffix="%")
             st.plotly_chart(fig, use_container_width=True)
         else:
@@ -1336,6 +1482,7 @@ else:
             grp["risk_pct"] = grp["risk_pct"] * 100
             fig = px.bar(grp, x="city", y="risk_pct", color="channel", barmode="group", hover_data=["count"], labels={"city":"City","risk_pct":"Stockout Risk (%)","channel":"Channel","count":"SKU–Store Rows"})
             fig = style_fig(fig, height=360)
+            apply_bar_value_labels(fig, value_kind='number', max_points=12)
             fig.update_yaxes(ticksuffix="%")
             st.plotly_chart(fig, use_container_width=True)
         else:
@@ -1343,9 +1490,63 @@ else:
     with c2:
         st.markdown("#### Days of Cover (Distribution)")
         if "days_of_cover" in inv_risk_f.columns and len(inv_risk_f):
-            fig = px.histogram(inv_risk_f, x="days_of_cover")
-            fig.update_layout(height=360, margin=dict(l=10, r=10, t=30, b=10))
-            st.plotly_chart(fig, use_container_width=True)
+            tab_a, tab_b = st.tabs(["Distribution (Risk Bands)", "Heatmap (City × Category)"])
+
+            with tab_a:
+                # Risk-band distribution keeps the chart readable and allows value labels without clutter.
+                doc = inv_risk_f[["days_of_cover"]].copy()
+                doc["days_of_cover"] = pd.to_numeric(doc["days_of_cover"], errors="coerce")
+                doc = doc.dropna(subset=["days_of_cover"])
+                if len(doc) == 0:
+                    st.info("No valid days-of-cover values in scope.")
+                else:
+                    bins = [-np.inf, 7, 14, 30, np.inf]
+                    labels = ["< 7 days (Stockout risk)", "7–14 days (Watch)", "14–30 days (Healthy)", "> 30 days (Overstock risk)"]
+                    doc["doc_band"] = pd.cut(doc["days_of_cover"], bins=bins, labels=labels, right=False)
+                    band = doc.groupby("doc_band", as_index=False).size().rename(columns={"size": "count"})
+                    band["doc_band"] = band["doc_band"].astype(str)
+                    total = float(band["count"].sum()) if len(band) else 0.0
+                    band["pct"] = np.where(total > 0, band["count"] / total * 100.0, 0.0)
+
+                    fig = px.bar(
+                        band,
+                        x="doc_band",
+                        y="count",
+                        color="doc_band",
+                        text=[f"{c:,} ({p:.0f}%)" for c, p in zip(band["count"], band["pct"])],
+                        color_discrete_sequence=VIBRANT_COLORWAY,
+                        labels={"doc_band": "Coverage band", "count": "SKU–Store rows"},
+                    )
+                    fig.update_layout(showlegend=False)
+                    fig = style_fig(fig, height=360)
+                    fig.update_traces(textposition="outside", cliponaxis=False)
+                    fig.update_xaxes(tickangle=15)
+                    st.plotly_chart(fig, use_container_width=True)
+
+                    st.markdown("<div class='small-note'>Coverage interpretation: low DoC = stockout risk; high DoC = overstock risk.</div>", unsafe_allow_html=True)
+
+            with tab_b:
+                # Heatmap: Median days-of-cover by City × Category for quick risk scanning.
+                if {"city", "category", "days_of_cover"}.issubset(set(inv_risk_f.columns)):
+                    hm = inv_risk_f[["city", "category", "days_of_cover"]].copy()
+                    hm["days_of_cover"] = pd.to_numeric(hm["days_of_cover"], errors="coerce")
+                    hm = hm.dropna(subset=["days_of_cover"])
+                    if len(hm) == 0:
+                        st.info("No valid days-of-cover values to build heatmap.")
+                    else:
+                        grid = hm.groupby(["city", "category"], as_index=False)["days_of_cover"].median()
+                        pivot = grid.pivot(index="category", columns="city", values="days_of_cover").sort_index()
+                        fig = px.imshow(
+                            pivot,
+                            text_auto=".0f",
+                            aspect="auto",
+                            color_continuous_scale="Turbo",
+                            labels=dict(x="City", y="Category", color="Median DoC"),
+                        )
+                        fig = style_fig(fig, height=360)
+                        st.plotly_chart(fig, use_container_width=True)
+                else:
+                    st.info("Heatmap unavailable (requires city, category, and days_of_cover).")
         else:
             st.info("Days-of-cover unavailable (baseline demand missing).")
 
@@ -1380,6 +1581,9 @@ else:
                     x=pareto["issue_type"],
                     y=pareto["size"],
                     name="Issue Count",
+                    text=pareto["size"].astype(int).astype(str),
+                    textposition="outside",
+                    cliponaxis=False,
                     marker=dict(line=dict(width=0)),
                 ),
                 secondary_y=False,
@@ -1389,7 +1593,9 @@ else:
                     x=pareto["issue_type"],
                     y=pareto["cum_pct"],
                     name="Cumulative %",
-                    mode="lines+markers",
+                    mode="lines+markers+text",
+                    text=[f"{v:.0f}%" for v in pareto["cum_pct"].values],
+                    textposition="top center",
                     line=dict(width=3),
                 ),
                 secondary_y=True,
