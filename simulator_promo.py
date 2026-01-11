@@ -2,6 +2,7 @@ import pandas as pd
 import os
 import numpy as np
 import re
+import unicodedata
 from datetime import datetime, timedelta
 
 # ---------------------------------------------------------
@@ -41,15 +42,24 @@ DEFAULT_CATEGORY_SENSITIVITY = 1.0  # Used for any new/unseen category
 # ---------------------------------------------------------
 # HELPERS (ROBUST TO OPEN-VOCAB CATEGORIES / EXTERNAL ENCODINGS)
 # ---------------------------------------------------------
+def _normalize_text(x) -> str:
+    """Normalize text to remove hidden Unicode differences (NBSP/zero-width) that can split categories."""
+    if pd.isna(x):
+        return ""
+    s = str(x)
+    s = unicodedata.normalize("NFKC", s)
+    s = s.replace("\xa0", " ")  # NBSP
+    s = re.sub(r"[\u200B-\u200D\uFEFF]", "", s)  # zero-width chars
+    s = re.sub(r"\s+", " ", s)
+    return s.strip()
+
 def normalize_free_text_category(x):
     """Open-vocabulary category normalization for consistent grouping/filters."""
-    if pd.isna(x):
+    s = _normalize_text(x)
+    if not s:
         return "Other"
-    s = str(x).strip()
-    # Handle artifacts like "sports/SPORTS/Sports"
     if "/" in s:
-        s = s.split("/")[0].strip()
-    s = re.sub(r"\s+", " ", s)
+        s = _normalize_text(s.split("/")[0])
     return s.title()
 
 def _boolish_to_int(series: pd.Series) -> pd.Series:
