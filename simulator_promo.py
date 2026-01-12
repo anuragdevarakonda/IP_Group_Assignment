@@ -2,7 +2,6 @@ import pandas as pd
 import os
 import numpy as np
 import re
-import unicodedata
 from datetime import datetime, timedelta
 
 # ---------------------------------------------------------
@@ -42,24 +41,15 @@ DEFAULT_CATEGORY_SENSITIVITY = 1.0  # Used for any new/unseen category
 # ---------------------------------------------------------
 # HELPERS (ROBUST TO OPEN-VOCAB CATEGORIES / EXTERNAL ENCODINGS)
 # ---------------------------------------------------------
-def _normalize_text(x) -> str:
-    """Normalize text to remove hidden Unicode differences (NBSP/zero-width) that can split categories."""
-    if pd.isna(x):
-        return ""
-    s = str(x)
-    s = unicodedata.normalize("NFKC", s)
-    s = s.replace("\xa0", " ")  # NBSP
-    s = re.sub(r"[\u200B-\u200D\uFEFF]", "", s)  # zero-width chars
-    s = re.sub(r"\s+", " ", s)
-    return s.strip()
-
 def normalize_free_text_category(x):
     """Open-vocabulary category normalization for consistent grouping/filters."""
-    s = _normalize_text(x)
-    if not s:
+    if pd.isna(x):
         return "Other"
+    s = str(x).strip()
+    # Handle artifacts like "sports/SPORTS/Sports"
     if "/" in s:
-        s = _normalize_text(s.split("/")[0])
+        s = s.split("/")[0].strip()
+    s = re.sub(r"\s+", " ", s)
     return s.title()
 
 def _boolish_to_int(series: pd.Series) -> pd.Series:
@@ -319,16 +309,33 @@ def run_simulation(
     """
     # Apply filters to baseline
     sim_baseline = baseline_df.copy()
-    
-    if filters['city'] != 'All':
-        sim_baseline = sim_baseline[sim_baseline['city'] == filters['city']]
-    
-    if filters['channel'] != 'All':
-        sim_baseline = sim_baseline[sim_baseline['channel'] == filters['channel']]
-    
-    if filters['category'] != 'All':
-        sim_baseline = sim_baseline[sim_baseline['category'] == filters['category']]
-    
+
+    def _apply_str_or_list_filter(_df: pd.DataFrame, col: str, val):
+        if val is None:
+            return _df
+        # Multi-select: list / tuple / set
+        if isinstance(val, (list, tuple, set)):
+            if len(val) == 0:
+                return _df
+            return _df[_df[col].isin(list(val))]
+        # Single-select: legacy "All" semantics
+        if isinstance(val, str):
+            return _df if val == "All" else _df[_df[col] == val]
+        return _df
+
+    sim_baseline = _apply_str_or_list_filter(sim_baseline, "city", filters.get("city", "All"))
+    sim_baseline = _apply_str_or_list_filter(sim_baseline, "channel", filters.get("channel", "All"))
+    sim_baseline = _apply_str_or_list_filter(sim_baseline, "category", filters.get("category", "All"))
+
+    # Eligibility: exclude low-velocity SKUs (baseline demand)
+    min_bd = float(filters.get("min_baseline_daily_qty", 0.0) or 0.0)
+    if min_bd > 0 and "baseline_daily_qty" in sim_baseline.columns:
+        sim_baseline = sim_baseline[sim_baseline["baseline_daily_qty"] >= min_bd]
+
+    exclude_pct = int(filters.get("exclude_bottom_demand_pct", 0) or 0)
+    if exclude_pct > 0 and "baseline_daily_qty" in sim_baseline.columns and len(sim_baseline):
+        thr = sim_baseline["baseline_daily_qty"].quantile(exclude_pct / 100.0)
+        sim_baseline = sim_baseline[sim_baseline["baseline_daily_qty"] > thr]
     if len(sim_baseline) == 0:
         return pd.DataFrame(), {
             'budget_ok': True, 
@@ -356,7 +363,21 @@ def run_simulation(
         how='left'
     )
     sim_baseline['stock_on_hand'] = sim_baseline['stock_on_hand'].fillna(0)
-    
+    # Eligibility: minimum Days of Cover (inventory coverage)
+    min_doc = float(filters.get("min_days_of_cover_elig", 0.0) or 0.0)
+    if min_doc > 0 and "baseline_daily_qty" in sim_baseline.columns:
+        denom = sim_baseline["baseline_daily_qty"].clip(lower=0.1)
+        sim_baseline["days_of_cover"] = sim_baseline["stock_on_hand"] / denom
+        sim_baseline = sim_baseline[sim_baseline["days_of_cover"] >= min_doc]
+
+        if len(sim_baseline) == 0:
+            return pd.DataFrame(), {
+                'budget_ok': True,
+                'margin_ok': True,
+                'stock_ok': True,
+                'violations': []
+            }
+
     # Calculate uplift for each row
     sim_baseline['uplift_factor'] = sim_baseline.apply(
         lambda row: calculate_demand_uplift(
