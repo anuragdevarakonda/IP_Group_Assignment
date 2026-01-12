@@ -1015,10 +1015,89 @@ if data_mode == "Repo sample (already cleaned)":
     }
 
 elif data_mode == "Repo sample (clean from dirty_data now)":
-    raw = load_repo_dirty()
-    with st.spinner("Running cleaning + validation on dirty_data..."):
-        data_clean = clean_pipeline(raw)
+    st.markdown("<div class='section-title'>Repo Sample (Dirty → Clean)</div>", unsafe_allow_html=True)
+    st.markdown(
+        "<div class='subtle'>This mode demonstrates the full <b>data rescue</b> pipeline by cleaning dirty operational data. "
+        "Optionally, generate a fresh dirty dataset using <code>generator.py</code> for a live demo. "
+        "This affects only the <b>Repo sample</b> mode—external uploads are not impacted.</div>",
+        unsafe_allow_html=True,
+    )
 
+    data_clean = None
+
+    # Cache so view switches / filter changes do not regenerate or re-clean.
+    if "repo_sample_ready" not in st.session_state:
+        st.session_state.repo_sample_ready = False
+        st.session_state.repo_sample_sig = None
+        st.session_state.repo_sample_data_clean = None
+
+    with st.expander("Optional: Generate fresh dirty sample data", expanded=False):
+        c1, c2, c3 = st.columns(3)
+        with c1:
+            gen_seed = st.number_input("Seed", min_value=1, value=42, step=1, key="gen_seed_repo")
+            gen_days_history = st.number_input("Days of sales history", min_value=30, value=120, step=10, key="gen_days_repo")
+        with c2:
+            gen_n_products = st.number_input("Products", min_value=50, value=300, step=50, key="gen_products_repo")
+            gen_n_stores = st.number_input("Stores", min_value=6, value=18, step=2, key="gen_stores_repo")
+        with c3:
+            gen_n_orders = st.number_input("Orders", min_value=2000, value=30000, step=2000, key="gen_orders_repo")
+            gen_inventory_days = st.number_input("Inventory snapshot days", min_value=7, value=30, step=1, key="gen_inv_days_repo")
+
+        gen_sig = (
+            int(gen_seed),
+            int(gen_days_history),
+            int(gen_n_products),
+            int(gen_n_stores),
+            int(gen_n_orders),
+            int(gen_inventory_days),
+        )
+
+        colA, colB = st.columns([1, 2])
+        with colA:
+            gen_now = st.button("Generate & load sample data", type="primary", use_container_width=True, key="gen_btn_repo")
+        with colB:
+            st.markdown("<div class='small-note'>Use smaller sizes on limited compute.</div>", unsafe_allow_html=True)
+
+    # Reuse cached generated dataset if parameters unchanged.
+    if st.session_state.repo_sample_ready and st.session_state.repo_sample_data_clean is not None and st.session_state.repo_sample_sig == gen_sig:
+        data_clean = st.session_state.repo_sample_data_clean
+        st.success("Repo sample dataset is ready. Switch views and adjust filters without rebuilding.")
+    else:
+        if gen_now:
+            with st.spinner("Generating dirty data (generator.py) and running cleaning pipeline..."):
+                try:
+                    import generator  # repo root; imported only in this mode
+                    if not hasattr(generator, "generate_dirty_data"):
+                        raise RuntimeError("generator.py must expose generate_dirty_data(...) for in-app generation.")
+                    raw = generator.generate_dirty_data(
+                        seed=int(gen_seed),
+                        n_products=int(gen_n_products),
+                        n_stores=int(gen_n_stores),
+                        n_orders=int(gen_n_orders),
+                        days_history=int(gen_days_history),
+                        inventory_days=int(gen_inventory_days),
+                        write_csv=False,
+                        output_path=None,
+                    )
+                    data_clean = clean_pipeline(raw)
+                    st.session_state.repo_sample_ready = True
+                    st.session_state.repo_sample_sig = gen_sig
+                    st.session_state.repo_sample_data_clean = data_clean
+                    st.success("Sample dataset generated and cleaned. You can now explore all views and filters.")
+                except Exception as e:
+                    st.error(f"Generation failed: {e}")
+                    data_clean = None
+        else:
+            # Not generating: clear generator cache so the UI reflects current state.
+            st.session_state.repo_sample_ready = False
+            st.session_state.repo_sample_sig = None
+            st.session_state.repo_sample_data_clean = None
+
+    # Fallback: clean the existing repo dirty_data files (no generator involved).
+    if data_clean is None:
+        raw = load_repo_dirty()
+        with st.spinner("Running cleaning + validation on dirty_data..."):
+            data_clean = clean_pipeline(raw)
 else:
     st.markdown("<div class='section-title'>External Dataset Intake</div>", unsafe_allow_html=True)
     st.markdown(
