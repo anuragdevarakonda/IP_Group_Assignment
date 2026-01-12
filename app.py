@@ -1413,6 +1413,19 @@ tax_avg = pd.to_numeric(products_df.get("tax_rate"), errors="coerce").dropna().m
 
 
 # -------------------------
+# Scenario summary metrics (for Executive KPI cards)
+# -------------------------
+promo_spend = float(sim_kpis.get('promo_spend', constraints.get('budget_used', 0.0)) or 0.0) if isinstance(sim_kpis, dict) else float(constraints.get('budget_used', 0.0) or 0.0)
+promo_spend_base = float(sim_kpis_base.get('promo_spend', constraints_base.get('budget_used', 0.0)) or 0.0) if isinstance(sim_kpis_base, dict) else float(constraints_base.get('budget_used', 0.0) or 0.0)
+profit_proxy = float(sim_kpis.get('profit_proxy', 0.0) or 0.0) if isinstance(sim_kpis, dict) else 0.0
+profit_proxy_base = float(sim_kpis_base.get('profit_proxy', 0.0) or 0.0) if isinstance(sim_kpis_base, dict) else 0.0
+profit_proxy_delta = profit_proxy - profit_proxy_base
+util = (promo_spend / max(float(promo_budget_aed), 1e-9)) * 100 if float(promo_budget_aed) > 0 else 0.0
+util_base = (promo_spend_base / max(float(promo_budget_aed), 1e-9)) * 100 if float(promo_budget_aed) > 0 else 0.0
+util_delta_pp = util - util_base
+
+
+# -------------------------
 # Top summary row
 # -------------------------
 a, b, c = st.columns([1.5, 1.1, 1.4])
