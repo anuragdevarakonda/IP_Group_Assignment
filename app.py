@@ -166,6 +166,25 @@ def fmt_pct(x: float, d: int = 1) -> str:
         return "-"
 
 
+def fmt_multi_selection(sel, all_vals, max_items: int = 4) -> str:
+    """Format multi-select filters for display (show 'All' or a short list)."""
+    if sel is None:
+        return "All"
+    if isinstance(sel, (list, tuple, set)):
+        sel_list = [str(x) for x in sel if x is not None and str(x).strip() != ""]
+        if len(sel_list) == 0:
+            return "All"
+        try:
+            if all_vals and set(sel_list) == set([str(x) for x in all_vals]):
+                return "All"
+        except Exception:
+            pass
+        if len(sel_list) > max_items:
+            return ", ".join(sel_list[:max_items]) + f" (+{len(sel_list) - max_items})"
+        return ", ".join(sel_list)
+    # Back-compat: single-select style
+    return "All" if str(sel) == "All" else str(sel)
+
 def fmt_delta_aed(d: float) -> str:
     """Format delta for st.metric (leading sign enables arrows/color)."""
     try:
@@ -202,30 +221,53 @@ def prior_date_range(date_range):
 def apply_sales_filters(
     df: pd.DataFrame,
     date_range,
-    city: str,
-    channel: str,
-    category: str,
-    brand: str,
-    fulfillment: str,
+    city,
+    channel,
+    category,
+    brand,
+    fulfillment,
 ) -> pd.DataFrame:
+    """Apply dashboard filters.
+
+    Supports single-select (str/"All") and multi-select (list/tuple/set) inputs.
+    """
     out = df.copy()
     if "order_time" in out.columns:
         out["order_time"] = pd.to_datetime(out["order_time"], errors="coerce")
+
+    # Date range
     if date_range and len(date_range) == 2 and "order_time" in out.columns and out["order_time"].notna().any():
         start_d, end_d = date_range
         out = out[(out["order_time"].dt.date >= start_d) & (out["order_time"].dt.date <= end_d)]
-    if city != "All" and "city" in out.columns:
-        out = out[out["city"] == city]
-    if channel != "All" and "channel" in out.columns:
-        out = out[out["channel"] == channel]
-    if category != "All" and "category" in out.columns:
-        out = out[out["category"] == category]
-    if brand != "All" and "brand" in out.columns:
-        out = out[out["brand"] == brand]
-    if fulfillment != "All" and "fulfillment_type" in out.columns:
-        out = out[out["fulfillment_type"] == fulfillment]
-    return out
 
+    def _as_list(v):
+        if v is None:
+            return []
+        if isinstance(v, (list, tuple, set)):
+            return [x for x in v if x is not None and str(x).strip() != ""]
+        if isinstance(v, str):
+            return [] if v == "All" else [v]
+        return [v]
+
+    # Multi/single select handling
+    cities = _as_list(city)
+    channels = _as_list(channel)
+    categories = _as_list(category)
+    brands = _as_list(brand)
+    fulf = _as_list(fulfillment)
+
+    if cities and "city" in out.columns:
+        out = out[out["city"].isin(cities)]
+    if channels and "channel" in out.columns:
+        out = out[out["channel"].isin(channels)]
+    if categories and "category" in out.columns:
+        out = out[out["category"].isin(categories)]
+    if brands and "brand" in out.columns:
+        out = out[out["brand"].isin(brands)]
+    if fulf and "fulfillment_type" in out.columns:
+        out = out[out["fulfillment_type"].isin(fulf)]
+
+    return out
 
 def compute_return_rate_pct(df: pd.DataFrame) -> float:
     """Return rate among paid transactions (pre-tax)."""
@@ -996,6 +1038,31 @@ with st.sidebar:
     promo_budget_aed = st.number_input("Promo Budget (AED)", min_value=0.0, value=250000.0, step=5000.0)
     margin_floor_pct = st.slider("Margin floor (%)", 0.0, 60.0, 20.0, 0.5)
     st.markdown("<div class='small-note'>Constraints enforced: budget, margin floor, stock.</div>", unsafe_allow_html=True)
+    st.markdown("### Simulation Eligibility")
+    min_baseline_daily_qty = st.number_input(
+    "Min baseline daily demand (SKU-store)",
+    min_value=0.0,
+    value=0.0,
+    step=0.1,
+    help="Exclude low-velocity SKU–store combinations from promo eligibility (baseline demand is computed from recent Paid sales).",
+    )
+    exclude_bottom_demand_pct = st.slider(
+    "Exclude bottom demand SKUs (%)",
+    min_value=0,
+    max_value=50,
+    value=0,
+    step=5,
+    help="Exclude the bottom X% of SKU–store rows by baseline daily demand within the selected simulation scope.",
+    )
+    min_days_of_cover_elig = st.slider(
+    "Min Days of Cover (eligibility)",
+    min_value=0.0,
+    max_value=30.0,
+    value=0.0,
+    step=0.5,
+    help="Exclude SKU–store rows with insufficient inventory coverage (stock_on_hand / baseline_daily_qty).",
+    )
+
 
 
 # -------------------------
@@ -1015,89 +1082,64 @@ if data_mode == "Repo sample (already cleaned)":
     }
 
 elif data_mode == "Repo sample (clean from dirty_data now)":
-    st.markdown("<div class='section-title'>Repo Sample (Dirty → Clean)</div>", unsafe_allow_html=True)
-    st.markdown(
-        "<div class='subtle'>This mode demonstrates the full <b>data rescue</b> pipeline by cleaning dirty operational data. "
-        "Optionally, generate a fresh dirty dataset using <code>generator.py</code> for a live demo. "
-        "This affects only the <b>Repo sample</b> mode—external uploads are not impacted.</div>",
-        unsafe_allow_html=True,
-    )
 
-    data_clean = None
-
-    # Cache so view switches / filter changes do not regenerate or re-clean.
-    if "repo_sample_ready" not in st.session_state:
-        st.session_state.repo_sample_ready = False
-        st.session_state.repo_sample_sig = None
-        st.session_state.repo_sample_data_clean = None
-
-    with st.expander("Optional: Generate fresh dirty sample data", expanded=False):
-        c1, c2, c3 = st.columns(3)
-        with c1:
-            gen_seed = st.number_input("Seed", min_value=1, value=42, step=1, key="gen_seed_repo")
-            gen_days_history = st.number_input("Days of sales history", min_value=30, value=120, step=10, key="gen_days_repo")
-        with c2:
-            gen_n_products = st.number_input("Products", min_value=50, value=300, step=50, key="gen_products_repo")
-            gen_n_stores = st.number_input("Stores", min_value=6, value=18, step=2, key="gen_stores_repo")
-        with c3:
-            gen_n_orders = st.number_input("Orders", min_value=2000, value=30000, step=2000, key="gen_orders_repo")
-            gen_inventory_days = st.number_input("Inventory snapshot days", min_value=7, value=30, step=1, key="gen_inv_days_repo")
-
-        gen_sig = (
-            int(gen_seed),
-            int(gen_days_history),
-            int(gen_n_products),
-            int(gen_n_stores),
-            int(gen_n_orders),
-            int(gen_inventory_days),
+    # Optional: generate a fresh dirty sample dataset (for demos) and clean it.
+    # This affects only the Repo sample mode. External uploads are not impacted.
+    with st.expander("Optional: Generate a fresh dirty sample dataset (Repo sample only)", expanded=False):
+        st.markdown(
+            "<div class='small-note'>Impact guide: "
+            "<ul>"
+            "<li><b>Seed</b>: changes values only (no row/column change)</li>"
+            "<li><b>Days of sales history</b>: increases sales rows (orders spread across a longer horizon)</li>"
+            "<li><b>Products</b>: increases product rows; impacts linked joins (sales/inventory reference more products)</li>"
+            "<li><b>Stores</b>: increases store rows; impacts linked joins (sales/inventory reference more stores)</li>"
+            "<li><b>Orders</b>: directly increases <b>sales_raw</b> row count</li>"
+            "<li><b>Inventory snapshot days</b>: increases <b>inventory_snapshot</b> row count</li>"
+            "<li><b>Columns</b>: remain constant (canonical schema)</li>"
+            "</ul></div>",
+            unsafe_allow_html=True,
         )
 
-        colA, colB = st.columns([1, 2])
-        with colA:
-            gen_now = st.button("Generate & load sample data", type="primary", use_container_width=True, key="gen_btn_repo")
-        with colB:
-            st.markdown("<div class='small-note'>Use smaller sizes on limited compute.</div>", unsafe_allow_html=True)
+        c1, c2, c3 = st.columns(3)
+        with c1:
+            gen_seed = st.number_input("Seed", min_value=1, value=42, step=1, key="repo_gen_seed")
+            gen_days_history = st.number_input("Days of sales history", min_value=30, value=120, step=10, key="repo_gen_days_history")
+        with c2:
+            gen_n_products = st.number_input("Products", min_value=50, value=300, step=50, key="repo_gen_products")
+            gen_n_stores = st.number_input("Stores", min_value=6, value=18, step=2, key="repo_gen_stores")
+        with c3:
+            gen_n_orders = st.number_input("Orders", min_value=2000, value=30000, step=2000, key="repo_gen_orders")
+            gen_inventory_days = st.number_input("Inventory snapshot days", min_value=7, value=30, step=1, key="repo_gen_inventory_days")
 
-    # Reuse cached generated dataset if parameters unchanged.
-    if st.session_state.repo_sample_ready and st.session_state.repo_sample_data_clean is not None and st.session_state.repo_sample_sig == gen_sig:
-        data_clean = st.session_state.repo_sample_data_clean
-        st.success("Repo sample dataset is ready. Switch views and adjust filters without rebuilding.")
-    else:
-        if gen_now:
-            with st.spinner("Generating dirty data (generator.py) and running cleaning pipeline..."):
-                try:
-                    import generator  # repo root; imported only in this mode
-                    if not hasattr(generator, "generate_dirty_data"):
-                        raise RuntimeError("generator.py must expose generate_dirty_data(...) for in-app generation.")
-                    raw = generator.generate_dirty_data(
-                        seed=int(gen_seed),
-                        n_products=int(gen_n_products),
-                        n_stores=int(gen_n_stores),
-                        n_orders=int(gen_n_orders),
-                        days_history=int(gen_days_history),
-                        inventory_days=int(gen_inventory_days),
-                        write_csv=False,
-                        output_path=None,
-                    )
-                    data_clean = clean_pipeline(raw)
-                    st.session_state.repo_sample_ready = True
-                    st.session_state.repo_sample_sig = gen_sig
-                    st.session_state.repo_sample_data_clean = data_clean
-                    st.success("Sample dataset generated and cleaned. You can now explore all views and filters.")
-                except Exception as e:
-                    st.error(f"Generation failed: {e}")
-                    data_clean = None
-        else:
-            # Not generating: clear generator cache so the UI reflects current state.
-            st.session_state.repo_sample_ready = False
-            st.session_state.repo_sample_sig = None
-            st.session_state.repo_sample_data_clean = None
+        gen_clicked = st.button("Generate & load (Repo sample)", type="primary", key="repo_gen_btn")
 
-    # Fallback: clean the existing repo dirty_data files (no generator involved).
+    if gen_clicked:
+        with st.spinner("Generating dirty data (generator.py) and running cleaning pipeline..."):
+            try:
+                # Import only on click to avoid side effects during normal app runs.
+                import generator
+                if not hasattr(generator, "generate_dirty_data"):
+                    raise RuntimeError("generator.py must expose generate_dirty_data(...) for in-app generation.")
+                raw = generator.generate_dirty_data(
+                    seed=int(gen_seed),
+                    n_products=int(gen_n_products),
+                    n_stores=int(gen_n_stores),
+                    n_orders=int(gen_n_orders),
+                    days_history=int(gen_days_history),
+                    inventory_days=int(gen_inventory_days),
+                    write_csv=False,
+                    output_path=None,
+                )
+                data_clean = clean_pipeline(raw)
+            except Exception as e:
+                st.error(f"Generation failed: {e}")
+                data_clean = None
+
     if data_clean is None:
         raw = load_repo_dirty()
         with st.spinner("Running cleaning + validation on dirty_data..."):
             data_clean = clean_pipeline(raw)
+
 else:
     st.markdown("<div class='section-title'>External Dataset Intake</div>", unsafe_allow_html=True)
     st.markdown(
@@ -1170,6 +1212,34 @@ campaign_df = data_clean.get("campaign_plan", pd.DataFrame(columns=CANONICAL_SCH
 issues_df = data_clean.get("issues", pd.DataFrame(columns=["record identifier","issue_type","issue_detail","action_taken"])).copy()
 
 sales_df["order_time"] = pd.to_datetime(sales_df.get("order_time"), errors="coerce")
+
+# -------------------------
+# Post-clean validation (app-level safeguards)
+# -------------------------
+# Quantity must be >= 1 for a valid order line.
+if "qty" in sales_df.columns:
+    qty_num = pd.to_numeric(sales_df["qty"], errors="coerce")
+    bad = qty_num.isna() | (qty_num <= 0)
+    if bad.any():
+        bad_df = sales_df.loc[bad, ["order_id", "qty"]].copy() if "order_id" in sales_df.columns else sales_df.loc[bad, ["qty"]].copy()
+        # Log up to 5000 corrections to keep the issues file readable.
+        max_log = 5000
+        records = []
+        for k, row in bad_df.head(max_log).iterrows():
+            oid = row.get("order_id", k)
+            orig = row.get("qty", None)
+            records.append({
+                "record identifier": f"sales | order_id: {oid}",
+                "issue_type": "INVALID_VALUE",
+                "issue_detail": f"Field 'qty' had value '{orig}'",
+                "action_taken": "Corrected to 1",
+            })
+        if records:
+            issues_df = pd.concat([issues_df, pd.DataFrame(records)], ignore_index=True)
+        # Apply fix
+        qty_num = qty_num.fillna(1).clip(lower=1).round()
+    sales_df["qty"] = qty_num.astype(int)
+
 inventory_df["snapshot_date"] = pd.to_datetime(inventory_df.get("snapshot_date"), errors="coerce")
 if "start_date" in campaign_df.columns: campaign_df["start_date"] = pd.to_datetime(campaign_df["start_date"], errors="coerce")
 if "end_date" in campaign_df.columns: campaign_df["end_date"] = pd.to_datetime(campaign_df["end_date"], errors="coerce")
@@ -1194,17 +1264,17 @@ with st.sidebar:
     else:
         st.warning("Sales dates missing/invalid after cleaning; date filter disabled.")
 
-    city_opt = ["All"] + sorted(stores_df.get("city", pd.Series(dtype=str)).dropna().unique().tolist())
-    channel_opt = ["All"] + sorted(stores_df.get("channel", pd.Series(dtype=str)).dropna().unique().tolist())
-    cat_opt = ["All"] + sorted(products_df.get("category", pd.Series(dtype=str)).dropna().unique().tolist())
-    brand_opt = ["All"] + sorted(products_df.get("brand", pd.Series(dtype=str)).dropna().unique().tolist())
-    fulf_opt = ["All"] + sorted(stores_df.get("fulfillment_type", pd.Series(dtype=str)).dropna().unique().tolist())
+    city_vals = sorted(stores_df.get("city", pd.Series(dtype=str)).dropna().unique().tolist())
+    channel_vals = sorted(stores_df.get("channel", pd.Series(dtype=str)).dropna().unique().tolist())
+    cat_vals = sorted(products_df.get("category", pd.Series(dtype=str)).dropna().unique().tolist())
+    brand_vals = sorted(products_df.get("brand", pd.Series(dtype=str)).dropna().unique().tolist())
+    fulf_vals = sorted(stores_df.get("fulfillment_type", pd.Series(dtype=str)).dropna().unique().tolist())
 
-    f_city = st.selectbox("City", options=city_opt)
-    f_channel = st.selectbox("Channel", options=channel_opt)
-    f_category = st.selectbox("Category", options=cat_opt)
-    f_brand = st.selectbox("Brand", options=brand_opt)
-    f_fulfillment = st.selectbox("Fulfillment Type", options=fulf_opt)
+    f_city = st.multiselect("City", options=city_vals, default=city_vals)
+    f_channel = st.multiselect("Channel", options=channel_vals, default=channel_vals)
+    f_category = st.multiselect("Category", options=cat_vals, default=cat_vals)
+    f_brand = st.multiselect("Brand", options=brand_vals, default=brand_vals)
+    f_fulfillment = st.multiselect("Fulfillment Type", options=fulf_vals, default=fulf_vals)
 
 
 # -------------------------
@@ -1273,7 +1343,14 @@ base_kpis, _ = sim.calculate_historical_kpis(sales_for_sim, products_df)
 
 # Baseline demand & simulation
 baseline_df = sim.calculate_baseline_demand(sales_for_sim, products_df, stores_df, lookback_days=30)
-sim_filters = {"city": f_city, "channel": f_channel, "category": f_category}
+sim_filters = {
+    "city": f_city,
+    "channel": f_channel,
+    "category": f_category,
+    "min_baseline_daily_qty": float(min_baseline_daily_qty),
+    "exclude_bottom_demand_pct": int(exclude_bottom_demand_pct),
+    "min_days_of_cover_elig": float(min_days_of_cover_elig),
+}
 sim_out, constraints, sim_kpis = sim.run_simulation(
     baseline_df=baseline_df,
     products_df=products_df,
@@ -1300,11 +1377,11 @@ sim_out_base, constraints_base, sim_kpis_base = sim.run_simulation(
 # Inventory risk (demand-aware)
 inv_risk = inventory_risk(inventory_df, products_df, stores_df, baseline_df)
 inv_risk_f = inv_risk.copy()
-if f_city != "All": inv_risk_f = inv_risk_f[inv_risk_f["city"] == f_city]
-if f_channel != "All": inv_risk_f = inv_risk_f[inv_risk_f["channel"] == f_channel]
-if f_category != "All": inv_risk_f = inv_risk_f[inv_risk_f["category"] == f_category]
-if f_brand != "All": inv_risk_f = inv_risk_f[inv_risk_f["brand"] == f_brand]
-if f_fulfillment != "All": inv_risk_f = inv_risk_f[inv_risk_f["fulfillment_type"] == f_fulfillment]
+if isinstance(f_city, (list, tuple, set)) and len(f_city): inv_risk_f = inv_risk_f[inv_risk_f["city"].isin(list(f_city))]
+if isinstance(f_channel, (list, tuple, set)) and len(f_channel): inv_risk_f = inv_risk_f[inv_risk_f["channel"].isin(list(f_channel))]
+if isinstance(f_category, (list, tuple, set)) and len(f_category): inv_risk_f = inv_risk_f[inv_risk_f["category"].isin(list(f_category))]
+if isinstance(f_brand, (list, tuple, set)) and len(f_brand): inv_risk_f = inv_risk_f[inv_risk_f["brand"].isin(list(f_brand))]
+if isinstance(f_fulfillment, (list, tuple, set)) and len(f_fulfillment): inv_risk_f = inv_risk_f[inv_risk_f["fulfillment_type"].isin(list(f_fulfillment))]
 
 
 # Stockout risk deltas: compare latest snapshot vs the previous available snapshot (if present)
@@ -1322,11 +1399,12 @@ inv_risk_prev = (
 )
 
 inv_risk_prev_f = inv_risk_prev.copy()
-if f_city != "All" and len(inv_risk_prev_f): inv_risk_prev_f = inv_risk_prev_f[inv_risk_prev_f["city"] == f_city]
-if f_channel != "All" and len(inv_risk_prev_f): inv_risk_prev_f = inv_risk_prev_f[inv_risk_prev_f["channel"] == f_channel]
-if f_category != "All" and len(inv_risk_prev_f): inv_risk_prev_f = inv_risk_prev_f[inv_risk_prev_f["category"] == f_category]
-if f_brand != "All" and len(inv_risk_prev_f): inv_risk_prev_f = inv_risk_prev_f[inv_risk_prev_f["brand"] == f_brand]
-if f_fulfillment != "All" and len(inv_risk_prev_f): inv_risk_prev_f = inv_risk_prev_f[inv_risk_prev_f["fulfillment_type"] == f_fulfillment]
+if len(inv_risk_prev_f):
+    if isinstance(f_city, (list, tuple, set)) and len(f_city): inv_risk_prev_f = inv_risk_prev_f[inv_risk_prev_f["city"].isin(list(f_city))]
+    if isinstance(f_channel, (list, tuple, set)) and len(f_channel): inv_risk_prev_f = inv_risk_prev_f[inv_risk_prev_f["channel"].isin(list(f_channel))]
+    if isinstance(f_category, (list, tuple, set)) and len(f_category): inv_risk_prev_f = inv_risk_prev_f[inv_risk_prev_f["category"].isin(list(f_category))]
+    if isinstance(f_brand, (list, tuple, set)) and len(f_brand): inv_risk_prev_f = inv_risk_prev_f[inv_risk_prev_f["brand"].isin(list(f_brand))]
+    if isinstance(f_fulfillment, (list, tuple, set)) and len(f_fulfillment): inv_risk_prev_f = inv_risk_prev_f[inv_risk_prev_f["fulfillment_type"].isin(list(f_fulfillment))]
 stockout_risk_pct = (inv_risk_f["risk_flag"].mean() * 100) if len(inv_risk_f) else 0.0
 stockout_risk_pct_prev = (inv_risk_prev_f["risk_flag"].mean() * 100) if len(inv_risk_prev_f) else 0.0
 high_risk_skus = int(inv_risk_f["risk_flag"].sum()) if len(inv_risk_f) else 0
@@ -1340,10 +1418,15 @@ tax_avg = pd.to_numeric(products_df.get("tax_rate"), errors="coerce").dropna().m
 a, b, c = st.columns([1.5, 1.1, 1.4])
 with a:
     st.markdown("<div class='section-title'>Current Scope</div>", unsafe_allow_html=True)
+    city_txt = fmt_multi_selection(f_city, city_vals)
+    channel_txt = fmt_multi_selection(f_channel, channel_vals)
+    category_txt = fmt_multi_selection(f_category, cat_vals)
+    brand_txt = fmt_multi_selection(f_brand, brand_vals)
+    fulfillment_txt = fmt_multi_selection(f_fulfillment, fulf_vals)
     st.markdown(
         f"<div class='callout'><div class='subtle'>Filters applied to charts</div>"
-        f"<div><b>City</b>: {f_city} | <b>Channel</b>: {f_channel} | <b>Category</b>: {f_category}</div>"
-        f"<div><b>Brand</b>: {f_brand} | <b>Fulfillment</b>: {f_fulfillment}</div></div>",
+        f"<div><b>City</b>: {city_txt} | <b>Channel</b>: {channel_txt} | <b>Category</b>: {category_txt}</div>"
+        f"<div><b>Brand</b>: {brand_txt} | <b>Fulfillment</b>: {fulfillment_txt}</div></div>",
         unsafe_allow_html=True,
     )
 with b:
@@ -1373,44 +1456,54 @@ if view_mode == "Executive View":
     st.markdown("<div class='subtle'>Financial health, revenue drivers, and promo decisioning.</div>", unsafe_allow_html=True)
 
     # KPI cards with deltas (arrows/color reflect improvement vs prior period / baseline scenario)
-    k1, k2, k3, k4 = st.columns(4)
+    # KPI cards with deltas
+    # - Financial metrics use normal coloring (higher is better)
+    # - Risk/quality metrics use inverse coloring (higher is worse)
+    r1c1, r1c2, r1c3 = st.columns(3)
+    r2c1, r2c2, r2c3 = st.columns(3)
 
     net_rev_delta = net_rev_f - net_rev_prev
     margin_pp_delta = margin_pct_f - margin_pct_prev
+    return_pp_delta = return_rate_pct_f - return_rate_pct_prev
+    refund_delta = refund_f - refund_prev
 
-    k1.metric(
+    r1c1.metric(
         "Net Revenue (Filtered)",
         fmt_aed(net_rev_f),
         delta=(fmt_delta_aed(net_rev_delta) if has_prev_period else "n/a"),
         delta_color="normal",
     )
-    k2.metric(
-        "Gross Margin % (Filtered)",
+    r1c2.metric(
+        "Gross Margin % (Paid)",
         fmt_pct(margin_pct_f),
         delta=(fmt_delta_pp(margin_pp_delta) if has_prev_period else "n/a"),
         delta_color="normal",
     )
+    r1c3.metric(
+        "Return Rate % (Paid)",
+        fmt_pct(return_rate_pct_f),
+        delta=(fmt_delta_pp(return_pp_delta) if has_prev_period else "n/a"),
+        delta_color="inverse",
+    )
 
-    profit_proxy = float(sim_kpis.get("profit_proxy", 0.0))
-    profit_proxy_base = float(sim_kpis_base.get("profit_proxy", 0.0))
-    profit_proxy_delta = profit_proxy - profit_proxy_base
-
-    util = (float(sim_kpis.get("promo_spend", 0.0)) / promo_budget_aed * 100) if promo_budget_aed > 0 else 0.0
-    util_base = (float(sim_kpis_base.get("promo_spend", 0.0)) / promo_budget_aed * 100) if promo_budget_aed > 0 else 0.0
-
-    k3.metric(
+    r2c1.metric(
+        "Refunded Amount (AED)",
+        fmt_aed(refund_f),
+        delta=(fmt_delta_aed(refund_delta) if has_prev_period else "n/a"),
+        delta_color="inverse",
+    )
+    r2c2.metric(
         "Profit Proxy (Scenario)",
         fmt_aed(profit_proxy),
         delta=fmt_delta_aed(profit_proxy_delta),
         delta_color="normal",
     )
-    k4.metric(
+    r2c3.metric(
         "Budget Utilization (Scenario)",
         fmt_pct(util),
         delta=fmt_delta_pp(util - util_base),
         delta_color="normal",
     )
-
     c1, c2 = st.columns([1.2, 1])
     with c1:
         st.markdown("#### Net Revenue Trend (Monthly)")
@@ -1515,6 +1608,19 @@ if view_mode == "Executive View":
 
 
 # -------------------------
+
+    st.markdown("<div class='hr'></div>", unsafe_allow_html=True)
+    st.markdown("#### Campaign Plan (Upcoming)")
+    if len(campaign_df):
+        dfc = campaign_df.copy()
+        if "start_date" in dfc.columns and "end_date" in dfc.columns and dfc["start_date"].notna().any():
+            today = pd.Timestamp.today().normalize()
+            dfc = dfc[(dfc["end_date"] >= today) | (dfc["start_date"] >= today)]
+        st.dataframe(dfc.head(50), use_container_width=True, height=260)
+    else:
+        st.info("No campaign plan rows available in the current dataset.")
+
+
 # Manager View
 # -------------------------
 else:
@@ -1701,17 +1807,6 @@ else:
         else:
             st.write("No issues to display.")
 
-    st.markdown("<div class='hr'></div>", unsafe_allow_html=True)
-    st.markdown("#### Campaign Plan (Upcoming)")
-    if len(campaign_df):
-        dfc = campaign_df.copy()
-        if "start_date" in dfc.columns and "end_date" in dfc.columns and dfc["start_date"].notna().any():
-            today = pd.Timestamp.today().normalize()
-            dfc = dfc[(dfc["end_date"] >= today) | (dfc["start_date"] >= today)]
-        st.dataframe(dfc.head(50), use_container_width=True, height=260)
-    else:
-        st.info("No campaign plan rows available in the current dataset.")
-
 
 # -------------------------
 # Downloads
@@ -1719,10 +1814,70 @@ else:
 st.markdown("<div class='hr'></div>", unsafe_allow_html=True)
 st.markdown("<div class='section-title'>Downloads</div>", unsafe_allow_html=True)
 
-d1, d2, d3, d4 = st.columns(4)
-d1.download_button("products_clean.csv", products_df.to_csv(index=False).encode("utf-8"), "products_clean.csv", "text/csv")
-d2.download_button("stores_clean.csv", stores_df.to_csv(index=False).encode("utf-8"), "stores_clean.csv", "text/csv")
-d3.download_button("sales_clean.csv", sales_df.to_csv(index=False).encode("utf-8"), "sales_clean.csv", "text/csv")
-d4.download_button("inventory_clean.csv", inventory_df.to_csv(index=False).encode("utf-8"), "inventory_clean.csv", "text/csv")
+tab_can, tab_read = st.tabs(["Canonical (pipeline)", "Readable (with units)"])
+
+with tab_can:
+    st.caption("Canonical files preserve the exact schema used by the dashboard and the schema-mapping wizard (recommended for re-upload/testing).")
+    c1, c2, c3, c4, c5 = st.columns(5)
+    c1.download_button("products_clean.csv", products_df.to_csv(index=False).encode("utf-8"), "products_clean.csv", "text/csv")
+    c2.download_button("stores_clean.csv", stores_df.to_csv(index=False).encode("utf-8"), "stores_clean.csv", "text/csv")
+    c3.download_button("sales_clean.csv", sales_df.to_csv(index=False).encode("utf-8"), "sales_clean.csv", "text/csv")
+    c4.download_button("inventory_clean.csv", inventory_df.to_csv(index=False).encode("utf-8"), "inventory_clean.csv", "text/csv")
+    c5.download_button("campaign_plan_clean.csv", campaign_df.to_csv(index=False).encode("utf-8"), "campaign_plan_clean.csv", "text/csv")
+
+with tab_read:
+    st.caption("Readable versions annotate key numeric/date fields with units in the header for stakeholder interpretation. The underlying values are unchanged.")
+
+    UNITS_MAP = {
+        "products": {
+            "base_price_aed": "AED",
+            "unit_cost_aed": "AED",
+            "tax_rate": "%",
+        },
+        "stores": {},
+        "sales_raw": {
+            "order_time": "datetime",
+            "qty": "units",
+            "selling_price_aed": "AED",
+            "discount_pct": "%",
+        },
+        "inventory_snapshot": {
+            "snapshot_date": "date",
+            "stock_on_hand": "units",
+            "reorder_point": "units",
+            "lead_time_days": "days",
+        },
+        "campaign_plan": {
+            "start_date": "date",
+            "end_date": "date",
+            "discount_pct": "%",
+            "promo_budget_aed": "AED",
+        },
+    }
+
+    def annotate_units(df: pd.DataFrame, table_key: str) -> pd.DataFrame:
+        unit_map = UNITS_MAP.get(table_key, {}) or {}
+        rename = {c: f"{c} [{unit_map[c]}]" for c in df.columns if c in unit_map and unit_map[c]}
+        return df.rename(columns=rename)
+
+    products_u = annotate_units(products_df, "products")
+    stores_u = annotate_units(stores_df, "stores")
+    sales_u = annotate_units(sales_df, "sales_raw")
+    inventory_u = annotate_units(inventory_df, "inventory_snapshot")
+    campaign_u = annotate_units(campaign_df, "campaign_plan")
+
+    r1, r2, r3, r4, r5 = st.columns(5)
+    r1.download_button("products_clean_with_units.csv", products_u.to_csv(index=False).encode("utf-8"), "products_clean_with_units.csv", "text/csv")
+    r2.download_button("stores_clean_with_units.csv", stores_u.to_csv(index=False).encode("utf-8"), "stores_clean_with_units.csv", "text/csv")
+    r3.download_button("sales_clean_with_units.csv", sales_u.to_csv(index=False).encode("utf-8"), "sales_clean_with_units.csv", "text/csv")
+    r4.download_button("inventory_clean_with_units.csv", inventory_u.to_csv(index=False).encode("utf-8"), "inventory_clean_with_units.csv", "text/csv")
+    r5.download_button("campaign_plan_clean_with_units.csv", campaign_u.to_csv(index=False).encode("utf-8"), "campaign_plan_clean_with_units.csv", "text/csv")
+
+    units_rows = []
+    for t, cols in UNITS_MAP.items():
+        for col, unit in (cols or {}).items():
+            units_rows.append({"table": t, "column": col, "unit": unit})
+    units_df = pd.DataFrame(units_rows).sort_values(["table", "column"]) if units_rows else pd.DataFrame(columns=["table", "column", "unit"])
+    st.download_button("units_dictionary.csv", units_df.to_csv(index=False).encode("utf-8"), "units_dictionary.csv", "text/csv")
 
 st.caption("If Streamlit/Plotly are not in requirements.txt, add: streamlit, plotly, openpyxl (for XLSX uploads).")
